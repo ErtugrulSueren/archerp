@@ -1,0 +1,191 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "SLE-.#####",
+ "creation": "2025-12-13 04:26:42.994828",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "hareket_detay\u0131_tab",
+  "i\u015flem_bilgisi_section",
+  "tarih",
+  "islem_tipi",
+  "urun",
+  "depo",
+  "column_break_idts",
+  "degisim_miktari",
+  "birim_maliyet",
+  "toplam_tutar",
+  "birim",
+  "giri\u015f__\u00e7\u0131k\u0131\u015f_analizi_tab",
+  "miktar_hareketleri_section",
+  "giren_miktar",
+  "column_break_qrad",
+  "cikan_miktar",
+  "kaynak_belge_tab",
+  "sistem_ba\u011flant\u0131s\u0131_section",
+  "belge_tipi",
+  "belge_no"
+ ],
+ "fields": [
+  {
+   "fieldname": "tarih",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Tarih",
+   "reqd": 1
+  },
+  {
+   "fieldname": "urun",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Urun",
+   "options": "Urun",
+   "reqd": 1
+  },
+  {
+   "fieldname": "depo",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Depo",
+   "options": "Depo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "birim",
+   "fieldtype": "Link",
+   "label": "Birim",
+   "options": "Birim"
+  },
+  {
+   "fieldname": "islem_tipi",
+   "fieldtype": "Select",
+   "label": "Islem Tipi",
+   "options": "Giri\u015f\n\u00c7\u0131k\u0131\u015f\nTransfer\nD\u00fczeltme"
+  },
+  {
+   "fieldname": "column_break_qrad",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "giren_miktar",
+   "fieldtype": "Float",
+   "label": "Giren Miktar",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "cikan_miktar",
+   "fieldtype": "Float",
+   "label": "Cikan Miktar",
+   "read_only": 1
+  },
+  {
+   "fieldname": "degisim_miktari",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Degisim Miktari",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "description": "Stok de\u011ferleme fiyat\u0131.",
+   "fieldname": "birim_maliyet",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Birim Maliyet",
+   "read_only": 1
+  },
+  {
+   "description": "De\u011fi\u015fim * Maliyet",
+   "fieldname": "toplam_tutar",
+   "fieldtype": "Currency",
+   "label": "Toplam Tutar",
+   "read_only": 1
+  },
+  {
+   "fieldname": "belge_tipi",
+   "fieldtype": "Link",
+   "label": "Belge Tipi",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "belge_no",
+   "fieldtype": "Dynamic Link",
+   "label": "Belge No",
+   "options": "belge_tipi"
+  },
+  {
+   "fieldname": "hareket_detay\u0131_tab",
+   "fieldtype": "Tab Break",
+   "label": "Hareket Detay\u0131"
+  },
+  {
+   "fieldname": "i\u015flem_bilgisi_section",
+   "fieldtype": "Section Break",
+   "label": "I\u015flem Bilgisi"
+  },
+  {
+   "fieldname": "column_break_idts",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "giri\u015f__\u00e7\u0131k\u0131\u015f_analizi_tab",
+   "fieldtype": "Tab Break",
+   "label": "Giri\u015f / \u00c7\u0131k\u0131\u015f Analizi"
+  },
+  {
+   "fieldname": "miktar_hareketleri_section",
+   "fieldtype": "Section Break",
+   "label": "Miktar Hareketleri"
+  },
+  {
+   "fieldname": "kaynak_belge_tab",
+   "fieldtype": "Tab Break",
+   "label": "Kaynak Belge"
+  },
+  {
+   "fieldname": "sistem_ba\u011flant\u0131s\u0131_section",
+   "fieldtype": "Section Break",
+   "label": "Sistem Ba\u011flant\u0131s\u0131"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-01-12 02:54:34.556717",
+ "modified_by": "Administrator",
+ "module": "Stok",
+ "name": "Stok Defteri",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "All",
+   "share": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

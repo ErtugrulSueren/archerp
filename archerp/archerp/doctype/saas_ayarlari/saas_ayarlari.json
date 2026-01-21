@@ -1,0 +1,106 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-12-10 04:31:53.749778",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "paket_limitleri",
+  "maksimum_firma",
+  "maksimum_sube",
+  "maksimum_kullanici",
+  "column_break_jkiu",
+  "paket_durumu",
+  "paket_bitis_tarihi",
+  "pro_paket_mi",
+  "limit_asim_mesaji"
+ ],
+ "fields": [
+  {
+   "fieldname": "paket_limitleri",
+   "fieldtype": "Heading",
+   "label": "Paket Limitleri"
+  },
+  {
+   "default": "1",
+   "description": "Ka\u00e7 \u015firket a\u00e7abilir?",
+   "fieldname": "maksimum_firma",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Maksimum Firma",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "description": "(Merkez dahil)",
+   "fieldname": "maksimum_sube",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Maksimum Sube",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "maksimum_kullanici",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Maksimum Kullanici",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_jkiu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "paket_durumu",
+   "fieldtype": "Heading",
+   "label": "Paket Durumu"
+  },
+  {
+   "default": "0",
+   "fieldname": "pro_paket_mi",
+   "fieldtype": "Check",
+   "label": "Pro Paket Mi"
+  },
+  {
+   "description": "\"Paket limitiniz doldu, l\u00fctfen...\"",
+   "fieldname": "limit_asim_mesaji",
+   "fieldtype": "Small Text",
+   "label": "Limit Asim Mesaji"
+  },
+  {
+   "fieldname": "paket_bitis_tarihi",
+   "fieldtype": "Date",
+   "label": "Paket Bitis Tarihi"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-12-25 07:33:15.233812",
+ "modified_by": "Administrator",
+ "module": "archerp",
+ "name": "SaaS Ayarlari",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

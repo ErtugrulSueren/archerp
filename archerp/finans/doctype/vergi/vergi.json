@@ -1,0 +1,99 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:vergi_adi",
+ "creation": "2025-12-08 04:57:06.374776",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "genel_tab",
+  "vergi_bilgileri_section",
+  "vergi_adi",
+  "vergi_turu",
+  "oran",
+  "column_break_xytc",
+  "muhasebe_hesabi",
+  "is_default"
+ ],
+ "fields": [
+  {
+   "fieldname": "vergi_adi",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Vergi adi",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "oran",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Oran",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_default",
+   "fieldtype": "Check",
+   "label": "Varsayilan mi?"
+  },
+  {
+   "fieldname": "muhasebe_hesabi",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Muhasebe Hesab\u0131",
+   "options": "Hesap",
+   "reqd": 1
+  },
+  {
+   "fieldname": "vergi_turu",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Vergi Turu",
+   "options": "Sat\u0131\u015f\nAl\u0131\u015f",
+   "reqd": 1
+  },
+  {
+   "fieldname": "genel_tab",
+   "fieldtype": "Tab Break",
+   "label": "Genel"
+  },
+  {
+   "fieldname": "vergi_bilgileri_section",
+   "fieldtype": "Section Break",
+   "label": "Vergi Bilgileri"
+  },
+  {
+   "fieldname": "column_break_xytc",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-01-12 19:59:16.873420",
+ "modified_by": "Administrator",
+ "module": "Finans",
+ "name": "Vergi",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

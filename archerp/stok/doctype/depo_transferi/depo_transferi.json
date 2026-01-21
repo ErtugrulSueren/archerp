@@ -1,0 +1,140 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "TRF-.YYYY.-.#####",
+ "creation": "2025-12-15 05:30:07.213975",
+ "description": "Amac\u0131: \u0130ki depo aras\u0131ndaki mal hareketini y\u00f6netmek. Bu i\u015flemde mal azalmaz veya artmaz, sadece yer de\u011fi\u015ftirir.\n\nProje\tproje\tLink\tZorunlu de\u011fil\t(Opsiyonel Gider Yeri)",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "genel_bak\u0131\u015f",
+  "section_break_utx7",
+  "kaynak_depo",
+  "tarih",
+  "column_break_zf0n",
+  "hedef_depo",
+  "varis_yeri",
+  "durum",
+  "transfer_edilecek_\u00fcr\u00fcnler_section",
+  "transfer_listesi",
+  "ayarlar_tab",
+  "sistem_bilgileri_section",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_utx7",
+   "fieldtype": "Section Break",
+   "label": "Transfer Rotas\u0131"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Depo Transferi",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "tarih",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Tarih",
+   "reqd": 1
+  },
+  {
+   "fieldname": "kaynak_depo",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Kaynak Depo",
+   "options": "Depo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "hedef_depo",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Hedef Depo ",
+   "options": "Depo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "transfer_listesi",
+   "fieldtype": "Table",
+   "label": "Transfer Listesi",
+   "options": "Depo Transfer Kalemi",
+   "reqd": 1
+  },
+  {
+   "fieldname": "durum",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Durum",
+   "options": "Taslak\nTamamland\u0131\n\u0130ptal"
+  },
+  {
+   "description": "\"E\u011fer Hedef Depo olarak 'Transit' se\u00e7tiyseniz, mal\u0131n as\u0131l gidece\u011fi yeri buraya se\u00e7in.\"",
+   "fieldname": "varis_yeri",
+   "fieldtype": "Link",
+   "label": "Varis Yeri (Bilgi)",
+   "options": "Depo"
+  },
+  {
+   "fieldname": "genel_bak\u0131\u015f",
+   "fieldtype": "Data",
+   "label": "Genel Bak\u0131\u015f"
+  },
+  {
+   "fieldname": "column_break_zf0n",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "transfer_edilecek_\u00fcr\u00fcnler_section",
+   "fieldtype": "Section Break",
+   "label": "Transfer Edilecek \u00dcr\u00fcnler"
+  },
+  {
+   "fieldname": "ayarlar_tab",
+   "fieldtype": "Tab Break",
+   "label": "Ayarlar"
+  },
+  {
+   "fieldname": "sistem_bilgileri_section",
+   "fieldtype": "Section Break",
+   "label": "Sistem Bilgileri"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-01-12 02:37:21.647999",
+ "modified_by": "Administrator",
+ "module": "Stok",
+ "name": "Depo Transferi",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

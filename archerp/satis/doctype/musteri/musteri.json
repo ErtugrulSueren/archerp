@@ -1,0 +1,180 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:musteri_adi",
+ "creation": "2025-12-07 06:24:23.349897",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "genel_bak\u0131\u015f_tab",
+  "firma_bilgileri_section",
+  "musteri_adi",
+  "musteri_grubu",
+  "yekili_kisi",
+  "column_break_s3pk",
+  "eposta",
+  "telefon",
+  "vergi_kimlik_no",
+  "vergi_dairesi",
+  "adresler_tab",
+  "adres_bilgileri",
+  "adresler",
+  "muhasebe_hesabi",
+  "section_break_jbga",
+  "column_break_tsxm",
+  "iletisim",
+  "il",
+  "il\u00e7e",
+  "column_break_npib",
+  "finansal_ayarlar",
+  "para_birimi"
+ ],
+ "fields": [
+  {
+   "fieldname": "musteri_grubu",
+   "fieldtype": "Link",
+   "label": "Musteri grubu",
+   "options": "Musteri Grubu",
+   "reqd": 1
+  },
+  {
+   "fieldname": "vergi_kimlik_no",
+   "fieldtype": "Data",
+   "label": "Vergi kimlik no"
+  },
+  {
+   "fieldname": "vergi_dairesi",
+   "fieldtype": "Data",
+   "label": "Vergi Dairesi"
+  },
+  {
+   "fieldname": "column_break_tsxm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "eposta",
+   "fieldtype": "Data",
+   "label": "EPosta"
+  },
+  {
+   "fieldname": "telefon",
+   "fieldtype": "Data",
+   "label": "Telefon"
+  },
+  {
+   "fieldname": "yekili_kisi",
+   "fieldtype": "Data",
+   "label": "Yekili kisi"
+  },
+  {
+   "fieldname": "adres_bilgileri",
+   "fieldtype": "Section Break",
+   "label": "Adres bilgileri"
+  },
+  {
+   "fieldname": "il",
+   "fieldtype": "Data",
+   "label": "il"
+  },
+  {
+   "fieldname": "il\u00e7e",
+   "fieldtype": "Data",
+   "label": "il\u00e7e"
+  },
+  {
+   "fieldname": "finansal_ayarlar",
+   "fieldtype": "Heading",
+   "label": "Finansal Ayarlar"
+  },
+  {
+   "fieldname": "para_birimi",
+   "fieldtype": "Link",
+   "label": "Para Birimi",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "adresler",
+   "fieldtype": "Table",
+   "label": "Adresler",
+   "options": "Adres Detayi"
+  },
+  {
+   "fieldname": "iletisim",
+   "fieldtype": "Heading",
+   "label": "iletisim"
+  },
+  {
+   "fieldname": "column_break_npib",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "musteri_adi",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "label": "Musteri adi",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "muhasebe_hesabi",
+   "fieldtype": "Link",
+   "label": "Muhasebe Hesabi",
+   "options": "Hesap",
+   "read_only": 1
+  },
+  {
+   "fieldname": "genel_bak\u0131\u015f_tab",
+   "fieldtype": "Tab Break",
+   "label": "Genel Bak\u0131\u015f"
+  },
+  {
+   "fieldname": "firma_bilgileri_section",
+   "fieldtype": "Section Break",
+   "label": "Firma Bilgileri"
+  },
+  {
+   "fieldname": "column_break_s3pk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "adresler_tab",
+   "fieldtype": "Tab Break",
+   "label": "Adresler"
+  },
+  {
+   "fieldname": "section_break_jbga",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-01-14 05:39:03.880965",
+ "modified_by": "Administrator",
+ "module": "Satis",
+ "name": "Musteri",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "search_fields": "musteri_adi",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "musteri_adi"
+}

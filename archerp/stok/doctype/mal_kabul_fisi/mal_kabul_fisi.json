@@ -1,0 +1,360 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "MKF-.YYYY.-.#####",
+ "creation": "2025-12-30 17:03:36.948884",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "genel_bak\u0131\u015f_tab",
+  "section_break_4fiy",
+  "tedarikci",
+  "irsaliye_no",
+  "column_break_s1ex",
+  "tarih",
+  "hedef_depo",
+  "status",
+  "gelen_\u00fcr\u00fcnler_section",
+  "kalemler",
+  "\u00f6zet_toplamlar_section",
+  "genel_toplam",
+  "para_birimi",
+  "finansal_detaylar_tab",
+  "kur_ve_vergiler_section",
+  "doviz_kuru",
+  "vergi_dahil_mi",
+  "odeme_kosulu",
+  "column_break_kmdw",
+  "ara_toplam",
+  "vergi_toplami",
+  "ek_iskonto_tutari",
+  "base_grand_total",
+  "adresler_tab",
+  "section_break_hj2z",
+  "fatura_adresi",
+  "fatura_il",
+  "fatura_ilce",
+  "fatura_acik_adres",
+  "column_break_es8l",
+  "teslimat_adresi",
+  "teslimat_il",
+  "teslimat_ilce",
+  "teslimat_acik_adres",
+  "ayarlar_ve_referanslar_tab",
+  "section_break_e2px",
+  "satin_alma_siparisi_referansi",
+  "firma",
+  "sube",
+  "column_break_i572",
+  "iade_mi",
+  "amended_from",
+  "sartlar_ve_kosullar",
+  "ek_aciklama"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_4fiy",
+   "fieldtype": "Section Break",
+   "label": "\u0130rsaliye Bilgileri"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Mal Kabul Fisi",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "tedarikci",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Tedarikci",
+   "options": "Tedarikci",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "tarih",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Tarih",
+   "reqd": 1
+  },
+  {
+   "fieldname": "hedef_depo",
+   "fieldtype": "Link",
+   "label": "Hedef Depo",
+   "link_filters": "{\r\n    \"is_group\": 0,\r\n    \"is_virtual\": 0\r\n}",
+   "options": "Depo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "kalemler",
+   "fieldtype": "Table",
+   "label": "Kalemler",
+   "options": "Mal Kabul Kalemi",
+   "reqd": 1
+  },
+  {
+   "description": "Tedarik\u00e7iden gelen ka\u011f\u0131t belge nosu.",
+   "fieldname": "irsaliye_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Irsaliye No"
+  },
+  {
+   "fieldname": "ek_aciklama",
+   "fieldtype": "Small Text",
+   "label": "Ek Aciklama"
+  },
+  {
+   "fieldname": "genel_toplam",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Genel Toplam",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "iade_mi",
+   "fieldtype": "Check",
+   "label": "iade Mi"
+  },
+  {
+   "fieldname": "odeme_kosulu",
+   "fieldtype": "Link",
+   "label": "Odeme Kosulu",
+   "options": "Odeme Kosulu"
+  },
+  {
+   "fieldname": "sartlar_ve_kosullar",
+   "fieldtype": "Link",
+   "label": "Sartlar Ve Kosullar",
+   "options": "Sartlar ve Kosullar"
+  },
+  {
+   "fieldname": "fatura_adresi",
+   "fieldtype": "Link",
+   "label": "Fatura Adresi",
+   "link_filters": "{\r\n    \"parent\": \"eval:doc.tedarikci\",\r\n    \"parenttype\": \"Tedarikci\"\r\n}",
+   "options": "Adres Detayi"
+  },
+  {
+   "fetch_from": "fatura_adresi.sehir",
+   "fieldname": "fatura_il",
+   "fieldtype": "Data",
+   "label": "Fatura il",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "fatura_adresi.ilce",
+   "fieldname": "fatura_ilce",
+   "fieldtype": "Data",
+   "label": "Fatura ilce",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "fatura_adresi.acik_adres",
+   "fieldname": "fatura_acik_adres",
+   "fieldtype": "Small Text",
+   "label": "Fatura Acik Adres",
+   "read_only": 1
+  },
+  {
+   "fieldname": "teslimat_adresi",
+   "fieldtype": "Link",
+   "label": "Teslimat Adresi",
+   "link_filters": "{\r\n    \"parent\": \"eval:doc.tedarikci\",\r\n    \"parenttype\": \"Tedarikci\"\r\n}",
+   "options": "Adres Detayi"
+  },
+  {
+   "fetch_from": "teslimat_adresi.sehir",
+   "fieldname": "teslimat_il",
+   "fieldtype": "Data",
+   "label": "Teslimat il",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "teslimat_adresi.ilce",
+   "fieldname": "teslimat_ilce",
+   "fieldtype": "Data",
+   "label": "Teslimat ilce",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "teslimat_adresi.acik_adres",
+   "fieldname": "teslimat_acik_adres",
+   "fieldtype": "Small Text",
+   "label": "Teslimat Acik Adres",
+   "read_only": 1
+  },
+  {
+   "fieldname": "satin_alma_siparisi_referansi",
+   "fieldtype": "Link",
+   "label": "Satin Alma Siparisi Referansi",
+   "options": "Satin Alma Siparisi",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "sube",
+   "fieldtype": "Link",
+   "label": "Sube",
+   "options": "Sube",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "default": "TRY",
+   "fieldname": "para_birimi",
+   "fieldtype": "Link",
+   "label": "Para Birimi",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "doviz_kuru",
+   "fieldtype": "Float",
+   "label": "Doviz Kuru",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "firma",
+   "fieldtype": "Link",
+   "label": "Firma",
+   "options": "Firma",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "vergi_dahil_mi",
+   "fieldtype": "Check",
+   "label": "Vergi Dahil Mi"
+  },
+  {
+   "fieldname": "ara_toplam",
+   "fieldtype": "Currency",
+   "label": "Ara Toplam",
+   "read_only": 1
+  },
+  {
+   "fieldname": "vergi_toplami",
+   "fieldtype": "Currency",
+   "label": "Vergi Toplami",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "ek_iskonto_tutari",
+   "fieldtype": "Currency",
+   "label": "iskonto Tutari"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Durum",
+   "options": "Taslak\nOnay Bekliyor\nFaturalanacak\nTamamland\u0131\n\u0130ptal\n\u0130ade\nK\u0131smi Faturaland\u0131\nTeslim Al\u0131nacak",
+   "read_only": 1
+  },
+  {
+   "fieldname": "genel_bak\u0131\u015f_tab",
+   "fieldtype": "Tab Break",
+   "label": "Genel Bak\u0131\u015f"
+  },
+  {
+   "fieldname": "column_break_s1ex",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "gelen_\u00fcr\u00fcnler_section",
+   "fieldtype": "Section Break",
+   "label": "Gelen \u00dcr\u00fcnler"
+  },
+  {
+   "fieldname": "\u00f6zet_toplamlar_section",
+   "fieldtype": "Section Break",
+   "label": "\u00d6zet Toplamlar"
+  },
+  {
+   "fieldname": "finansal_detaylar_tab",
+   "fieldtype": "Tab Break",
+   "label": "Finansal Detaylar"
+  },
+  {
+   "fieldname": "kur_ve_vergiler_section",
+   "fieldtype": "Section Break",
+   "label": "Kur ve Vergiler"
+  },
+  {
+   "fieldname": "column_break_kmdw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "adresler_tab",
+   "fieldtype": "Tab Break",
+   "label": "Adresler"
+  },
+  {
+   "fieldname": "section_break_hj2z",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_es8l",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ayarlar_ve_referanslar_tab",
+   "fieldtype": "Tab Break",
+   "label": "Ayarlar ve Referanslar"
+  },
+  {
+   "fieldname": "section_break_e2px",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_i572",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "base_grand_total",
+   "fieldtype": "Float",
+   "label": "Yerel Para Karsiligi"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-01-17 04:09:39.071960",
+ "modified_by": "Administrator",
+ "module": "Stok",
+ "name": "Mal Kabul Fisi",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

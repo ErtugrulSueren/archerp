@@ -78,8 +78,8 @@ app_license = "mit"
 
 # add methods and filters to jinja environment
 # jinja = {
-# 	"methods": "archerp.utils.jinja_methods",
-# 	"filters": "archerp.utils.jinja_filters"
+# 	"methods": "archerp.utils.get_jinja_methods",
+# 	# "filters": "archerp.utils.jinja_filters"
 # }
 
 # Installation
@@ -132,13 +132,17 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"Firma": {
+		"before_insert": "archerp.saas.utils.check_limits"
+	},
+	"Sube": {
+		"before_insert": "archerp.saas.utils.check_limits"
+	},
+	"User": {
+		"before_insert": "archerp.saas.utils.check_limits"
+	}
+}
 
 # Scheduled Tasks
 # ---------------
@@ -165,14 +169,6 @@ app_license = "mit"
 # -------
 
 # before_tests = "archerp.install.before_tests"
-
-# Extend DocType Class
-# ------------------------------
-#
-# Specify custom mixins to extend the standard doctype controller.
-# extend_doctype_class = {
-# 	"Task": "archerp.custom.task.CustomTaskMixin"
-# }
 
 # Overriding Methods
 # ------------------------------
@@ -245,8 +241,10 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
-# Translation
-# ------------
-# List of apps whose translatable strings should be excluded from this app's translations.
-# ignore_translatable_strings_from = []
-
+fixtures = [
+    {"dt": "Hesap"},
+    {"dt": "Vergi"},
+    {"dt": "Fiyat Listesi"},
+    {"dt": "Odeme Kosulu"},
+    {"dt": "Sartlar ve Kosullar"}
+]

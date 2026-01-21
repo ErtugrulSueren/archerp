@@ -1,0 +1,281 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:firma_adi",
+ "creation": "2025-12-30 18:26:07.733458",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "genel_bak\u0131\u015f_tab",
+  "temel_bilgiler_section",
+  "firma_adi",
+  "kisaltma",
+  "logo",
+  "column_break_ucdi",
+  "varsayilan_para_birimi",
+  "web_sitesi",
+  "vergi_ve_resmi_bilgiler_section",
+  "vergi_dairesi",
+  "vergi_no",
+  "column_break_st9w",
+  "mersis_no",
+  "ticaret_sicil_no",
+  "adres_ve_ileti\u015fim_tab",
+  "ileti\u015fim_bilgileri_section",
+  "telefon",
+  "eposta",
+  "merkez_adres_detay\u0131_section",
+  "ulke",
+  "sehir",
+  "ilce",
+  "column_break_hvtw",
+  "posta_kodu",
+  "acik_adres",
+  "muhasebe_ayarlar\u0131_tab",
+  "varsay\u0131lan_stok_hesaplar\u0131_section",
+  "varsayilan_stok_hesabi",
+  "smm_hesabi",
+  "mal_kabul_hesabi",
+  "column_break_tobh",
+  "varsayilan_banka_masraf_hesabi",
+  "varsay\u0131lan_kasa_hesab\u0131",
+  "banka_bilgileri_alt_bilgi_section",
+  "banka_bilgileri"
+ ],
+ "fields": [
+  {
+   "fieldname": "firma_adi",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Firma adi",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "description": "\u00d6rn: ARCH (Belge numaralar\u0131nda \u00f6ne eklemek i\u00e7in)",
+   "fieldname": "kisaltma",
+   "fieldtype": "Data",
+   "label": "Kisaltma",
+   "reqd": 1
+  },
+  {
+   "description": "Fatura \u00e7\u0131kt\u0131s\u0131 i\u00e7in \u015fart",
+   "fieldname": "logo",
+   "fieldtype": "Image",
+   "label": "Logo"
+  },
+  {
+   "fieldname": "column_break_ucdi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "vergi_dairesi",
+   "fieldtype": "Data",
+   "label": "Vergi dairesi"
+  },
+  {
+   "fieldname": "vergi_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Vergi no"
+  },
+  {
+   "description": "(Varsa)",
+   "fieldname": "mersis_no",
+   "fieldtype": "Data",
+   "label": "Mersis no"
+  },
+  {
+   "fieldname": "column_break_hvtw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "telefon",
+   "fieldtype": "Data",
+   "label": "Telefon"
+  },
+  {
+   "fieldname": "eposta",
+   "fieldtype": "Data",
+   "label": "Eposta"
+  },
+  {
+   "fieldname": "web_sitesi",
+   "fieldtype": "Data",
+   "label": "Web sitesi"
+  },
+  {
+   "fieldname": "varsayilan_para_birimi",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Varsayilan para birimi",
+   "options": "Currency"
+  },
+  {
+   "description": "(Fatura alt\u0131na bas\u0131lacak IBAN metni buraya yaz\u0131l\u0131r)",
+   "fieldname": "banka_bilgileri",
+   "fieldtype": "Text Editor",
+   "label": "Banka bilgileri"
+  },
+  {
+   "default": "HSP-00084",
+   "description": "Mal Kabul Fi\u015fi i\u00e7in Alacak Hesab\u0131 (Arac\u0131 Hesap)",
+   "fieldname": "mal_kabul_hesabi",
+   "fieldtype": "Link",
+   "label": "Mal Kabul Hesabi (SRBNB)",
+   "options": "Hesap",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "default": "HSP-00024",
+   "description": "Sat\u0131lan Mal\u0131n Maliyeti (SMM) Hesab\u0131 (Gider)",
+   "fieldname": "smm_hesabi",
+   "fieldtype": "Link",
+   "label": "SMM Hesabi",
+   "options": "Hesap",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "default": "HSP-00071",
+   "description": "Varsay\u0131lan Stok De\u011fer Hesab\u0131 (Varl\u0131k)",
+   "fieldname": "varsayilan_stok_hesabi",
+   "fieldtype": "Link",
+   "label": "Varsayilan Stok Hesabi",
+   "options": "Hesap",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "ulke",
+   "fieldtype": "Data",
+   "label": "Ulke",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sehir",
+   "fieldtype": "Data",
+   "label": "Sehir",
+   "reqd": 1
+  },
+  {
+   "fieldname": "ilce",
+   "fieldtype": "Data",
+   "label": "Ilce",
+   "reqd": 1
+  },
+  {
+   "fieldname": "posta_kodu",
+   "fieldtype": "Data",
+   "label": "Posta Kodu"
+  },
+  {
+   "fieldname": "acik_adres",
+   "fieldtype": "Small Text",
+   "label": "Acik Adres",
+   "reqd": 1
+  },
+  {
+   "default": "HSP-00031",
+   "fieldname": "varsayilan_banka_masraf_hesabi",
+   "fieldtype": "Link",
+   "label": "Varsayilan Banka Masraf Hesabi",
+   "options": "Hesap",
+   "reqd": 1
+  },
+  {
+   "fieldname": "genel_bak\u0131\u015f_tab",
+   "fieldtype": "Tab Break",
+   "label": "Genel Bak\u0131\u015f"
+  },
+  {
+   "fieldname": "temel_bilgiler_section",
+   "fieldtype": "Section Break",
+   "label": "Temel Bilgiler"
+  },
+  {
+   "fieldname": "vergi_ve_resmi_bilgiler_section",
+   "fieldtype": "Section Break",
+   "label": "Vergi ve Resmi Bilgiler"
+  },
+  {
+   "fieldname": "column_break_st9w",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ticaret_sicil_no",
+   "fieldtype": "Data",
+   "label": "Ticaret Sicil No"
+  },
+  {
+   "fieldname": "adres_ve_ileti\u015fim_tab",
+   "fieldtype": "Tab Break",
+   "label": "Adres ve Ileti\u015fim"
+  },
+  {
+   "fieldname": "ileti\u015fim_bilgileri_section",
+   "fieldtype": "Section Break",
+   "label": "Ileti\u015fim Bilgileri"
+  },
+  {
+   "fieldname": "merkez_adres_detay\u0131_section",
+   "fieldtype": "Section Break",
+   "label": "Merkez Adres Detay\u0131"
+  },
+  {
+   "fieldname": "muhasebe_ayarlar\u0131_tab",
+   "fieldtype": "Tab Break",
+   "label": "Muhasebe Ayarlar\u0131"
+  },
+  {
+   "fieldname": "varsay\u0131lan_stok_hesaplar\u0131_section",
+   "fieldtype": "Section Break",
+   "label": "Varsay\u0131lan Stok Hesaplar\u0131"
+  },
+  {
+   "fieldname": "column_break_tobh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "varsay\u0131lan_kasa_hesab\u0131",
+   "fieldtype": "Link",
+   "label": "Varsay\u0131lan Kasa Hesab\u0131",
+   "options": "Hesap"
+  },
+  {
+   "fieldname": "banka_bilgileri_alt_bilgi_section",
+   "fieldtype": "Section Break",
+   "label": "Banka Bilgileri (Alt Bilgi)"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-01-12 20:28:17.056147",
+ "modified_by": "Administrator",
+ "module": "archerp",
+ "name": "Firma",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "firma_adi"
+}

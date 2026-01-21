@@ -1,0 +1,84 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "{marka}-{model_adi}",
+ "creation": "2025-12-08 05:59:39.409041",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "genel_tab",
+  "model_bilgileri_section",
+  "model_adi",
+  "yil",
+  "column_break_dhud",
+  "marka"
+ ],
+ "fields": [
+  {
+   "description": "(\u00d6rn: Galaxy S24, Corolla)",
+   "fieldname": "model_adi",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Model adi",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "marka",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Marka",
+   "options": "Marka",
+   "reqd": 1
+  },
+  {
+   "description": "(Opsiyonel: 2024, 2023 gibi model y\u0131l\u0131)",
+   "fieldname": "yil",
+   "fieldtype": "Int",
+   "label": "Yil"
+  },
+  {
+   "fieldname": "genel_tab",
+   "fieldtype": "Tab Break",
+   "label": "Genel"
+  },
+  {
+   "fieldname": "model_bilgileri_section",
+   "fieldtype": "Section Break",
+   "label": "Model Bilgileri"
+  },
+  {
+   "fieldname": "column_break_dhud",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-01-11 18:45:47.940111",
+ "modified_by": "Administrator",
+ "module": "Stok",
+ "name": "Model",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "model_adi"
+}

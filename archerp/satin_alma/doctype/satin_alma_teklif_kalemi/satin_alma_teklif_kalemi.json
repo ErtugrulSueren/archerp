@@ -1,0 +1,145 @@
+{
+    "actions": [],
+    "allow_rename": 1,
+    "creation": "2025-12-26 03:55:32.819010",
+    "doctype": "DocType",
+    "editable_grid": 1,
+    "engine": "InnoDB",
+    "field_order": [
+        "tur",
+        "gelir_gider_kalemi",
+        "hizmet_adi",
+        "urun",
+        "urun_adi",
+        "miktar",
+        "birim_fiyat",
+        "stok_birimi",
+        "cevrim_katsayisi",
+        "iskonto_orani",
+        "iskonto_tutari",
+        "vergi_sablonu",
+        "vergi_orani",
+        "tutar",
+        "teslim_tarihi"
+    ],
+    "fields": [
+        {
+            "default": "Stok",
+            "fieldname": "tur",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "label": "Tur",
+            "options": "Stok\nHizmet"
+        },
+        {
+            "depends_on": "eval:doc.tur == 'Hizmet'",
+            "fieldname": "gelir_gider_kalemi",
+            "fieldtype": "Link",
+            "label": "Hizmet / Gider",
+            "mandatory_depends_on": "eval:doc.tur == 'Hizmet'",
+            "options": "Gelir Gider Kalemi"
+        },
+        {
+            "depends_on": "eval:doc.tur == 'Hizmet'",
+            "fetch_from": "gelir_gider_kalemi.kalem_adi",
+            "fieldname": "hizmet_adi",
+            "fieldtype": "Data",
+            "label": "Hizmet Adi",
+            "read_only": 1
+        },
+        {
+            "depends_on": "eval:doc.tur == 'Stok'",
+            "fieldname": "urun",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "label": "Urun",
+            "mandatory_depends_on": "eval:doc.tur == 'Stok'",
+            "options": "Urun"
+        },
+        {
+            "fetch_from": "urun.urun_adi",
+            "fieldname": "urun_adi",
+            "fieldtype": "Data",
+            "label": "Urun Adi",
+            "read_only": 1
+        },
+        {
+            "fieldname": "miktar",
+            "fieldtype": "Float",
+            "label": "Miktar",
+            "reqd": 1
+        },
+        {
+            "fetch_from": "urun.standart_alis_fiyati",
+            "fieldname": "birim_fiyat",
+            "fieldtype": "Currency",
+            "label": "Birim Fiyat",
+            "reqd": 1
+        },
+        {
+            "fieldname": "tutar",
+            "fieldtype": "Currency",
+            "label": "Tutar",
+            "read_only": 1
+        },
+        {
+            "depends_on": "eval:doc.tur == 'Stok'",
+            "fetch_from": "urun.stok_birimi",
+            "fieldname": "stok_birimi",
+            "fieldtype": "Link",
+            "label": "Stok Birimi",
+            "mandatory_depends_on": "eval:doc.tur == 'Stok'",
+            "options": "Birim"
+        },
+        {
+            "fieldname": "iskonto_orani",
+            "fieldtype": "Percent",
+            "label": "Iskonto Orani"
+        },
+        {
+            "fieldname": "iskonto_tutari",
+            "fieldtype": "Currency",
+            "label": "Iskonto Tutari"
+        },
+        {
+            "default": "1",
+            "depends_on": "eval:doc.tur == 'Stok'",
+            "fieldname": "cevrim_katsayisi",
+            "fieldtype": "Float",
+            "label": "Cevrim Katsayisi"
+        },
+        {
+            "fieldname": "vergi_sablonu",
+            "fieldtype": "Link",
+            "label": "Vergi Sablonu",
+            "options": "Vergi",
+            "reqd": 1
+        },
+        {
+            "fetch_from": "vergi_sablonu.oran",
+            "fieldname": "vergi_orani",
+            "fieldtype": "Percent",
+            "label": "Vergi Orani"
+        },
+        {
+            "fieldname": "teslim_tarihi",
+            "fieldtype": "Date",
+            "label": "Teslim Tarihi"
+        }
+    ],
+    "grid_page_length": 50,
+    "index_web_pages_for_search": 1,
+    "istable": 1,
+    "links": [],
+    "modified": "2025-12-30 14:58:46.975636",
+    "modified_by": "Administrator",
+    "module": "Satin Alma",
+    "name": "Satin Alma Teklif Kalemi",
+    "owner": "Administrator",
+    "permissions": [],
+    "row_format": "Dynamic",
+    "rows_threshold_for_grid_search": 20,
+    "sort_field": "creation",
+    "sort_order": "DESC",
+    "states": []
+}

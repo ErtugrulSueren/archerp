@@ -1,0 +1,2356 @@
+
+1. DOCTYPE: Arch Module (Menü Yönetimi)
+---------------------------------------
+[Görsel Kaynağı: image_390668.png, image_390628.png, image_390645.png]
+- Alanlar: Modul adi, ikon, Siralama, Aktif, Menu ogeleri (Tablo).
+- Adlandırma: "field:modul_adi" olarak ayarlanmış. ✅
+
+🔴 STRESS TESTİ VE EKSİKLER:
+[✅] Durum: Özel bir yapılandırma olduğu için mantık hatası görünmüyor. Gayet temiz.
+
+========================================================================
+
+2. DOCTYPE: Arch Menu Ogesi (Child Table)
+---------------------------------------
+[Görsel Teyidi: image_3960dd.png, image_3960c2.png]
+- Tür: Alt Tablo (Child Table) ve Düzenlenebilir Tablo (Editable Grid) ✅.
+- Alanlar: Etiket, ikon, Hedef Rota, Ilgili DocType, Ust Baslik, Aktif.
+
+🔴 STRESS TESTİ VE EKSİKLER:
+[✅] Durum: Alt tablo olduğu için özel adlandırmaya gerek yok. Yapı doğru.
+
+========================================================================
+
+3. DOCTYPE: Sube
+---------------------------------------
+[Görsel Teyidi: image_397e6e.png, image_397e4c.png]
+- Alanlar: Sube adi, Adres, Telefon, Bagli firma.
+- Adlandırma: Otomatik İsim -> "field:sube_adi". ✅
+
+🔴 STRESS TESTİ VE EKSİKLER:
+[✅] Durum: Yapılandırma ve Naming kuralı doğru.
+
+========================================================================
+
+*Kaynak Görseller: Depo Alanları, Depo Ayarları, Depo Adlandırma*
+
+4. DOCTYPE: Depo (Warehouse)
+---------------------------------------
+[Görsel Teyidi: image_39d11d.png, image_39d103.png, image_39d0fe.png]
+
+A) TEMEL YAPILANDIRMA:
+   - Modül: Stok
+   - Yapı Tipi: Ağaç Yapısı (Tree Structure/Nested Set) ✅
+     (Bu yüzden lft, rgt, is_group alanları otomatik gelmiş, doğrudur).
+
+B) ALANLAR (FIELDS):
+   - Tanımlayıcı: Depo adi (Zorunlu)
+   - Hiyerarşi: Parent Depo (Link), Is Group (Check)
+   - Lokasyon: Bagli Sube (Link -> Sube), Konum Tipi (Select)
+   - Detaylar: Raf Kapasitesi (Float), Konum Barkodu (Data), Sanal Depo mu? (Check)
+
+C) ADLANDIRMA (NAMING):
+   - Kural: "By fieldname" -> `field:depo_adi`
+   - Yeniden Adlandırma: İzin verilmiş. ✅
+	
+========================================================================
+	
+*Kaynak Görseller: Birim Adlandırma, Birim Ayarlar, Birim Alanlar*
+
+5. DOCTYPE: Birim (Unit of Measure / UOM)
+---------------------------------------
+[Görsel Teyidi: image_39d51a.png, image_39d51e.png, image_39d538.png]
+
+A) TEMEL YAPILANDIRMA:
+   - Modül: Stok
+   - Tip: Standart Form (Alt Tablo veya Ağaç Yapısı değil).
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "By fieldname" -> `field:birim_adi` olarak ayarlanmış.
+   - Yeniden Adlandırma: İzin verilmiş (Allow Rename) ✅.
+   - Sonuç: Sistemde birimler "Adet", "Kg", "Metre" ID'si ile saklanacak. Bu raporlama için en temiz yöntemdir.
+
+C) ALANLAR (FIELDS):
+   1. Birim adi (Data): Zorunlu alan yapılmış (Zorunlu ✅).
+   2. Kisaltma (Data): (Zorunlu ✅).
+   3. Tam Sayi Mi? 
+
+========================================================================
+
+*Kaynak Görseller: Urun Grubu Ayarlar, Urun Grubu Adlandırma, Urun Grubu Alanlar*
+
+6. DOCTYPE: Urun Grubu (Item Group)
+---------------------------------------
+[Görsel Teyidi: image_39dc01.png, image_39dbe8.png, image_39dc06.png]
+
+A) TEMEL YAPILANDIRMA:
+   - Modül: Stok
+   - Yapı Tipi: Ağaç Yapısı (Tree Structure/Nested Set) ✅ Seçili.
+     (Bu yapı, kategorilerin iç içe klasörler gibi çalışmasını sağlar).
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "By fieldname" -> `field:grup_adi`.
+   - Yeniden Adlandırma: İzin verilmiş ✅.
+
+C) ALANLAR (FIELDS):
+   - Standart Ağaç Alanları: `lft`, `rgt`, `is_group` (Row 2,3,4) otomatik ve doğru gelmiş.
+   - Parent Bağlantısı: `parent_urun_grubu` (Link) ve `old_parent` (Link) mevcut.
+   - Tanımlayıcı: `Grup adi` (Data) - Zorunlu alan.
+
+========================================================================
+
+*Kaynak Görseller: Musteri Grubu Adlandırma, Ayarlar, Alanlar*
+
+7. DOCTYPE: Musteri Grubu (Customer Group)
+---------------------------------------
+[Görsel Teyidi: image_39e008.png, image_39e021.png, image_39e027.png]
+
+A) TEMEL YAPILANDIRMA:
+   - Modül: Satis
+   - Yapı Tipi: Ağaç Yapısı (Tree Structure) ✅ Seçili.
+     (Müşterileri "Bireysel > VIP", "Kurumsal > Bayi" gibi gruplamak için doğru yapı).
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "By fieldname" -> `field:grup_adi`.
+   - Yeniden Adlandırma: İzin verilmiş ✅.
+
+C) ALANLAR (FIELDS):
+   - Standart Ağaç Alanları: `lft`, `rgt`, `is_group` otomatik gelmiş.
+   - Parent Bağlantısı: `parent_musteri_grubu` (Row 6) mevcut.
+   - Tanımlayıcı: `Grup adi` (Data) - Zorunlu alan.
+
+
+========================================================================
+
+*Kaynak Görseller: Musteri Adlandırma, Ayarlar, Alanlar*
+
+8. DOCTYPE: Musteri (Customer)
+---------------------------------------
+[Görsel Teyidi: image_39e3e1.png, image_39e3e6.png, image_39e41d.png]
+
+A) TEMEL YAPILANDIRMA:
+   - Modül: Satis
+   - Tip: Standart Form (Ağaç yapısı değil).
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "Expression" (İfade).
+   - Otomatik İsim: `MUS-.#####`.
+     (Örnek Çıktı: MUS-00001, MUS-00002... Bu format on binlerce müşteri için gayet uygundur).
+   - Yeniden Adlandırma: İzin verilmiş ✅.
+
+C) ALANLAR (FIELDS):
+   1. Temel Bilgiler:
+      - `Musteri adi` (Data) - Zorunlu.
+      - `Musteri grubu` (Link -> Musteri Grubu) - Zorunlu ✅.
+      - `Vergi kimlik no` ve `Vergi Dairesi` (Data).
+
+   2. İletişim:
+      - `EPosta`, `Telefon`, `Yetkili kisi` (Data).
+
+   3. Adres:
+      - `Adresler` (Table -> Adres Detayi).
+
+   4. Finansal:
+      - `Para Birimi` (Select -> TRY, USD).
+
+========================================================================
+9. DOCTYPE: Vergi (Tax) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Vergi Listesi, Adlandırma, Ayarlar, Alanlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_dec4c0.png, image_dec4c4.png, image_dec4de.png, image_dec51b.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Finans.
+   - Doctype Tipi: Normal (Setup/Master data).
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "By fieldname" -> `field:vergi_adi`.
+   - Yeniden Adlandırma: İzin Verildi (✅).
+   - Sonuç: Vergi kayıtlarının ID'si doğrudan isimleri oldu (Örn: "KDV %20 (Satış)").
+   - Avantajı: Kod içinde vergi çağırırken ID hatırlamaya gerek kalmaz, ismiyle çağrılır.
+
+C) ALANLAR (FIELDS) - REVIZE EDİLMİŞ YAPI:
+  
+   
+   1. `Vergi adi` (Veri / Data):
+      - Zorunlu: ✅
+      - Açıklama: Faturada görünecek isim.
+      
+   2. `Oran` (Yüzde / Percent):
+      - Zorunlu: ✅
+      - Açıklama: Hesaplama çarpanı (Örn: 20).
+      
+   3. `Muhasebe Hesabı` (Bağlantı / Link):
+      - Hedef DocType: Hesap (Account)
+      - Zorunlu: ✅
+      - Kritik Düzeltme: Önceki versiyonda "Metin" olan bu alan "Link" yapıldı. Artık kullanıcı olmayan bir hesabı yazamaz, sadece `Hesap` listesinden seçim yapabilir.
+      
+   4. `Varsayilan mi ?` (Kontrol Et / Check):
+      - Adı: is_default
+      - Açıklama: İşaretlenirse, yeni faturada otomatik seçili gelir.
+
+🔴 STRESS TESTİ VE ÇÖZÜMLER (SONUÇLAR):
+---------------------------------------
+[✅] MUHASEBE ENTEGRASYONU:
+   - Önceki Risk: Kullanıcı hesap kodunu yanlış yazabiliyordu.
+   - Çözüm: Alan tipi `Link` yapıldı. Kullanıcı sadece "391" veya "191" gibi sistemde kayıtlı gerçek hesapları seçebiliyor. Hata riski %0'a indi.
+
+[✅] SATIŞ VE ALIŞ AYRIMI:
+   - Risk: Aynı vergi tanımının hem alışta hem satışta kullanılması muhasebe raporlarını bozuyordu.
+   - Çözüm: Vergi tanımları ayrıldı:
+     * Satış için: "KDV %20 (Satış)" -> 391 Hesabına gider.
+     * Alış için: "KDV %20 (Alış)" -> 191 Hesabına gider.
+
+[✅] VARSAYILAN VERİLER (FIXTURES):
+   - Durum: Sistem kurulumunda boş gelmemesi için standart veriler koda gömüldü (Export Fixtures).
+   - İçerik:
+     * KDV (%1, %10, %20)
+     * Tevkifat (5/10, 7/10)
+     * Muafiyet Tanımları
+
+SONUÇ:
+Vergi modülü, Türkiye Muhasebe Standartlarına ve SaaS mimarisine %100 uyumlu hale getirilmiştir.
+
+========================================================================
+========================================================================
+10. DOCTYPE: MARKA (BRAND) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Marka Ayarlar, Adlandırma, Alanlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_39ebe1.png, image_39ebdd.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Stok
+   - Tip: Standart Form (Normal).
+   - Açıklama: Ürünlerin üreticilerini tanımlamak için kullanılır.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "By fieldname" -> `field:marka_adi`
+   - Yeniden Adlandırma: İzin Verildi (✅)
+   - Sonuç: Marka ID'si eşittir Marka Adı (Örn: "Samsung").
+   - Avantaj: Ürün kartında marka seçerken ID yerine doğrudan ismi görünür, kafa karışıklığını önler.
+
+C) ALANLAR (FIELDS) - GENİŞLETİLMİŞ YAPI:
+  
+   
+   1. `Marka adi` (Veri / Data):
+      - Zorunlu: ✅
+      - Açıklama: Markanın görünen ismi.
+      
+   2. `Logo` (Resim Ekle / Attach Image) [YENİ]:
+      - Zorunlu: Hayır.
+      - Neden Eklendi?: Satış tekliflerinde (Quotation) veya Web Sitesinde ürünün yanına marka logosunu otomatik basabilmek için.
+      
+   3. `Web Sitesi` (Veri / Data) [YENİ]:
+      - Zorunlu: Hayır.
+      - Neden Eklendi?: Satın alma ekibinin tedarikçi/üretici sitesine hızlı erişimi için.
+      
+   4. `Açıklama` (Küçük Metin / Small Text) [YENİ]:
+      - Zorunlu: Hayır.
+      - Neden Eklendi?: "Bu marka ile distribütörlük anlaşmamız var" gibi iç notlar için.
+
+🔴 STRESS TESTİ VE SONUÇLAR:
+---------------------------------------
+[✅] GÖRSEL ZENGİNLİK:
+   - Önceki Durum: Sadece metin vardı.
+   - Güncel Durum: Logo desteği ile profesyonel teklif formlarına hazır hale getirildi.
+
+
+SONUÇ:
+Marka modülü, kurumsal kimliği destekleyecek şekilde güncellenmiş ve tamamlanmıştır.
+
+========================================================================
+========================================================================
+11. DOCTYPE: FİYAT LİSTESİ (PRICE LIST) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Fiyat Listesi Adlandırma, Ayarlar, Alanlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_39ef86.png, image_39ef9f.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Stok (veya Satış/Selling)
+   - Tip: Standart Form (Master Data).
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "By fieldname" -> `field:liste_adi`
+   - Yeniden Adlandırma: İzin Verildi (✅).
+   - Sonuç: Liste ID'si isminin kendisi olacak (Örn: "Standart Satış", "VIP Müşteri Listesi").
+   - Avantaj: Satış faturasında seçim yaparken ID yerine doğrudan bu isim görünür.
+
+C) ALANLAR (FIELDS) - REVIZE EDİLMİŞ YAPI:
+  
+
+   1. `Liste adi` (Veri / Data):
+      - Zorunlu: ✅
+      - Açıklama: Listenin adı.
+
+   2. `Para Birimi` (Bağlantı / Link) [DÜZELTİLDİ]:
+      - Hedef DocType: Para Birimi (Currency).
+      - Zorunlu: ✅
+      - Neden Değişti?: Eski planda "Seçim" (Select) kutusuydu ve sadece TL/USD vardı. Gelecekte EUR veya GBP eklenirse kod değiştirmemek için burası "Link" yapıldı. Artık sistemdeki tüm para birimlerini destekler.
+
+   3. `Tur` (Seçim / Select):
+      - Seçenekler:
+        * Satış (Selling)
+        * Alış (Buying)
+      - Zorunlu: ✅
+      - Açıklama: Bu listenin ne işe yaradığını belirtir. Satış faturasında Alış fiyatlarının görünmesini engeller.
+
+   4. `Aktif` (Kontrol / Check):
+      - Varsayılan: 1 (Seçili).
+      - Açıklama: Eski listeleri silmek yerine pasife almak için kullanılır.
+
+🔴 MANTIK NOTU (BÜYÜK RESİM):
+---------------------------------------
+[⚠️] BU DOCTYPE NE İŞE YARAR?:
+   - Bu DocType sadece listenin "Kapağını" (Başlığını) oluşturur (Örn: "Toptan Fiyat Listesi").
+   - Ürünlerin tek tek fiyatları (Örn: Kalem = 10 TL) burada TUTULMAZ.
+   - Fiyatlar için ileride `Ürün Fiyatı` (Item Price) adında bir ara tablo yapacağız. O tablo şunları bağlayacak:
+     * Hangi Ürün? (Kalem)
+     * Hangi Liste? (Toptan Fiyat Listesi)
+     * Fiyat Ne Kadar? (10 TL)
+
+✅ FIXTURES (VARSAYILAN VERİLER):
+---------------------------------------
+Sistem boş kurulduğunda kullanıcının elinin altında en azından 2 standart listenin hazır olması gerekir.
+Bunlar sisteme eklenecek ve `bench export-fixtures` ile paketlenecek:
+
+   1. ID: **Standart Satış**
+      - Para Birimi: TRY
+      - Tür: Satış
+
+   2. ID: **Standart Alış**
+      - Para Birimi: TRY
+      - Tür: Alış
+
+SONUÇ:
+Fiyat Listesi yapısı, çoklu döviz ve farklı satış senaryolarını (Perakende/Toptan) destekleyecek şekilde revize edilmiştir.
+
+========================================================================
+
+========================================================================
+12. DOCTYPE: URUN OZELLIK DEGERI (ITEM ATTRIBUTE VALUE) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Urun Ozellik Degeri Ayarlar, Alanlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_3a45db.png, image_3a45d6.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Stok
+   - Alt Tablo (Child Table): ✅ EVET (Seçili).
+   - Kritik Bilgi: Bu DocType tek başına kullanılmaz. Ana "Ürün Özelliği" formunun içinde bir satır olarak yaşar.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "Rastgele" (Random) -> `hash`
+   - Mantık: Alt tablo olduğu için bu kayıtların insan tarafından okunabilir bir ID'ye (Örn: UOD-001) ihtiyacı yoktur. Sistem arka planda benzersiz kod üretir. En performanslı yöntem budur.
+
+C) ALANLAR (FIELDS) - REVIZE EDİLMİŞ YAPI:
+  
+
+   1. `Deger adi` (Veri / Data):
+      - Adı (Fieldname): `deger_adi`
+      - Zorunlu: ✅
+      - Açıklama: Özelliğin görünen ismi (Örn: Kırmızı, Small, 32GB).
+
+   2. `Kisaltma` (Veri / Data) [DÜZELTİLDİ]:
+      - Adı (Fieldname): `kisaltma`
+      - Zorunlu: Hayır.
+      - Değişiklik: Önceki planda `secenekler` olan kod adı, karışıklığı önlemek için `kisaltma` yapıldı.
+      - Açıklama: Varyant kodları oluşturulurken kullanılır (Örn: Kırmızı -> KIR).
+
+🔴 MANTIK VE İLİŞKİ (BÜYÜK RESİM):
+---------------------------------------
+Bu tablo, bir sonraki adımda yapacağımız `Ürün Özelliği` (Item Attribute) DocType'ının "Çocuğu"dur.
+
+Örnek İlişki:
+- ANA KART (Parent): Renk
+   - ALT TABLO (Child Rows):
+     1. Kırmızı (KIR)
+     2. Mavi (MAV)
+     3. Sarı (SAR)
+
+SONUÇ:
+Ürün varyantlarını (Beden, Renk, Materyal) oluşturacak temel yapı taşı hatasız hale getirilmiştir.
+
+========================================================================
+========================================================================
+13. DOCTYPE: URUN OZELLIGI (ITEM ATTRIBUTE) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Urun Ozelligi Adlandırma, Ayarlar, Alanlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_3a49bb.png, image_3a499d.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Stok
+   - Tip: Standart Form (Master Data).
+   - Açıklama: Ürünlerin varyantlarını oluşturmak için kullanılan ana tanımlardır (Renk, Beden, Materyal vb.).
+
+B) ADLANDIRMA (NAMING) - [DÜZELTİLDİ]:
+   - Kural: "By fieldname" (Alan adı ile).
+   - Otomatik İsim: `field:ozellik_adi`
+   - Yeniden Adlandırma: İzin Verildi (✅).
+   - Sonuç: Özelliklerin ID'si isimleri ile aynı olacak.
+   - Neden Değişti?: Önceki planda "Rastgele" seçiliydi, bu durum veri girişinde karmaşık kodlar görünmesine yol açacaktı. Düzeltildi.
+
+C) ALANLAR (FIELDS):
+  
+
+   1. `Ozellik Adi` (Veri / Data):
+      - Zorunlu: ✅
+      - Açıklama: Özelliğin adı (Örn: Beden).
+
+   2. `Sayisal mi` (Kontrol / Check):
+      - Açıklama: Eğer özellik sayısal bir değerse (Örn: Kablo Uzunluğu 1.5m) işaretlenir.
+
+   3. `Degerler` (Tablo / Table):
+      - Hedef DocType: Urun Ozellik Degeri (Item Attribute Value) [Bir önceki adımda yapılan tablo].
+      - Zorunlu: ✅
+      - Açıklama: Bu özelliğin alabileceği değerler burada listelenir.
+        * Örn: Renk -> [Kırmızı, Mavi, Sarı]
+        * Örn: Beden -> [S, M, L]
+
+🔴 İŞLEVSELLİK VE BAĞLANTI (BÜYÜK RESİM):
+---------------------------------------
+Bu DocType tek başına bir anlam ifade etmez. Ürün kartında (Item) "Varyantları Oluştur" butonuna basıldığında sistem buraya bakar:
+1. "Hangi özelliği kullanayım?" -> Renk.
+2. "Hangi değerleri alayım?" -> Kırmızı, Mavi.
+3. Sonuç: Tişört-Kırmızı, Tişört-Mavi diye iki yeni stok kartı açar.
+
+SONUÇ:
+Varyant mimarisi (Parent-Child ilişkisi) başarıyla kurulmuştur.
+
+========================================================================
+
+*Kaynak Görseller: Urun Birim Cevrimi Ayarlar, Adlandırma, Alanlar*
+
+14. DOCTYPE: Urun Birim Cevrimi (UOM Conversion Detail)
+---------------------------------------
+[Görsel Teyidi: image_3a5060.png, image_3a5046.png, image_3a5064.png]
+
+A) TEMEL YAPILANDIRMA:
+   - Modül: Stok.
+   - Tip: Alt Tablo (Child Table) ✅.
+     (Bu tablo, ana Ürün kartının içinde "Diğer Birimler" başlığı altında görünecek).
+   - Arayüz: Düzenlenebilir Tablo (Editable Grid) ✅.
+     (Bu ayar harika; kullanıcı her satır için "Düzenle"ye basmadan Excel gibi hızlıca veri girebilir).
+
+B) ADLANDIRMA (NAMING):
+   - Kural: Belirlenmemiş (Boş).
+   - Mantık: Alt tablo olduğu için isimlendirme kritik değildir, sistem otomatik hash ID atar. Sorun yok.
+
+C) ALANLAR (FIELDS):
+   1. `Birim` (Link -> Birim) - Zorunlu.
+      (Örn: Koli).
+   2. `Cevrim Katsayisi` (Float) - Zorunlu.
+      (Örn: 12. Yani 1 Koli = 12 Adet).
+   3. `Barkod` (Data).
+      (O birime özel barkod. Örn: Kolinin üzerindeki barkod).
+
+🔴 STRESS TESTİ VE EKSİKLER:
+[✅] HARİKA TASARIM (BARKOD): `Barkod` alanını buraya (Birim Çevrimi tablosuna) eklemeniz mükemmel bir "Best Practice" (En iyi uygulama) örneğidir.
+    - **Neden?** Kasada ürünün tekil barkodunu okutursan 1 adet düşer, kolinin barkodunu okutursan sistem buradan eşleştirip stoktan otomatik 12 adet düşer. Bu alanın burada olması bu otomasyonu mümkün kılar.
+
+[✅] DOĞRU VERİ TİPİ: Çevrim katsayısının `Float` olması (Row 2), "1.5 Metre" gibi kesirli dönüşümlere izin verir. Doğru seçim.
+
+[✅] YAPI: Parent (Ürün) -> Child (Birim Çevrimi) ilişkisi için yapılandırma (Alt Tablo seçimi) doğrudur.
+
+========================================================================
+========================================================================
+15. DOCTYPE: URUN TEDARIKCISI (ITEM SUPPLIER) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Urun Tedarikcisi*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_3a5160.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Stok
+   - Alt Tablo (Child Table): ✅ EVET.
+   - Düzenlenebilir Tablo (Editable Grid): ✅ EVET.
+   - Açıklama: Bu tablo tek başına çalışmaz. "Ürün" (Item) kartının içinde, o ürünü kimlerden temin ettiğimizi listelemek için kullanılır.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: Otomatik (Sistem ID atar). Kullanıcı görmez.
+
+C) ALANLAR (FIELDS) - GÜNCELLENMİŞ YAPI:
+  
+
+   1. `Tedarikci` (Bağlantı / Link):
+      - Hedef: Tedarikci (Supplier)
+      - Zorunlu: ✅
+      - Açıklama: Ürünü aldığımız firma.
+
+   2. `Tedarikci Urun Kodu` (Veri / Data):
+      - Zorunlu: Hayır.
+      - Açıklama: Biz bu ürüne "IPHONE-15" diyor olabiliriz ama Tedarikçi "APP-15-BLK" diyor olabilir. Sipariş formunda tedarikçinin anlayacağı dili konuşmak için bu alan şarttır.
+
+   3. `Varsayilan mi?` (Onay Kutusu / Check) [YENİ EKLENDİ]:
+      - Adı: is_default
+      - Liste Görünümünde: ✅
+      - Açıklama: Aynı ürünü birden fazla tedarikçi satıyorsa, öncelikli olanı belirler. Satın alma siparişlerinde otomatik seçilir.
+
+🔴 MANTIK (NEDEN AYRI BİR TABLO?):
+---------------------------------------
+Neden "Ürün" kartına direkt "Tedarikçi" alanı açmadık?
+Çünkü bir ürünü bazen 5 farklı yerden alabilirsin. Bu "Alt Tablo" yapısı sayesinde sınırsız sayıda tedarikçi ekleyebilir ve "Tedarikçi A'da kodu bu, Tedarikçi B'de kodu şu" diyebilirsin.
+
+SONUÇ:
+Tedarik zinciri yönetiminin en küçük ama en işlevsel parçası tamamlanmıştır.
+
+========================================================================
+========================================================================
+16. DOCTYPE: TEDARIKCI GRUBU (SUPPLIER GROUP) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Tedarikci Grubu*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_3a5500.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Satin Alma (Buying).
+   - Ağaç Yapısı (Tree Structure): ✅ EVET (Seçili).
+   - Açıklama: Tedarikçileri kategorize etmek için kullanılır (Örn: "Hizmet Sağlayıcılar", "Hammaddeciler").
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "By fieldname" -> `field:grup_adi`
+   - Sonuç: Grup ID'si ismiyle aynı olur.
+
+C) ALANLAR (FIELDS) - TEMİZLENMİŞ YAPI:
+  
+
+   1. `Grup adi` (Veri / Data):
+      - Adı: grup_adi
+      - Zorunlu: ✅
+      - Açıklama: Grubun ismi.
+
+   2. `Grup mu?` (Kontrol / Check) [SİSTEM ALANI]:
+      - Adı: is_group
+      - Açıklama: İşaretlenirse bu bir klasördür, altına başka gruplar veya tedarikçiler eklenebilir.
+
+   3. `Üst Grup` (Bağlantı / Link) [SİSTEM ALANI]:
+      - Adı: parent_tedarikci_grubu
+      - Açıklama: Bu grubun bağlı olduğu ana klasör.
+
+🔴 KRİTİK DÜZELTME (MÜKERRERLİK GİDERİLDİ):
+---------------------------------------
+[✅] SORUN: Manuel olarak eklenen "Ust Grup" ve "Grup mu" alanları sistemin ağaç yapısı ile çakışıyordu.
+[✅] ÇÖZÜM: Manuel alanlar silindi. Sistemenin otomatik oluşturduğu `is_group` ve `parent_...` alanları kullanıldı ve etiketleri Türkçeleştirildi.
+Artık "Ağaç Görünümü" (Tree View) hatasız çalışacaktır.
+
+SONUÇ:
+Tedarikçi hiyerarşisi, Frappe standartlarına uygun hale getirildi.
+========================================================================
+========================================================================
+17. DOCTYPE: TEDARIKCI (SUPPLIER) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Tedarikci Ayarlar, Adlandırma, Alanlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_3a587c.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Satin Alma (Buying)
+   - Tip: Standart Form (Master Data).
+   - Açıklama: Mal veya hizmet satın aldığımız firmaların/kişilerin ana kartıdır.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "İfade" (Expression) -> `TED-.#####`
+   - Sonuç: Sistem otomatik olarak TED-00001, TED-00002 şeklinde kodlar üretir.
+   - Avantaj: Tedarikçi adı değişse bile (Örn: Firma unvan değiştirdi) sistemdeki kodu sabit kalır, muhasebe karışmaz.
+
+C) ALANLAR (FIELDS) - REVIZE EDİLMİŞ YAPI:
+  
+
+   1. Temel Bilgiler:
+      - `Tedarikci Adi` (Veri / Data): Zorunlu.
+      - `Tedarikci Grubu` (Bağlantı / Link): Zorunlu. (Örn: Hammaddeci, Lojistik).
+
+   2. Finansal Bilgiler:
+      - `Vergi Kimlik No` (Veri / Data): Fatura girişi için kritik.
+      - `Para Birimi` (Bağlantı / Link) [DÜZELTİLDİ]:
+         * Eski Durum: Seçim (Select) [Riskliydi].
+         * Yeni Durum: Bağlantı (Link) -> Para Birimi (Currency).
+         * Avantaj: Sistemdeki tüm para birimlerini destekler hale geldi.
+
+   3. İletişim:
+      - `Eposta` (Veri / Data): Satın alma siparişlerini mail atmak için.
+      - `Telefon` (Veri / Data): Hızlı iletişim için.
+      - `Adresler` (Tablo / Child Table): Fatura ve Sevk adreslerini tutmak için alt tablo yapısı kullanıldı.
+
+SONUÇ:
+Tedarikçi modülü, ölçeklenebilir (yeni para birimleri eklenebilir) ve güvenli (sabit ID yapısı) hale getirilmiştir.
+
+========================================================================
+
+========================================================================
+18. DOCTYPE: ODEME KOSULU (PAYMENT TERM) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Odeme Kosulu Adlandırma, Ayarlar, Alanlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7e008c.png, image_7e00a7.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Finans.
+   - Tip: Standart Form (Master Data).
+   - Açıklama: Satış ve Alış faturalarında vadenin (Due Date) otomatik hesaplanmasını sağlar.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "By fieldname" -> `field:kosul_adi`
+   - Yeniden Adlandırma: İzin Verildi (✅).
+   - Sonuç: ID'ler "30 Gün Vade", "Peşin" şeklinde oluşur.
+   - Avantaj: Fatura ekranında seçim yaparken kullanıcı doğrudan vade ismini görür, anlaşılırdır.
+
+C) ALANLAR (FIELDS) - GÜNCELLENMİŞ YAPI:
+  
+
+   1. `Kosul adi` (Veri / Data):
+      - Zorunlu: ✅
+      - Açıklama: Görünen isim (Örn: 45 Gün).
+
+   2. `Vade gun sayisi` (Tam Sayı / Int):
+      - Zorunlu: ✅
+      - Kritik: Burası kesinlikle "Sayı" olmalıdır. Kod tarafında (Fatura Tarihi + Gün Sayısı) matematiksel işlemi yapılır.
+
+   3. `Aciklama` (Küçük Metin / Small Text):
+      - Zorunlu: Hayır.
+      - Açıklama: Vade ile ilgili özel notlar için.
+
+   4. `Varsayilan mi?` (Onay Kutusu / Check) [YENİ EKLENDİ]:
+      - Adı: is_default
+      - Açıklama: Yeni fatura oluşturulduğunda otomatik seçilecek vadeyi belirler.
+
+✅ FIXTURES (STANDART VERİLER):
+---------------------------------------
+Sistem kurulumunda şu vadeler hazır gelir:
+- Peşin (0 Gün) [Varsayılan]
+- 7 Gün Vade
+- 15 Gün Vade
+- 30 Gün Vade
+- 60 Gün Vade
+
+SONUÇ:
+Finansal takvimin temel taşı olan vade yapısı, matematiksel hesaplamalara uygun şekilde tamamlanmıştır.
+
+========================================================================
+========================================================================
+19. DOCTYPE: SARTLAR VE KOSULLAR (TERMS AND CONDITIONS) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Sartlar ve Kosullar Adlandırma, Ayarlar, Alanlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7e0107.png, image_7e0125.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Satis (Selling) [veya Setup].
+   - Tip: Standart Form (Master Data).
+   - Açıklama: Teklif, Sipariş ve Faturaların altında yer alacak hukuki metin şablonlarını saklar.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "By fieldname" -> `field:baslik`
+   - Yeniden Adlandırma: İzin Verildi (✅).
+   - Sonuç: Kayıtlar "Standart Sözleşme", "İhracat Kuralları" gibi isimlerle saklanır. Kullanıcı seçim yaparken doğrudan bu isimleri görür.
+
+C) ALANLAR (FIELDS) - DÜZELTİLMİŞ YAPI:
+  
+
+   1. `Baslik` (Veri / Data):
+      - Zorunlu: ✅
+      - Açıklama: Şablonun adı.
+
+   2. `Şartlar ve Maddeler` (Yazı Editörü / Text Editor) [DÜZELTİLDİ]:
+      - Adı (Fieldname): `icerik` (Eskiden `text_editor_ootk` idi).
+      - Zorunlu: ✅
+      - Açıklama: HTML formatında uzun metinlerin, tabloların girilebileceği geniş alan.
+
+   3. `Varsayılan mı?` (Onay Kutusu / Check) [YENİ EKLENDİ]:
+      - Adı: `is_default`
+      - Açıklama: İşaretlenirse, yeni bir Teklif veya Fatura oluşturulduğunda bu metin otomatik olarak yüklenir.
+
+✅ FIXTURES (STANDART VERİLER):
+---------------------------------------
+- "Standart Satış Sözleşmesi" adında örnek bir kayıt oluşturuldu ve varsayılan olarak ayarlandı.
+- Amaç: Kullanıcı sistemi ilk açtığında fatura keserken yasal metin alanı boş gelmesin.
+
+SONUÇ:
+Hukuki altyapı modülü, teknik hatalardan arındırılarak kullanıma hazır hale getirilmiştir.
+	
+========================================================================
+========================================================================
+20. DOCTYPE: MODEL - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Model Adlandırma, Ayarlar, Alanlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7e04c6.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Stok.
+   - Tip: Standart Form (Master Data).
+   - Açıklama: Ürünleri daha detaylı sınıflandırmak için kullanılır (Örn: iPhone 13, Galaxy S24).
+
+B) ADLANDIRMA (NAMING) - [GÜVENLİK GÜNCELLEMESİ]:
+   - Kural: "Format" (Format) -> `format:{marka}-{model_adi}`
+   - Eski Plan: Sadece `model_adi` idi.
+   - Neden Değişti?: Farklı markaların aynı isimde modelleri olabilir (Örn: Hem Ford'un hem Epson'un "Focus" diye ürünü olabilir). Çakışmayı önlemek için Marka ismi ID'ye eklendi.
+   - Sonuç: Kayıt ID'leri "Apple-iPhone 13", "Samsung-Galaxy S24" şeklinde oluşacak.
+
+C) ALANLAR (FIELDS):
+  
+
+   1. `Model adi` (Veri / Data):
+      - Zorunlu: ✅
+      - Açıklama: Modelin ismi.
+
+   2. `Marka` (Bağlantı / Link):
+      - Hedef: Marka (Brand).
+      - Zorunlu: ✅
+      - Açıklama: Bu modelin hangi markaya ait olduğu. Hiyerarşi için kritiktir.
+
+   3. `Yil` (Tam Sayı / Int):
+      - Zorunlu: Hayır.
+      - Tip Doğrulaması: "Metin" yerine "Tam Sayı" seçilmesi, "2020'den yeni modelleri getir" gibi filtrelemeler yapmayı sağlar.
+
+SONUÇ:
+Ürün hiyerarşisinin (Marka -> Model -> Ürün) orta katmanı, veri çakışma risklerine karşı güçlendirilerek tamamlanmıştır.
+========================================================================
+========================================================================
+21. DOCTYPE: FIRMA (COMPANY) - FİNAL V2 (E-FATURA UYUMLU)
+========================================================================
+*Kaynak Görseller: Firma Alanlar, Adlandırma, Ayarlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+A) TEMEL AYARLAR:
+   - Modül: archerp.
+   - Tip: Standart Form.
+   - Açıklama: Sistemi kullanan "BİZİM" şirketimiz. (Müşteriler buraya kaydedilmez).
+
+B) ADLANDIRMA:
+   - Kural: `field:firma_adi` (Örn: Arch Yazılım).
+
+C) ALANLAR (FIELDS) - REVİZE EDİLMİŞ YAPI:
+   
+   1. Kimlik Bilgileri:
+      - `Firma adi` (Veri) - Zorunlu.
+      - `Kisaltma` (Veri) - Zorunlu. (Örn: ARCH. Belge serileri için hayati önemde).
+      - `Vergi Dairesi` (Veri).
+      - `Vergi No` (Veri).
+      - `Mersis No` (Veri).
+
+   2. İletişim ve Adres (E-FATURA STANDARDI):
+      - `Ülke` (Veri) [YENİ].
+      - `Şehir / İl` (Veri) [YENİ].
+      - `İlçe` (Veri) [YENİ].
+      - `Posta Kodu` (Veri) [YENİ].
+      - `Açık Adres` (Küçük Metin) [YENİ].
+      * Not: Adres alanları parçalandı. Böylece XML oluştururken veri ayrıştırma sorunu yaşanmayacak.
+
+   3. Finansal:
+      - `Varsayilan Para Birimi` (Link -> Currency).
+      - `Banka Bilgileri` (HTML Editör).
+
+✅ FIXTURES GÜNCELLEMESİ:
+---------------------------------------
+Lütfen kendi şirket kaydını oluştururken bu yeni alanları doldurarak kaydet:
+- Firma: Arch Yazılım
+- Şehir: İstanbul
+- İlçe: Kadıköy
+...
+========================================================================
+
+========================================================================
+22. DOCTYPE: ADRES DETAYI (ADDRESS DETAIL) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Adres Detayi Ayarlar, Alanlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7e0c4c.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Satis (Selling) veya Setup.
+   - Tip: Alt Tablo (Child Table).
+   - Arayüz: Düzenlenebilir Tablo (Editable Grid) ✅.
+   - Açıklama: Müşteri ve Tedarikçi kartlarının içinde birden fazla adres (Fatura, Sevk, Depo) tutmayı sağlar.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: Yok (Sistem otomatik yönetir).
+
+C) ALANLAR (FIELDS) - LOJİSTİK UYUMLU YAPI:
+  
+
+   1. `Adres Başlığı` (Veri):
+      - Adı: `adres_basligi` (DÜZELTİLDİ: Türkçe 'ı' karakteri kaldırıldı).
+      - Zorunlu: ✅
+
+   2. `Ülke`, `İl`, `İlçe`, `Posta Kodu` (Veri):
+      - Durum: YENİ EKLENDİ.
+      - Neden: Kargo firmaları ve E-Fatura sistemleri adresi ayrıştırılmış (structured) olarak ister. Tek bir metin kutusu entegrasyonda hata verir.
+
+   3. `Açık Adres` (Küçük Metin / Small Text):
+      - Zorunlu: ✅
+      - Açıklama: Sokak, Cadde, Bina No gibi detaylar buraya yazılır.
+
+   4. `Varsayılan mı?` (Onay Kutusu / Check):
+      - Adı: `varsayilan_mi`
+      - Açıklama: İşaretlenirse, Sipariş/Fatura oluşturulduğunda bu adres otomatik seçilir.
+
+SONUÇ:
+Adres yapısı, hem kod güvenliği (Türkçe karakter düzeltmesi) hem de entegrasyon standartlarına (İl/İlçe ayrımı) uygun hale getirilmiştir.
+
+========================================================================
+========================================================================
+23. DOCTYPE: SATIS TEMSILCISI (SALES PERSON) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Satis Temsilcisi Adlandırma, Alanlar, Ayarlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7e0faa.png, image_7e0fcb.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Satis (Selling).
+   - Yapı Tipi: Ağaç Yapısı (Tree Structure) ✅ SEÇİLİ.
+   - Amaç: Satış ekiplerini hiyerarşik (Müdür > Şef > Uzman) olarak yönetmek ve grup bazlı prim hesaplamak.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "By fieldname" -> `field:temsilci_adi`.
+   - Yeniden Adlandırma: İzin Verildi (✅).
+   - Sonuç: Kayıtlar doğrudan isimle (Örn: "Ahmet Yılmaz") saklanır.
+
+C) ALANLAR (FIELDS) - TEMİZLENMİŞ YAPI:
+  
+
+   1. `Temsilci Adi` (Veri / Data):
+      - Zorunlu: ✅
+      - Açıklama: Satış personelinin adı soyadı.
+
+   2. `Grup mu?` (Kontrol / Check) [SİSTEM ALANI]:
+      - Adı: is_group
+      - Açıklama: İşaretlenirse bu kişi bir "Ekip Lideri"dir, altına başka satışçılar eklenebilir.
+
+   3. `Üst Temsilci` (Bağlantı / Link) [SİSTEM ALANI]:
+      - Adı: parent_satis_temsilcisi
+      - Açıklama: Bu kişinin kime rapor verdiği (Müdürü).
+
+   4. `Komisyon Orani` (Yüzde / Percent):
+      - Açıklama: Bu personelin standart satışlardan alacağı prim yüzdesi. (Örn: 5).
+
+   5. `ilgili Kullanici` (Bağlantı / Link):
+      - Hedef: Kullanıcı (User).
+      - Kritik Özellik: ERP sistemine giriş yapan kullanıcı (email@sirket.com) ile bu satışçı kartını eşleştirir.
+      - Avantaj: "Sadece Kendi Siparişlerini Gör" yetkisi tanımlarken bu alan kullanılır.
+
+🔴 KRİTİK DÜZELTME (AĞAÇ YAPISI):
+---------------------------------------
+[✅] SORUN: Manuel eklenen "Ust Temsilci" ve "Grup mu" alanları sistemin yapısıyla çakışıyordu.
+[✅] ÇÖZÜM: Manuel alanlar silindi. Sistemin orijinal `is_group` ve `parent_...` alanları Türkçeleştirilerek kullanıma alındı.
+
+SONUÇ:
+Satış kadrosu hiyerarşisi, prim ve yetkilendirme sistemlerine tam uyumlu hale getirildi.
+
+========================================================================
+========================================================================
+24. DOCTYPE: SAAS AYARLARI (SAAS SETTINGS) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: SaaS Ayarlari Ayarlar, Adlandırma, Alanlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7e132d.png, image_7e1312.png]
+
+A) TEMEL AYARLAR:
+   - Modül: archerp.
+   - Tip: Tek (Single) ✅ SEÇİLİ.
+   - Açıklama: Bu DocType veritabanında liste olarak değil, TEK BİR SATIR olarak tutulur. Sistemin genel kurallarını ve limitlerini belirler.
+
+B) ADLANDIRMA:
+   - Kural: Yok (Single DocType olduğu için ID'ye gerek yoktur).
+
+C) ALANLAR (FIELDS) - GÜVENLİ YAPI:
+  
+
+   1. Limitler (Sayısal Kontroller):
+      - `Maksimum Firma` (Tam Sayı / Int).
+      - `Maksimum Sube` (Tam Sayı / Int).
+      - `Maksimum Kullanici` (Tam Sayı / Int).
+      * GÜVENLİK GÜNCELLEMESİ: Tüm sayısal alanlarda "Non-Negative" (Negatif Olamaz) seçeneği aktif edildi. Böylece mantıksız veri girişi engellendi.
+
+   2. Abonelik Durumu:
+      - `Pro Paket Mi` (Onay Kutusu / Check): Ekstra özellikleri açıp kapatmak için anahtar.
+      - `Paket Bitiş Tarihi` (Tarih / Date) [YENİ EKLENDİ]: Aboneliğin sona ereceği gün. Login sırasında bu tarih kontrol edilip sistem kilitlenebilir.
+      - `Limit Asim Mesaji` (Küçük Metin): Kullanıcı engellendiğinde göreceği nazik uyarı metni.
+
+🔴 ÖNEMLİ NOT (DATA YÖNETİMİ):
+---------------------------------------
+Bu DocType bir "Ayar" dosyası olduğu için içeriğindeki veriler (Örn: Max 5 Kullanıcı) `fixtures` ile DIŞARI AKTARILMAMALIDIR.
+- Neden? Çünkü her müşterinin (Tenant) limiti farklı olacaktır. Senin limitin "Sınırsız" iken, müşterinin limiti "3 Kullanıcı" olabilir. Bu veriler kurulum sırasında veya Admin panelinden girilmelidir.
+
+SONUÇ:
+Çok kiracılı (Multi-Tenant) mimarinin temel taşı olan lisanslama ve limit modülü tamamlanmıştır.
+
+========================================================================
+========================================================================
+25. DOCTYPE: URUN (ITEM) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Urun Alanlar, Adlandırma, Ayarlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7e16f3.png, image_7e142d.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Stok.
+   - Tip: Standart Form (Master Data).
+   - Tasarım: "Sekme Yapısı" (Tab Break) kullanılarak veriler (Genel, Stok, Ticari, Varyantlar) kategorize edildi. Yoğun veri girişi için mükemmel bir UI/UX sağlandı.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "By fieldname" -> `field:urun_kodu`.
+   - Yeniden Adlandırma: İzin Verildi (✅).
+   - Sonuç: Ürün ID'si eşittir Stok Kodu (Örn: "IPHONE-15-PRO").
+   - Avantaj: Fatura veya irsaliye girerken barkod okuyucu veya manuel kod girişi ile ürün bulmak milisaniyeler sürer.
+
+C) ALANLAR (FIELDS) - KRİTİK DÜZELTMELERLE:
+  
+
+   1. Genel Sekmesi:
+      - `Urun Kodu` ve `Urun Adi`: Zorunlu.
+      - `Urun Grubu` ve `Stok Birimi`: Zorunlu (Raporlama ve miktar takibi için temel).
+      - `Marka` ve `Model`: Hiyerarşik bağlantılar kuruldu.
+
+   2. Ticari Sekmesi (FİYAT DÜZELTMESİ):
+      - `Standart Satis Fiyati`:
+        * Eski Durum: Yüzde (Hatalı).
+        * Yeni Durum: Para Birimi (Currency).
+      - `Standart Alis Fiyati`:
+        * Eski Durum: Ondalık (Standart Dışı).
+        * Yeni Durum: Para Birimi (Currency).
+      - `Vergi Sablonu`: KDV oranlarını otomatize etmek için eklendi.
+
+   3. Stok Sekmesi (MANTIK DÜZELTMESİ):
+      - `Mevcut Stok` (mevcut_stok):
+        * İşlem: "Salt Okunur" (Read Only) yapıldı.
+        * Neden: Stok miktarı elle girilmez, giriş-çıkış fişlerinden hesaplanır. Kullanıcının manuel müdahalesi engellendi.
+      - `Kritik Stok`: Uyarı seviyesi belirlemek için.
+      - `Seri No` ve `Parti Takibi`: Onay kutusu (Check) ile opsiyonel hale getirildi.
+
+   4. Varyantlar ve Alt Tablolar:
+      - `Urun Tedarikcisi` (Alt Tablo): Çoklu tedarikçi takibi için bağlandı.
+      - `Urun Birim Cevrimi` (Alt Tablo): Adet/Koli dönüşümleri için bağlandı.
+
+SONUÇ:
+ERP sisteminin kalbi olan Ürün kartı; finansal veri tipleri, stok güvenliği ve kullanıcı arayüzü (Sekmeler) açısından optimize edilmiştir.
+========================================================================
+========================================================================
+26. DOCTYPE: URUN VARYANT SATIRI (ITEM VARIANT ROW) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Urun Varyant Satiri Ayarlar, Adlandırma, Alanlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7e1b2a.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Stok.
+   - Tip: Alt Tablo (Child Table).
+   - Arayüz: Düzenlenebilir Tablo (Editable Grid) ✅.
+   - Açıklama: Ürün kartındaki "Varyantlar" sekmesinde, o ürünün hangi özelliklere sahip olduğunu (Renk: Kırmızı, Beden: XL) listelemek için kullanılır.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: Yok (Sistem yönetir).
+
+C) ALANLAR (FIELDS) - DÜZELTİLMİŞ YAPI:
+  
+
+   1. `Ozellik` (Bağlantı / Link):
+      - Hedef: Urun Ozelligi (Item Attribute).
+      - Zorunlu: ✅
+      - Açıklama: Özelliğin kendisi (Örn: Materyal).
+
+   2. `Ozellik Degeri` (Veri / Data) [DÜZELTİLDİ]:
+      - Eski Durum: Küçük Yazı (Hatalı).
+      - Yeni Durum: Veri (Data).
+      - Zorunlu: ✅ (YENİ EKLENDİ).
+      - Açıklama: Kullanıcı boş değer giremez. Tablo görünümünde tek satır kaplar, görsel kirlilik yaratmaz.
+
+🔴 İLİŞKİ MANTIĞI:
+---------------------------------------
+Bu tablo, `Urun (Item)` kartı ile `Urun Ozelligi` kartı arasındaki köprüdür.
+- Ürün (Parent): Tişört
+  - Tablo Satırı 1: Renk -> Kırmızı
+  - Tablo Satırı 2: Beden -> L
+
+SONUÇ:
+Varyant oluşturma motorunun son dişlisi, veri giriş hatalarına kapatılarak tamamlanmıştır.
+
+========================================================================
+========================================================================
+27. DOCTYPE: STOK DEFTERI (STOCK LEDGER ENTRY) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Stok Defteri Alanlar, Ayarlar, Adlandırma*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7e1e90.png, image_7e1e58.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Stok.
+   - Tip: Standart Form.
+   - Önemli Not: Bu DocType genellikle manuel oluşturulmaz. Arka planda çalışan bir "Log" (Kayıt) defteridir. Fatura veya İrsaliye onaylandığında sistem buraya otomatik kayıt atar.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "İfade" (Expression) -> `SLE-.#####`
+   - Sonuç: SLE-00001, SLE-00002.
+   - Mantık: Her hareketin benzersiz bir kimliği vardır. İzlenebilirlik için standart yapı.
+
+C) ALANLAR (FIELDS) - KRİTİK DÜZELTMELERLE:
+  
+
+   1. Hareket Detayları:
+      - `Tarih`, `Urun`, `Depo`: Zorunlu alanlar.
+      - `Islem Tipi` (Seçim / Select) [DÜZELTİLDİ]:
+        * Eski Durum: Veri (Data) - Riskliydi.
+        * Yeni Durum: Seçim (Giriş, Çıkış, Transfer). Veri bütünlüğü sağlandı.
+
+   2. Miktar ve Değerleme (FİNANSAL DÜZELTME):
+      - `Degisim Miktari` (Ondalık / Float): Stoktaki artış (+) veya azalışı (-) gösterir.
+      - `Birim Maliyet` (Para Birimi / Currency) [DÜZELTİLDİ]:
+        * Eski Durum: Yüzde (Hatalı).
+        * Yeni Durum: Para Birimi. Maliyet analizlerinin doğru çalışması sağlandı.
+      - `Toplam Tutar` (Para Birimi / Currency) [DÜZELTİLDİ].
+
+   3. Referans ve Bağlantı (Dynamic Link):
+      - `Belge Tipi` ve `Belge No`:
+        * Özellik: Bu alanlar "Dinamik Bağlantı" (Dynamic Link) yapısındadır.
+        * Fayda: Stok hareketi ister "Satış Faturası"ndan, ister "Üretim Emri"nden gelsin; kaynak belgeye tek tıkla gidilebilir.
+
+SONUÇ:
+Stok değerleme ve miktar takibini yapan "Kara Kutu", finansal hatalardan arındırılarak güvenli hale getirilmiştir.
+	
+========================================================================
+========================================================================
+28. DOCTYPE: MAL KABUL KALEMI (PURCHASE RECEIPT ITEM) - FİNAL RAPOR
+========================================================================
+*Kaynak Görseller: Mal Kabul Kalemi Adlandırma, Alanlar, Ayarlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7e1f4b.png, image_7e1f6a.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Stok.
+   - Tip: Alt Tablo (Child Table).
+   - Arayüz: Düzenlenebilir Tablo (Editable Grid) ✅.
+   - Açıklama: Depoya giren ürünlerin listelendiği satırlardır.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: Yok (Sistem yönetir).
+
+C) ALANLAR (FIELDS) - GÜVENLİK GÜNCELLEMESİ:
+  
+
+   1. Ürün ve Miktar:
+      - `Urun` (Bağlantı / Link): Zorunlu.
+      - `Urun Adi`: Bilgi amaçlı.
+      - `Miktar` (Ondalık / Float): Zorunlu.
+
+   2. Finansal (DOĞRU YAPI):
+      - `Birim Maliyet` ve `Tutar`:
+        * Veri Tipi: Para Birimi (Currency). (Yüzde hatası yapılmamış ✅).
+      - `Vergi Sablonu`: Satır bazlı vergi yönetimi için eklendi.
+
+   3. İzlenebilirlik ve Referans:
+      - `Depo` (Bağlantı / Link): Zorunlu. Her satır farklı depoya (Örn: Biri Soğuk Hava, Biri Raf) girebilir.
+      - `Seri No` (Metin / Text) [DÜZELTİLDİ]:
+        * Eski Durum: Küçük Metin (Riskli).
+        * Yeni Durum: Metin (Text). Toplu IMEI/Seri No girişi için kapasite artırıldı.
+      - `Siparis Kalemi` (Veri / Data) [GÜVENLİK]:
+        * İşlem: "Salt Okunur" (Read Only) yapıldı.
+        * Neden: Bu alan, kaynak siparişin (Purchase Order) satır ID'sini tutar. Kullanıcının elle değiştirmesi engellendi.
+
+SONUÇ:
+Depo giriş süreçlerindeki veri bütünlüğü ve seri numarası kapasitesi optimize edilmiştir.
+========================================================================
+========================================================================
+29. DOCTYPE: MAL KABUL FISI (PURCHASE RECEIPT) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Mal Kabul Fisi Adlandırma, Ayarlar, Alanlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7e22cc.png, image_7e22d1.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Stok.
+   - Tip: Standart Form.
+   - Gönderilebilir (Submittable): ✅ EVET.
+   - Kritik Önem: Belge onaylandığında (Submit) stokları kalıcı olarak artırır ve kilitlenir. Silinemez, sadece ters kayıtla (İptal/İade) düzeltilebilir. Muhasebe standartlarına tam uyumludur.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "İfade" (Expression) -> `MKF-.YYYY.-.#####`
+   - Sonuç: MKF-2024-00001.
+   - Mantık: Yıl bazlı seri takibi, denetimlerde (Audit) belge bulmayı kolaylaştırır.
+
+C) ALANLAR (FIELDS) - OTOMASYONLU YAPI:
+  
+
+   1. Başlık ve Otomasyon:
+      - `Tedarikci` (Bağlantı): Zorunlu.
+      - `Tedarikci Adi` (Veri) [GÜNCELLENDİ]:
+        * İşlem: "Salt Okunur" yapıldı ve `tedarikci.tedarikci_adi` ile otomatik veri çekme (Fetch) ayarlandı. Hatalı girişi engeller.
+      - `Durum` (Seçim / Select) [YENİ]: Belgenin statüsünü (Tamamlandı, İade vb.) gösterir.
+
+   2. Lojistik ve Referans:
+      - `Hedef Depo` ve `Şube`: Zorunlu.
+      - `İrsaliye No`: Tedarikçinin gönderdiği kağıt belgenin numarası.
+      - `Satın Alma Siparişi` (Bağlantı): Siparişten kalan ürünleri otomatik çekmek için köprü görevi görür.
+
+   3. Finansal:
+      - `Para Birimi` ve `Kur`: Dövizli alımları destekler.
+      - `İade Mi` (Check): İşaretlenirse belge "Mal Kabul" değil "Tedarikçiye İade" fişi gibi davranır ve stoku düşer.
+      - `Kalemler` (Tablo): Ürün detayları ve seri numaraları burada tutulur.
+
+SONUÇ:
+Depo giriş süreçlerini ve yasal irsaliye takibini yapan bu belge, veri güvenliği (Submittable) ve kullanım kolaylığı (Fetch) açısından tamamlanmıştır.
+========================================================================
+========================================================================
+30. DOCTYPE: STOK CIKIS FISI (STOCK EXIT SLIP) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Stok Cikis Fisi Adlandırma, Alanlar, Ayarlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7e7569.png, image_7e7589.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Stok.
+   - Tip: Standart Form.
+   - Gönderilebilir (Submittable): ✅ EVET.
+   - Mantık: Onaylandığında (Submit) seçilen depodan stokları anında düşer ve maliyet kaydı oluşturur.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "İfade" (Expression) -> `SCF-.YYYY.-.#####`
+   - Sonuç: SCF-2024-00001.
+
+C) ALANLAR (FIELDS) - MUHASEBE ENTEGRASYONLU:
+  
+
+   1. Başlık ve Sebepler:
+      - `Tarih`: Zorunlu.
+      - `Kaynak Depo`: Zorunlu (Hangi depodan çıkıyor?).
+      - `Çıkış Tipi` (Seçim) [GÜNCELLENDİ]:
+        * Seçenekler: Fire, Numune, Hırsızlık, Sayım Eksiği, Tüketim.
+        * Faydası: Yıl sonunda "Ne kadar fire verdik?", "Ne kadar numune dağıttık?" raporlarını ayrıştırır.
+
+   2. Muhasebe (KRİTİK EKLEME):
+      - `Gider Hesabı` (Bağlantı -> Hesap): Zorunlu.
+        * Neden: Çıkan malın maliyetini (Örn: 1000 TL) ilgili gider hesabına (Örn: Pazarlama Giderleri) işlemek için.
+		
+   3. Detaylar:
+      - `Kalemler` (Tablo): Çıkarılacak ürünler ve miktarları.
+
+🔴 İŞLEYİŞ MANTIĞI:
+---------------------------------------
+Bu fiş "Satış" değildir. Para karşılığı olmadan yapılan stok çıkışlarıdır.
+- Stok Etkisi: Depo Miktarı AZALIR (-).
+- Muhasebe Etkisi: Stok Hesabı ALACAKLANDIRILIR (-), Gider Hesabı BORÇLANDIRILIR (+).
+
+SONUÇ:
+Kontrolsüz stok çıkışlarını önleyen ve muhasebe ile tam entegre çalışan yapı tamamlanmıştır.
+========================================================================
+========================================================================
+31. DOCTYPE: STOK CIKIS KALEMI (STOCK EXIT ITEM) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Stok Cikis Kalemi Alanlar, Adlandırma, Ayarlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7e78eb.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Stok.
+   - Tip: Alt Tablo (Child Table).
+   - Arayüz: Düzenlenebilir Tablo (Editable Grid) ✅.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: Yok (Sistem yönetir).
+
+C) ALANLAR (FIELDS) - MALİYET VE GÜVENLİK GÜNCELLEMESİ:
+  
+
+   1. Ürün ve Miktar:
+      - `Urun` (Bağlantı): Zorunlu.
+      - `Urun Adi` ve `Stok Birimi`: Bilgi amaçlı alanlar.
+      - `Cikis Miktari` (Ondalık): Zorunlu. Depodan düşülecek sayı.
+
+   2. Finansal (KRİTİK EKLEME):
+      - `Birim Maliyet` (Para Birimi / Currency) [YENİ]:
+        * Özellik: "Salt Okunur" (Read Only).
+        * İşlevi: Çıkış anında ürünün birim maliyetini (Valuation Rate) tutar. Muhasebe fişinin oluşması için zorunludur.
+
+   3. Durum ve Takip:
+      - `Anlik Stok` (Ondalık) [DÜZELTİLDİ]:
+        * İşlem: "Salt Okunur" yapıldı. Kullanıcının manuel müdahalesi engellendi.
+      - `Seri Parti No` (Metin / Text) [DÜZELTİLDİ]:
+        * Eski Durum: Küçük Metin.
+        * Yeni Durum: Metin (Text). Kapasite artırıldı.
+
+SONUÇ:
+Stok çıkış sürecinin en küçük yapı taşı; maliyet entegrasyonuna hazır ve veri güvenliği sağlanmış hale getirildi.
+
+========================================================================
+========================================================================
+32. DOCTYPE: DEPO TRANSFER KALEMI (WAREHOUSE TRANSFER ITEM) - FİNAL RAPOR
+========================================================================
+*Kaynak Görseller: Depo Transfer Kalemi Alanlar, Ayarlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7e7c4b.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Stok.
+   - Tip: Alt Tablo (Child Table).
+   - Arayüz: Düzenlenebilir Tablo (Editable Grid) ✅.
+   - Mantık: Bu işlem şirketin toplam varlığını değiştirmez, sadece varlığın yerini (Lokasyonunu) değiştirir.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: Yok (Sistem yönetir).
+
+C) ALANLAR (FIELDS) - KRİTİK GÜNCELLEMELER:
+  
+
+   1. Ürün ve Miktar:
+      - `Urun` (Bağlantı): Zorunlu.
+      - `Transfer Miktari` (Ondalık): Zorunlu.
+
+   2. Finansal (HAYATİ EKLEME):
+      - `Birim Maliyet` (Para Birimi / Currency) [YENİ]:
+        * Özellik: "Salt Okunur" (Read Only).
+        * İşlevi: Transfer anında ürünün değerini taşır. Hedef deponun ortalama maliyet hesabını bozmamak için zorunludur.
+
+   3. Birim Yönetimi:
+      - `Stok Birimi` (Bağlantı): Adet, Koli vb.
+      - `Çevrim Katsayısı` (Ondalık / Float) [YENİ]:
+        * Varsayılan: 1
+        * İşlevi: Eğer transfer birimi (Koli) ile stok birimi (Adet) farklıysa, stoktan düşülecek gerçek miktarı hesaplar (Örn: 1 Koli = 12 Adet).
+
+   4. Takip:
+      - `Seri No` (Metin / Text) [DÜZELTİLDİ]: Kapasite artırıldı.
+
+SONUÇ:
+Depolar arası stok hareketlerinin hem miktar hem de maliyet (değer) açısından doğru akmasını sağlayan yapı tamamlanmıştır.
+
+========================================================================
+========================================================================
+33. DOCTYPE: DEPO TRANSFERI (STOCK TRANSFER) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Depo Transferi Adlandırma, Alanlar, Ayarlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7e7d04.png, image_7e7d09.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Stok.
+   - Tip: Standart Form.
+   - Gönderilebilir (Submittable): ✅ EVET.
+   - Mantık: Stokları "Kaynak"tan düşer (-), "Hedef"e ekler (+). Muhasebeleşme bu iki depo arasında döner.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "İfade" (Expression) -> `TRF-.YYYY.-.#####`
+   - Sonuç: TRF-2024-00001.
+
+C) ALANLAR (FIELDS) - TRANSİT DESTEKLİ YAPI:
+  
+
+   1. Lojistik Detaylar:
+      - `Tarih`: Zorunlu.
+      - `Kaynak Depo`: Malzemenin çıktığı yer. (Örn: Merkez Depo).
+      - `Hedef Depo`: Malzemenin sistemsel olarak girdiği yer.
+        * Transit İşlemlerde: Buraya "Transit Depo" (Sanal) seçilir.
+        * Doğrudan İşlemlerde: Buraya gerçek varış deposu seçilir.
+      - `Varış Deposu (Bilgi)` (Link -> Depo) [GERİ GELDİ & REVİZE]:
+        * Açıklama: "Eğer Hedef Depo olarak 'Transit' seçtiyseniz, malın asıl gideceği yeri buraya seçin."
+        * İşlevi: Stok hareketini etkilemez, sadece irsaliyede/çıktıda depocunun ve şoförün malın son durağını görmesini sağlar.
+
+   2. Takip ve Durum:
+      - `Durum` (Seçim): Taslak, Onaylandı, İptal.
+      - `Proje`: İleride eklenecek, şimdilik kapsam dışı.
+
+   3. İçerik:
+      - `Transfer Listesi` (Tablo): Ürünler, miktarlar ve birim maliyetler.
+
+🔴 KULLANIM SENARYOSU (TRANSİT):
+---------------------------------------
+1. İstanbul'dan Ankara'ya mal çıkarken:
+   - Kaynak: İstanbul Depo
+   - Hedef: **Transit Depo** (Stok buraya park eder).
+   - Varış Deposu (Bilgi): **Ankara Depo** (Şoför nereye gideceğini bilir).
+
+2. Mal Ankara'ya varınca (İkinci bir transfer yapılır):
+   - Kaynak: Transit Depo
+   - Hedef: Ankara Depo
+   - Varış Deposu: (Boş bırakılabilir).
+
+SONUÇ:
+Lojistik gerçeklerine (yoldaki mal durumu) uygun, bilgi karmaşası yaratmayan transfer yapısı tamamlanmıştır.
+
+========================================================================
+========================================================================
+34. DOCTYPE: STOK DUZENLEME KALEMI (STOCK RECONCILIATION ITEM) - FİNAL
+========================================================================
+*Kaynak Görseller: Stok Duzenleme Kalemi Adlandırma, Alanlar, Ayarlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7e8050.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Stok.
+   - Tip: Alt Tablo (Child Table).
+   - Arayüz: Düzenlenebilir Tablo (Editable Grid) ✅.
+   - Amaç: İki temel fonksiyonu vardır:
+     1. Dönem başı stok devrini (Açılış Bakiyesi) sisteme girmek.
+     2. Dönem içi sayım farklarını (Sistem 10, Gerçek 8 ise -2 düş) düzeltmek.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: Yok (Sistem yönetir).
+
+C) ALANLAR (FIELDS) - DÜZELTİLMİŞ YAPI:
+  
+
+   1. Ürün ve Miktar:
+      - `Urun` (Bağlantı): Zorunlu.
+      - `Sistemdeki Stok` (Ondalık): "Salt Okunur". Sistem o anki bakiyeyi getirir.
+      - `Sayım Sonucu` (Ondalık): Zorunlu. Depocunun girdiği gerçek değer.
+      - `Fark Miktarı` (Ondalık) [GÜVENLİK]:
+        * İşlem: "Salt Okunur" yapıldı. (Formül: Sayım - Sistem).
+
+   2. Değerleme (FİNANSAL DÜZELTME):
+      - `Değerleme Fiyatı` (Para Birimi / Currency) [DÜZELTİLDİ]:
+        * Eski Durum: Yüzde (Hatalı).
+        * Yeni Durum: Para Birimi. Açılış fişlerinde ürünün maliyetini belirlemek için şarttır.
+
+   3. Kimlik Takibi (YENİ EKLENDİ):
+      - `Seri No` (Metin / Text): Kayıp/Fazla olan spesifik cihazı belirlemek için.
+      - `Parti No` (Veri / Data): Son kullanma tarihi takibi yapılan ürünler için.
+
+SONUÇ:
+Hem finansal (maliyet) hem de lojistik (seri no) eksikleri giderilerek, güvenli sayım yapısı oluşturulmuştur.
+========================================================================
+
+========================================================================
+35. DOCTYPE: STOK DUZENLEME FISI (STOCK RECONCILIATION) - FİNAL RAPOR
+========================================================================
+*Kaynak Görseller: Stok Duzenleme Fisi Adlandırma, Ayarlar, Alanlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7e83d2.png, image_7e83eb.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Stok.
+   - Tip: Standart Form.
+   - Gönderilebilir (Submittable): ✅ EVET.
+   - Kritik İşlev: Depodaki "Sistem Stoğu" ile "Gerçek Stok" arasındaki farkı kapatır. Stok değerini ve miktarını kalıcı olarak günceller.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "İfade" (Expression) -> `SDF-.YYYY.-.#####`
+   - Sonuç: SDF-2024-00005.
+
+C) ALANLAR (FIELDS) - MUHASEBE GÜVENLİKLİ:
+  
+
+   1. Başlık ve Amaç:
+      - `İşlem Tipi` (Seçim): Zorunlu.
+        * Seçenek 1 (Stok Sayımı): Sadece farkı muhasebeleştirir.
+        * Seçenek 2 (Açılış Bakiyesi): Eski stoğu siler, girilen değeri yazar (Sistem kurulumunda kullanılır).
+      - `Tarih`: Zorunlu.
+      - `Depo`: Sayımın yapıldığı lokasyon.
+
+   2. Muhasebe (KRİTİK EKLEME):
+      - `Fark Hesabı` (Bağlantı -> Hesap) [YENİ]:
+        * Zorunlu: ✅
+        * İşlevi: Oluşan stok farkının (TL Değeri) kar/zarar tablosunda nereye gideceğini belirler.
+
+   3. Detaylar:
+      - `Kalemler` (Tablo): Ürün, Sistem Stoğu, Sayılan Stok, Fark ve Maliyet bilgilerini içerir.
+
+🔴 OTOMASYON NOTU (YAZILIM EKİBİ İÇİN):
+---------------------------------------
+- Kullanıcı `Depo` ve `Ürün` seçtiğinde; sistem veritabanından o anki "Mevcut Miktarı" ve "Ağırlıklı Ortalama Maliyeti" (Valuation Rate) otomatik çekmelidir (Fetch).
+- Bu yapılmazsa, kullanıcı "Sistemde kaç tane vardı?" diye hatırlamaya çalışır, veri tutarsızlığı oluşur.
+
+SONUÇ:
+Dönem sonu envanter işlemlerini ve dönem başı devir işlemlerini yönetecek olan bu kritik form, muhasebe standartlarına uygun hale getirilmiştir.
+========================================================================
+========================================================================
+36. DOCTYPE: SATIS KALEMI (SALES ITEM) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Satis Kalemi Adlandırma, Alanlar, Ayarlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7e87ec.png, image_7e880b.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Satis.
+   - Tip: Alt Tablo (Child Table).
+   - Arayüz: Düzenlenebilir Tablo (Editable Grid) ✅.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: Yok (Sistem yönetir).
+
+C) ALANLAR (FIELDS) - TİCARİ REVİZYONLU:
+  
+
+   1. Ürün ve Lojistik:
+      - `Urun` (Bağlantı): Zorunlu.
+      - `Stok Birimi` ve `Depo`: Zorunlu. Satış anında stok rezervasyonu (Soft Allocate) için kritik.
+      - `Çevrim Katsayısı` (Ondalık) [YENİ]: Birim dönüşümleri için eklendi.
+
+   2. Finansal (İSKONTO EKLENDİ):
+      - `Miktar` ve `Birim Fiyat`: Zorunlu.
+      - `İskonto Oranı (%)` [YENİ]: Satır bazlı indirim tanımlamak için.
+      - `İskonto Tutarı` [YENİ]: Hesaplanan indirim tutarı.
+      - `Tutar` (Para Birimi): "Salt Okunur". (Formül: (Miktar * Fiyat) - İskonto).
+
+   3. Durum Takibi (OTOMASYON):
+      - `Teslim Edilen Miktar`: "Salt Okunur" yapıldı. İrsaliye kesildikçe sistem artırır.
+      - `Faturalanan Miktar`: "Salt Okunur" yapıldı. Fatura kesildikçe sistem artırır.
+      * Bu alanlar sayesinde "Bekleyen Sipariş" (Backorder) raporları %100 doğrulukla çalışır.
+
+SONUÇ:
+Siparişten faturaya giden yoldaki tüm hesaplamaları yapan satır yapısı, iskonto ve takip yetenekleriyle güçlendirilmiştir.
+========================================================================
+========================================================================
+37. DOCTYPE: SATIS TEKLIFI (SALES QUOTATION) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Satis Teklifi Adlandırma, Alanlar, Ayarlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7e8f54.png, image_7e8f92.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Satis.
+   - Tip: Standart Form.
+   - Gönderilebilir (Submittable): ✅ EVET.
+   - Mantık: Müşteriye sunulan resmi fiyat teklifidir. Onaylandıktan sonra değiştirilemez, revize edilmesi gerekir.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "İfade" (Expression) -> `TEK-.YYYY.-.#####`
+   - Sonuç: TEK-2024-00001.
+
+C) ALANLAR (FIELDS) - TİCARİ REVİZYONLU:
+  
+
+   1. Müşteri ve Lokasyon:
+      - `Musteri` (Bağlantı): Zorunlu.
+      - `Fatura Adresi` (Bağlantı -> Adres Detayı) [EKLENDİ]: Faturalama yapılacak adres.
+      - `Tarih` ve `Geçerlilik Tarihi`: Zorunlu. Teklifin ne zamana kadar geçerli olduğu (Hukuki bağlayıcılık).
+
+   2. Ticari Koşullar (BAĞLANTILAR KURULDU):
+      - `Ödeme Koşulu` (Bağlantı -> Ödeme Koşulu): Peşin, 30 Gün vb.
+      - `Şartlar ve Koşullar` (Bağlantı -> Şartlar ve Koşullar): Standart sözleşme metnini çeker.
+      - `Fiyat Listesi`: Toptan/Perakende fiyatlarını otomatik getirmek için.
+
+   3. Detaylar:
+      - `Kalemler` (Tablo -> Satış Kalemi): Ürünler, miktarlar, indirimler.
+      - `Durum` (Seçim): Taslak, Açık, Müşteriye Gönderildi, Kabul Edildi, Reddedildi, İptal.
+
+SONUÇ:
+Müşteriye giden "Fiyat, Ürün, Ödeme ve Teslimat" taahhüdünü içeren teklif formu, tüm ticari ve hukuki gerekliliklerle donatılmıştır.
+========================================================================
+========================================================================
+38. DOCTYPE: SATIS SIPARISI (SALES ORDER) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Satis Siparisi Adlandırma, Ayarlar, Alanlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7efcc8.png, image_7efce6.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Satis.
+   - Tip: Standart Form.
+   - Gönderilebilir (Submittable): ✅ EVET.
+   - Kritik İşlev: Satışı kesinleştirir. Stoktaki ürünleri "Rezerve" eder (Başkasına satılmasını engeller) ve "Teslimat Bekleyen" statüsüne sokar.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "İfade" (Expression) -> `SIP-.YYYY.-.#####`
+   - Sonuç: SIP-2024-00001.
+
+C) ALANLAR (FIELDS) - TAM DONANIMLI:
+  
+
+   1. Başlık ve Referanslar:
+      - `Müşteri`: Zorunlu.
+      - `Müşteri Sipariş No` (Veri): B2B entegrasyonu ve fatura eşleşmesi için kritik.
+      - `Teklif Referansı`: Hangi teklifin kabul edildiğini gösterir.
+      - `Teslim Tarihi`: Lojistik planlama için zorunlu.
+
+   2. Lojistik ve Finansal (EKLENDİ):
+      - `Fatura Adresi` ve `Sevk Adresi` (Link -> Adres Detayı): Faturalama ve sevkiyat lokasyonlarını ayrıştırır.
+      - `Ödeme Koşulu` (Link -> Ödeme Koşulu): Nakit akışı planlaması için zorunlu.
+      - `Şartlar ve Koşullar`: Hukuki metni otomatik getirir.
+
+   3. Detaylar ve Durum:
+      - `Kalemler` (Tablo): Ürün, miktar, fiyat ve depo bilgisi.
+      - `Durum` (Seçim): "Teslim Edilecek", "Faturalanacak", "Kısmi Teslimat" gibi detaylı statüler eklendi.
+
+SONUÇ:
+Müşteriden sipariş alma, stok rezervasyonu ve ödeme planlama süreçlerini yöneten ana form, eksiksiz olarak tamamlanmıştır.
+========================================================================
+========================================================================
+39. DOCTYPE: TESLIMAT KALEMI (DELIVERY NOTE ITEM) - FİNAL RAPOR
+========================================================================
+*Kaynak Görseller: Teslimat Kalemi Ayarlar, Alanlar, Adlandırma*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7f0011.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Satis.
+   - Tip: Alt Tablo (Child Table).
+   - Arayüz: Düzenlenebilir Tablo (Editable Grid) ✅.
+   - İşlevi: Depodan çıkıp müşteriye giden ürünleri listeler. Stok düşüşü burada gerçekleşir.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: Yok (Sistem yönetir).
+
+C) ALANLAR (FIELDS) - MALİYET VE TAKİP GÜNCELLEMESİ:
+  
+
+   1. Lojistik ve Stok:
+      - `Urun`, `Miktar`, `Depo`: Zorunlu. Depo seçimi, hangi şubeden/raftan mal çıkacağını belirler.
+      - `Çevrim Katsayısı` (Ondalık) [YENİ]: Birim dönüşümleri için.
+      - `Seri No` (Metin) ve `Parti No` (Veri) [YENİ]: Müşteriye teslim edilen spesifik ürünlerin takibi için eklendi.
+
+   2. Finansal (KRİTİK):
+      - `Birim Fiyat` ve `Tutar`: Fatura için referans fiyatlar.
+      - `Birim Maliyet` (Para Birimi) [YENİ]:
+        * Özellik: "Salt Okunur".
+        * Önemi: Stoktan düşülen malın maliyetini (Cost) tutar. Muhasebede "Satılan Malın Maliyeti (620)" hesabına gidecek tutar budur.
+
+   3. Entegrasyon:
+      - `Satış Kalemi ID` (Veri):
+        * İşlevi: Bu satırın hangi Sipariş satırına (Sales Order Item) ait olduğunu tutar.
+        * Faydası: İrsaliye onaylanınca, Sipariş formundaki "Teslim Edilen Miktar"ı günceller.
+
+SONUÇ:
+Lojistik (Seri No) ve Muhasebe (Maliyet) ihtiyaçlarına cevap veren, sipariş ile tam entegre çalışan satır yapısı tamamlanmıştır.
+========================================================================
+========================================================================
+40. DOCTYPE: SEVK IRSALIYESI (DELIVERY NOTE) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Sevk Irsaliyesi Ayarlar, Alanlar, Adlandırma*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7f0353.png, image_7f0372.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Satis.
+   - Tip: Standart Form.
+   - Gönderilebilir (Submittable): ✅ EVET.
+   - Kritik İşlev: Stoktan mal çıkışını resmileştirir. Stok bakiyesini düşer (-). Mali ve hukuki bir belgedir.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "İfade" (Expression) -> `IRS-.YYYY.-.#####`
+   - Sonuç: IRS-2024-00001.
+
+C) ALANLAR (FIELDS) - YASAL UYUMLU:
+  
+
+   1. Bağlantılar ve Adres:
+      - `Müşteri`: Zorunlu.
+      - `Sipariş Referansı` (Link -> Satış Siparişi): Zorunlu. Siparişsiz çıkışı engeller.
+      - `Sevk Adresi` (Link -> Adres Detayı) [EKLENDİ]: Teslimatın yapılacağı fiziksel lokasyon.
+      - *Temizlik:* Mükerrer olan "Referans" alanı kaldırıldı.
+
+   2. Lojistik ve Yasal (KRİTİK EKLEMELER):
+      - `Taşıyıcı Firma`: Lojistik firması veya dahili nakliye.
+      - `Şoför Adı`: Yasal zorunluluk.
+      - `Araç Plaka No`: Yasal zorunluluk (Yol denetimleri için).
+
+   3. Operasyonel:
+      - `İade Mi` (Check): İşaretlenirse "Satış İade İrsaliyesi" olur, müşteriden malı geri alır ve stoku artırır (+).
+      - `Kalemler` (Tablo): Ürün, miktar, depo, seri no ve birim maliyet bilgileri.
+
+   4. Durum (Status):
+      - Seçenekler: Taslak, Faturalanacak, Tamamlandı, İade, İptal.
+      - İşlevi: İrsaliyesi kesilmiş ama faturası kesilmemiş (Unbilled) işlemleri takip eder.
+
+SONUÇ:
+Hem depo çıkış süreçlerini yöneten hem de Maliye/Trafik denetimlerine uygun (Plaka/Şoför) yasal belge yapısı tamamlanmıştır.
+========================================================================
+========================================================================
+41. DOCTYPE: FATURA KALEMI (SALES INVOICE ITEM) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Fatura Kalemi Ayarlar, Adlandırma, Alanlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7f68c9.png, image_7f68af.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Satis.
+   - Tip: Alt Tablo (Child Table).
+   - Arayüz: Düzenlenebilir Tablo (Editable Grid) ✅.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: Yok (Sistem yönetir).
+
+C) ALANLAR (FIELDS) - MUHASEBE VE GÜVENLİK GÜNCELLEMESİ:
+  
+
+   1. Ticari Detaylar:
+      - `Urun`, `Miktar`, `Birim Fiyat`: Zorunlu.
+      - `Tutar`: Miktar * Fiyat.
+      - `İskonto Oranı` ve `Tutarı` [EKLENDİ]: Siparişten gelen indirimleri taşımak için.
+      - `Çevrim Katsayısı` [EKLENDİ]: Birim dönüşümleri için.
+
+   2. Muhasebe Entegrasyonu (KRİTİK):
+      - `Gelir Hesabı` (Link -> Hesap) [YENİ]:
+        * Zorunlu: ✅
+        * İşlevi: Satır bazında gelir hesabını (600 vs 602) belirler. Muhasebe fişi (GL Entry) bu alana göre oluşur.
+
+   3. İzlenebilirlik ve Güvenlik:
+      - `İrsaliye Kalemi ID` ve `Satış Kalemi ID` [DÜZELTİLDİ]:
+        * İşlem: "Salt Okunur" yapıldı.
+        * Faydası: Kaynak belge ile fatura arasındaki bağın kopması engellendi.
+
+   4. Lojistik:
+      - `Depo`: Fatura kesildiği anda stoktan düşüm yapılacaksa (İrsaliyesiz Fatura) bu alan kullanılır.
+
+SONUÇ:
+Muhasebe (Gelir Hesabı) ve Satış (İskonto) entegrasyonu tamamlanmış, güvenli fatura satır yapısı hazırdır.
+========================================================================
+
+========================================================================
+42. DOCTYPE: SATIS FATURASI (SALES INVOICE) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Satis Faturasi Alanlar, Ayarlar, Adlandırma*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7f6c8e.png, image_7f6c89.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Finans (Muhasebe erişimi için doğru yer).
+   - Tip: Standart Form.
+   - Gönderilebilir (Submittable): ✅ EVET.
+   - İşlevi: Resmi borçlanma belgesidir. Onaylandığında Müşteriyi borçlandırır (Debit), Satış hesabına gelir yazar (Credit).
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "İfade" (Expression) -> `SF-.YYYY.-.#####`
+   - Sonuç: SF-2024-00001.
+
+C) ALANLAR (FIELDS) - MUHASEBE VE YASAL UYUM:
+  
+
+   1. Başlık ve Muhatap:
+      - `Müşteri`: Zorunlu.
+      - `Fatura Tarihi` ve `Vade Tarihi`: Nakit akışı takibi için zorunlu.
+
+   2. Muhasebe (KRİTİK EKLEME):
+      - `Borç Hesabı` (Link -> Hesap):
+        * Zorunlu: ✅
+        * İşlevi: Müşterinin cari hesabını (120) tutar. Muhasebe fişinin "Borç" (Debit) bacağı buradan oluşur.
+
+   3. E-Fatura (KRİTİK EKLEME):
+      - `E-Fatura Senaryosu`: Temel, Ticari, Kamu vb.
+      - `E-Fatura Tipi`: Satış, İade, Tevkifat vb.
+      * Not: Türkiye vergi mevzuatına ve entegratör standartlarına tam uyumlu hale getirildi.
+
+   4. Stok ve Lojistik:
+      - `Stok Güncelle` (Check): İşaretlenirse irsaliye olmadan direkt stok düşer. (Hızlı satış veya hizmet faturası için ideal).
+      - `İrsaliye Referansı`: Varsa irsaliye ile bağlar.
+
+   5. Durum (Otomasyon):
+      - Liste: Ödenmedi, Ödendi, Vadesi Geçmiş...
+      - Özellik: "Salt Okunur". Tahsilat ve vade durumuna göre sistem tarafından otomatik yönetilir.
+
+SONUÇ:
+Muhasebe entegrasyonu (Borç Hesabı) ve yasal gereklilikleri (E-Fatura) tamamlanmış, tahsilata hazır satış faturası yapısı kurulmuştur.
+
+========================================================================
+========================================================================
+43. DOCTYPE: STOK BAKIYESI (STOCK BALANCE / BIN) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Stok Bakiyesi Alanlar, Adlandırma, Ayarlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7f6d09.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Stok.
+   - Tip: Standart Form.
+   - Gönderilebilir (Submittable): ❌ HAYIR.
+   - İşlevi: Canlı stok durumunu (Snapshot) tutar. Stok Defteri'nin özetidir.
+
+B) ADLANDIRMA (NAMING) - KRİTİK GÜVENLİK:
+   - Eski Kural: `BAK-.#####` (Riskliydi).
+   - Yeni Kural: `format:{urun}-{depo}`
+   - Sonuç: Kayıt ID'si "URUN01-DEPO01" olur.
+   - Faydası: Veritabanı seviyesinde benzersizlik (Unique Constraint) sağlar. Aynı depoda aynı ürün için mükerrer kayıt oluşmasını %100 engeller.
+
+C) ALANLAR (FIELDS):
+  
+
+   1. Anahtarlar:
+      - `Urun` ve `Depo`: Kaydın kimliği.
+
+   2. Miktar Durumu (SALT OKUNUR):
+      - `Mevcut Miktar`: Fiziksel stok. (Stok Hareketleri ile güncellenir).
+      - `Rezerve Miktar`: Sipariş gelince artar, irsaliye kesilince düşer.
+      - `Beklenen Miktar`: Satın alma siparişi verilince artar, mal kabul yapılınca düşer.
+
+   3. Değerleme:
+      - `Değerleme Tutarı` (Toplam Değer).
+      - `Birim Maliyet` (Valuation Rate) [EKLENDİ]: Birim başına düşen maliyet.
+
+🔴 GELİŞTİRİCİ NOTU (SENKRONİZASYON):
+---------------------------------------
+Bu tablo "Pasif" bir tablodur. Kendi kendine işlem yapmaz.
+- Stok Defteri (Ledger) yazıldığında -> Buradaki `Mevcut Miktar` güncellenmelidir.
+- Satış Siparişi (Sales Order) onaylandığında -> Buradaki `Rezerve Miktar` güncellenmelidir.
+* Bu "Trigger" kodları hatasız yazılmalıdır.
+
+SONUÇ:
+Hızlı raporlama ve anlık stok kontrolü için gereken önbellek (Cache) tablosu, veri bütünlüğü garanti altına alınarak hazırlanmıştır.
+========================================================================
+
+========================================================================
+44. DOCTYPE: SATIN ALMA SIPARISI (PURCHASE ORDER) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Satin Alma Siparisi Adlandırma, Alanlar, Ayarlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_7f7413.png, image_7f744e.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Satin Alma.
+   - Tip: Standart Form.
+   - Gönderilebilir (Submittable): ✅ EVET.
+   - İşlevi: Tedarikçiye verilen resmi sipariş mektubudur. Stok girişi yapmaz, sadece "Beklenen Miktar"ı artırır.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "İfade" (Expression) -> `SAS-.YYYY.-.#####`
+   - Sonuç: SAS-2024-00001.
+
+C) ALANLAR (FIELDS) - LOJİSTİK VE TİCARİ GÜNCELLEME:
+  
+
+   1. Tedarikçi ve Zamanlama:
+      - `Tedarikçi`: Zorunlu.
+      - `Tarih` ve `Beklenen Teslim Tarihi`: Zorunlu. Depo planlaması (Termin) için kritik.
+
+   2. Lojistik (EKLENDİ):
+      - `Hedef Depo`: Malın ineceği depo.
+      - `Şirket Adresi` (Link -> Adres Detayı) [YENİ]: Malın fiziksel teslimat adresi.
+
+   3. Ticari Şartlar (EKLENDİ):
+      - `Ödeme Koşulu`: Nakit akışını planlamak için zorunlu hale getirildi.
+      - `Para Birimi` ve `Kur`: İthalat süreçleri için uygun.
+
+   4. Durum (Status) [YENİ]:
+      - Seçenekler: Teslim Alınacak, Faturalanacak, Tamamlandı...
+      - Özellik: "Salt Okunur". Mal Kabul ve Fatura süreçlerine göre otomatik güncellenir.
+
+   5. Detaylar:
+      - `Kalemler` (Tablo -> Satın Alma Kalemi): Sipariş detayları.
+
+SONUÇ:
+Tedarikçi ile yapılan anlaşmayı kayıt altına alan, depo ve finans ile entegre çalışan ana sipariş formu tamamlanmıştır.
+
+========================================================================
+========================================================================
+45. DOCTYPE: SATIN ALMA FATURASI (PURCHASE INVOICE) - FİNAL RAPOR
+========================================================================
+*Kaynak Görseller: Satin Alma Faturasi Adlandırma, Ayarlar, Alanlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_80bb7e.png, image_80be44.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Satin Alma.
+   - Tip: Standart Form.
+   - Gönderilebilir (Submittable): ✅ EVET.
+   - İşlevi: Tedarikçiye olan borcu kesinleştirir. Stok maliyetlerini ve cari bakiyeyi günceller.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "İfade" (Expression) -> `SAF-.YYYY.-.#####`
+   - Sonuç: SAF-2024-00001 (Dahili Takip No).
+
+C) ALANLAR (FIELDS) - MUHASEBE VE DENETİM:
+  
+
+   1. Tedarikçi ve Referans:
+      - `Tedarikçi`: Zorunlu.
+      - `Fatura No` (Veri): Zorunlu. Tedarikçinin gönderdiği resmi fatura numarası (Örn: GIB2024...). Yasal eşleşme için kritik.
+
+   2. Muhasebe (KRİTİK EKLEMELER):
+      - `Alacak Hesabı` (Link -> Hesap):
+        * Zorunlu: ✅
+        * İşlevi: Tedarikçinin alacaklandırılacağı hesap (Genelde 320 Satıcılar). Muhasebe fişinin "Alacak" (Credit) bacağını oluşturur.
+      - `Vade Tarihi`: Ödeme planlaması için.
+      - `Ödeme Blokajı` (Check): Sorunlu faturaların yanlışlıkla ödenmesini engeller.
+
+   3. Durum (Status):
+      - Seçenekler: Ödenmedi, Ödendi, Vadesi Geçmiş...
+      - Özellik: "Salt Okunur". Ödeme Girişi (Payment Entry) yapıldıkça otomatik güncellenir.
+
+   4. Stok ve Lojistik:
+      - `Stok Güncelle` (Check): İrsaliyesiz (doğrudan) fatura girişlerinde stoku artırmak için.
+      - `İlgili Mal Kabul`: İrsaliye ile faturayı bağlar.
+
+SONUÇ:
+Hem yasal fatura numarasını takip eden hem de muhasebe (320 hesabı) entegrasyonu tamamlanmış satın alma faturası hazırdır.
+
+========================================================================
+46. DOCTYPE: HESAP (ACCOUNT) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak Görseller: Hesap Ayarlar, Adlandırma, Alanlar, Ağaç Görünümü*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_decb83.png, image_dec8de.png, image_decba8.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Finans
+   - Yapı Tipi: Ağaç Yapısı (Tree Structure) ✅ SEÇİLİ
+     (Sistemin Mizan, Bilanço ve Gelir Tablosu üretebilmesi için bu yapı zorunludur. Hesaplar klasör/alt klasör mantığıyla çalışır).
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "İfade" (Expression) -> `HSP-.#####`
+   - Başlık Alanı: `hesap_adi`
+   - Mantık: Muhasebe kodunu (100.01) sistem ID'sinden ayırdık. Sistem `HSP-0001` gibi benzersiz ID'ler kullanırken, kullanıcı ekranda sadece ismini görür.
+   - Avantaj: Muhasebe kodları değişse bile geçmiş veriler bozulmaz.
+
+C) ALANLAR (FIELDS) - GÜNCEL YAPI:
+  
+
+   1. Kimlik ve Hiyerarşi:
+      - `Hesap Kodu` (Veri): Kullanıcı manuel girer (Örn: 100.01). Zorunlu değil, esnek.
+      - `Hesap Adi` (Veri): Zorunlu.
+      - `Is Group` (Kontrol): İşaretliyse bu bir "Klasör" hesabıdır (Örn: Varlıklar), altına işlem yapılamaz.
+      - `Parent Hesap` (Bağlantı): Hesabın hangi klasörün altında olduğunu belirler. Ağaç yapısı için kritiktir.
+
+   2. Tür ve Finans:
+      - `Hesap Tipi` (Seçim): Zorunlu.
+      - Seçenekler: Varlık, Yükümlülük, Özkaynak, Gelir, Gider, Banka, Nakit, Vergi...
+      - `Para Birimi` (Bağlantı): Çoklu döviz takibi için.
+      - `Guncel Bakiye` (Para Birimi): Hesabın anlık durumunu gösterir.
+
+   3. Sistem Yönetimi:
+      - `Standart Hesap mı?` (is_standard): Sistem tarafından otomatik oluşturulan (Fixture) hesapları korumak için eklendi.
+      - `IBAN` (Veri): Sadece "Banka" tipi seçildiğinde görünür (Depends On).
+
+D) ARAYÜZ VE ARAMA (UX):
+  
+   - Arama Alanları: `hesap_adi, hesap_kodu`
+   - Sonuç: Kullanıcılar fatura veya ödeme ekranlarında hesap ararken hem ismini (Kasa) hem kodunu (100) yazarak bulabilirler.
+
+E) HESAP PLANI HİYERARŞİSİ (AĞAÇ YAPISI):
+---------------------------------------
+Sistemin omurgası şu 5 Ana Kök (Root) üzerine kuruldu:
+[Görsel Teyidi: image_decbc8.png, image_decbe6.png, image_decc03.png, image_decc1e.png, image_decc25.png]
+
+1. 📂 VARLIKLAR (Assets) -> [Kasa, Banka, Alıcılar, Stoklar, İndirilecek KDV]
+2. 📂 YÜKÜMLÜLÜKLER (Liabilities) -> [Satıcılar, Hesaplanan KDV, Ödenecek Vergiler, Personel Borçları]
+3. 📂 ÖZKAYNAKLAR (Equity) -> [Sermaye, Dönem Net Karı]
+4. 📂 GELİRLER (Income) -> [Yurtiçi Satışlar, Kambiyo Karları]
+5. 📂 GİDERLER (Expenses) -> [Genel Yönetim Giderleri, Kira, Elektrik, İadeler, İskontolar]
+
+F) STANDART VERİLER (FIXTURES):
+---------------------------------------
+- Durum: Tüm temel hesap planı (TDHP uyumlu) sisteme gömüldü.
+- İşlem: `bench export-fixtures` komutu ile koda dönüştürüldü.
+- Kapsam:
+  * KDV (%1, %10, %20), Tevkifat ve Muafiyet Hesapları.
+  * 770 kodlu tüm gider kalemleri (Yemek, Yol, Kira vb.).
+  * Avans, Personel ve Döviz Farkı hesapları.
+  * Satış İade ve İskonto hesapları.
+
+SONUÇ:
+Hesap modülü; hem veritabanı mimarisi (Tree), hem kullanıcı deneyimi (Filters/Search), hem de içerik (Fixtures) olarak uçtan uca tamamlanmıştır.
+
+
+========================================================================
+========================================================================
+47. DOCTYPE: ODEME ISLEMI (PAYMENT ENTRY) - FİNAL DURUM RAPORU
+========================================================================
+*Kaynak: Odeme Islemi Alanlar, Ayarlar, Adlandırma*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_80c227.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Finans.
+   - Tip: Standart Form.
+   - Gönderilebilir (Submittable): ✅ EVET.
+   - Kritik İşlev: Müşteri/Tedarikçi bakiyesini düşer, Kasa/Banka bakiyesini günceller.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "İfade" (Expression) -> `ODM-.YYYY.-.#####`
+   - Sonuç: ODM-2024-00001.
+
+C) ALANLAR (FIELDS) - ÇOKLU KAPAMA VE MUHASEBE:
+  
+
+   1. Muhatap ve Yön:
+      - `Ödeme Türü` (Seçim): Tahsilat / Tediye.
+      - `Taraf Tipi` ve `Taraf Kişi` (Dinamik): Müşteri veya Tedarikçi seçimi.
+      - `Taraf Hesabı` (Link -> Hesap) [KRİTİK EKLEME]:
+        * Zorunlu: ✅
+        * İşlevi: Seçilen kişinin muhasebe hesabını (120/320) tutar. Yevmiye fişi (GL Entry) için zorunludur.
+
+   2. Finansal Kaynak:
+      - `Kasa / Banka Hesabı` (Link -> Hesap): Para nereden çıkıyor/giriyor?
+      - `Ödenen Tutar` ve `Para Birimi`.
+
+   3. Referanslar (REVİZE EDİLDİ):
+      - `Ödeme Referansları` (Tablo -> Odeme Referansi) [YENİ]:
+        * Özellik: Eski tekil alanlar kaldırıldı. Alt tablo eklendi.
+        * Faydası: Tek bir ödeme ile 5 farklı faturayı kısmi veya tam kapatabilme yeteneği kazanıldı.
+      - `İşlem Ref No` (Veri): Çek/Dekont numarası.
+      - `İşlem Tarihi` (Tarih): Vade veya işlem tarihi.
+
+SONUÇ:
+"Tek fatura kısıtı" aşılarak çoklu fatura kapama özelliğine sahip, muhasebe entegrasyonu (Party Account) tamamlanmış profesyonel ödeme formu hazırdır.
+========================================================================
+========================================================================
+48. DOCTYPE: GELIR GIDER KALEMI (INCOME/EXPENSE ITEM) - FİNAL RAPOR
+========================================================================
+*Kaynak: Gelir Gider Kalemi Alanlar, Adlandırma, Ayarlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_80c323.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Finans.
+   - Tip: Standart Form (Master Data).
+   - Hızlı Giriş: ✅ Açık.
+   - İşlevi: Faturasız harcamalar (Fiş, Yemek, Taksi) veya faturalı genel giderler için tanımlanan "Hizmet/Masraf" kartlarıdır.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "By fieldname" -> `kalem_adi`.
+   - Sonuç: Kayıtlar direkt "Ofis Kirası", "Personel Yemeği" adıyla saklanır.
+
+C) ALANLAR (FIELDS) - TAM ENTEGRASYON:
+  
+
+   1. Tanımlama:
+      - `Kalem Adı` (Veri): Zorunlu.
+      - `Tür` (Seçim): Gelir / Gider.
+      - `Açıklama`: Detay alanı.
+
+   2. Muhasebe (KÖPRÜ):
+      - `Varsayılan Hesap` (Link -> Hesap):
+        * Zorunlu: ✅
+        * İşlevi: Masrafın muhasebedeki karşılığı (Örn: 770.01). Bu olmazsa fiş kesilemez.
+
+   3. Vergi (DÜZELTİLDİ):
+      - `Varsayılan Vergi` (Link -> Vergi):
+        * İşlevi: Varsa bu gidere ait standart KDV tanımını (Örn: %20 KDV) seçmek için.
+        * Not: Sistemdeki mevcut `Vergi` tablosuna bağlandı.
+
+SONUÇ:
+Masraf adını (Yemek), Muhasebe koduna (770) ve Vergi oranına (%10) bağlayan yapı tamamlanmıştır.
+========================================================================
+
+========================================================================
+49. DOCTYPE: SAAS SUBSCRIPTION (TENANT MANAGEMENT) - FİNAL RAPOR
+========================================================================
+*Kaynak: SaaS Subscription Ayarlar, Adlandırma, Alanlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_80c668.png]
+
+A) TEMEL AYARLAR:
+   - Modül: archerp (Yönetim katmanı).
+   - Tip: Özel (Custom) - Standart Form (List).
+   - Gönderilebilir: ❌ HAYIR. (Yaşayan, sürekli güncellenen kartlardır).
+
+B) ADLANDIRMA (NAMING) - GÜVENLİ:
+   - Eski Kural: `field:client_name` (Riskliydi).
+   - Yeni Kural: `expression` -> `TEN-.#####`
+   - Sonuç: Kayıt ID'si "TEN-00001" olur. Müşteri adını istese de değiştirebilir, bağlantı kopmaz.
+
+C) ALANLAR (FIELDS) - GÜVENLİK VE LİMİT:
+  
+
+   1. Müşteri Kimliği:
+      - `Müşteri Adı`: Zorunlu. Aramalarda bu kullanılır.
+      - `Domain URL`: Zorunlu. (Örn: acme.archerp.com).
+      - `İletişim Email`: Faturalama ve uyarılar için.
+
+   2. Güvenlik (KRİTİK DÜZELTME):
+      - `API Key` (Veri): Entegrasyon anahtarı.
+      - `Tenant API Secret` (Şifre / Password) [DÜZELTİLDİ]:
+        * Eski Durum: Veri (Riskli).
+        * Yeni Durum: Password. Veritabanında şifreli saklanır, ekranda görünmez.
+
+   3. Abonelik ve Limitler:
+      - `Abonelik Planı` (Link -> Subscription Plan) [TAVSİYE EKLENDİ]: "Gold", "Start" gibi paketleri seçmek için.
+      - `Max Firma`, `Max Şube`, `Max Kullanıcı` (Tam Sayı):
+        * İşlevi: Müşterinin satın aldığı haklar.
+        * Not: Bu değerler, müşterinin sistemindeki "SaaS Settings"e kopyalanır.
+
+   4. Süre ve Durum:
+      - `Başlangıç` ve `Bitiş Tarihi`: Lisans süresi.
+      - `Durum` (Seçim): Aktif, Süresi Dolmuş, Askıya Alınmış.
+      - `Otomatik Kontrol`: Gece çalışan bir görev (Scheduler), tarihi geçenlerin durumunu "Süresi Dolmuş" yapar.
+
+SONUÇ:
+Müşteri veritabanını, lisans sürelerini ve güvenlik anahtarlarını yöneten ana "Yönetici Paneli" (Master Tenant DB) tamamlanmıştır.
+========================================================================
+========================================================================
+50. DOCTYPE: SATIN ALMA KALEMI (PURCHASE ORDER ITEM) - FİNAL RAPOR
+========================================================================
+*Kaynak: Satin Alma Kalemi Alanlar, Ayarlar, Adlandırma*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_80ca22.png, image_80ca09.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Satin Alma.
+   - Tip: Alt Tablo (Child Table).
+   - Arayüz: Düzenlenebilir Tablo (Editable Grid) ✅.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: Yok (Sistem yönetir).
+
+C) ALANLAR (FIELDS) - TİCARİ VE MUHASEBE GÜNCELLEMESİ:
+  
+
+   1. Lojistik ve Stok:
+      - `Ürün`: Zorunlu.
+      - `Depo`: Zorunlu. Malın gireceği fiziksel lokasyon.
+      - `Çevrim Katsayısı` (Ondalık) [EKLENDİ]: Koli/Adet dönüşümleri için.
+
+   2. Finansal Hesaplama:
+      - `Miktar` ve `Birim Fiyat`: Zorunlu.
+      - `İskonto Oranı` ve `Tutarı` [EKLENDİ]: Satır bazlı indirimler için.
+      - `Tutar`: Miktar * Fiyat.
+
+   3. Muhasebe Entegrasyonu (KRİTİK):
+      - `Gider Hesabı` (Link -> Hesap) [YENİ]:
+        * Zorunlu: ✅
+        * İşlevi: Alınan malın veya hizmetin muhasebede kaydedileceği hesap (Stok, Demirbaş veya Gider hesabı).
+
+   4. Süreç Takibi (Otomasyon):
+      - `Teslim Alınan Miktar`: "Salt Okunur" yapıldı. (Mal Kabul'den güncellenir).
+      - `Faturalanan Miktar`: "Salt Okunur" yapıldı. (Fatura'dan güncellenir).
+      * Bu alanlar sayesinde "Kısmi Teslimat" ve "Bekleyen Sipariş" takibi yapılır.
+
+SONUÇ:
+Muhasebe (Gider Hesabı) ve Lojistik (Çevrim) eksikleri giderilerek, Satış Kalemi ile simetrik ve tam fonksiyonel bir yapı kurulmuştur.
+========================================================================
+========================================================================
+51. DOCTYPE: SATIN ALMA FATURA KALEMI (PURCHASE INVOICE ITEM) - FİNAL
+========================================================================
+*Kaynak: Satin Alma Fatura Kalemi Alanlar, Adlandırma, Ayarlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_80cd8c.png, image_80cd6e.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Satin Alma.
+   - Tip: Alt Tablo (Child Table).
+   - Arayüz: Düzenlenebilir Tablo (Editable Grid) ✅.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: Yok (Sistem yönetir).
+
+C) ALANLAR (FIELDS) - MUHASEBE VE TİCARİ GÜNCELLEME:
+  
+
+   1. Temel Veriler:
+      - `Ürün`, `Miktar`, `Birim Fiyat`: Zorunlu.
+      - `Stok Birimi`: Zorunlu.
+
+   2. Muhasebe Entegrasyonu (HAYATİ EKLEME):
+      - `Gider Hesabı` (Link -> Hesap) [YENİ]:
+        * Zorunlu: ✅
+        * İşlevi: Muhasebe fişinin "Borç" (Debit) bacağını oluşturur. Stok girişi ise Varlık hesabı (153), masraf ise Gider hesabı (770) seçilir.
+
+   3. Ticari Detaylar (EKLENDİ):
+      - `İskonto Oranı` ve `Tutarı`: Tedarikçinin uyguladığı indirimleri kaydetmek için.
+      - `Çevrim Katsayısı`: Birim dönüşümleri için.
+
+   4. Lojistik ve İzlenebilirlik:
+      - `Depo`: "Zorunlu" yapıldı. Stok güncellemelerinde veri kaybını önler.
+      - `Mal Kabul Kalemi` (Veri): Hangi irsaliye satırının faturalandığını tutar.
+      - `Satın Alma Sipariş Kalemi` (Veri): Hangi sipariş satırından geldiğini tutar.
+      * Not: Bağlantı alanlarını "Salt Okunur" yapmak veri güvenliği için önerilir.
+
+SONUÇ:
+Siparişten faturaya akan verileri (İskonto, Miktar) koruyan ve muhasebe entegrasyonunu (Gider Hesabı) sağlayan yapı tamamlanmıştır.
+
+========================================================================
+========================================================================
+52. DOCTYPE: PERSONEL (EMPLOYEE) - FİNAL RAPOR
+========================================================================
+*Kaynak: Personel Alanlar, Ayarlar, Adlandırma*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_80d129.png]
+
+A) TEMEL AYARLAR:
+   - Modül: archerp.
+   - Tip: Standart Form (Master Data).
+   - Hızlı Giriş: ✅ Açık.
+   - İşlevi: Sistem kullanıcısı (User) ile saha personeli arasındaki bağlantıyı kurar. Otomatik form doldurma (Varsayılan Depo vb.) için kullanılır.
+
+B) ADLANDIRMA (NAMING) - GÜVENLİK REVİZYONU:
+   - Eski Kural: `field:ad_soyad` (İsim benzerliği riski vardı).
+   - Yeni Kural: `expression` -> `PER-.#####`
+   - Başlık Alanı (Title): `ad_soyad`
+   - Sonuç: Veritabanında benzersiz ID (PER-001) kullanılır, ekranda İsim Soyad görünür.
+
+C) ALANLAR (FIELDS) - İK VE OPERASYON:
+  
+
+   1. Kimlik ve Sistem Erişimi:
+      - `Ad Soyad`: Zorunlu.
+      - `Kullanıcı` (Link -> User): Zorunlu. Personelin login hesabı.
+      - `Durum` (Seçim) [EKLENDİ]: Aktif / Ayrıldı. (Ayrılan personelin verisi silinmez, pasif yapılır).
+
+   2. Kurumsal Bilgiler (EKLENDİ):
+      - `Departman` ve `Ünvan`: Görev tanımı.
+      - `E-posta` ve `Telefon`: İletişim.
+      - `Yönetici` (Link -> Personel): Hiyerarşik onaylar için amir seçimi.
+
+   3. Operasyonel Varsayılanlar (OTOMASYON):
+      - `Şube`: Personelin bağlı olduğu şube.
+      - `Varsayılan Depo`: Satış/Stok işlemi yaparken otomatik seçilecek depo. (Hız kazandırır).
+
+SONUÇ:
+Sistemin "İnsan" faktörünü tanımlayan, yetkilendirme ve otomasyon için gerekli altyapıya sahip personel kartı tamamlanmıştır.
+
+========================================================================
+========================================================================
+53. DOCTYPE: SATIN ALMA TEKLIFI (PURCHASE/SUPPLIER QUOTATION) - FİNAL
+========================================================================
+*Kaynak: Satin Alma Teklifi Adlandırma, Alanlar, Ayarlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_80d1c7.png, image_80d202.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Satin Alma.
+   - Tip: Standart Form.
+   - Gönderilebilir (Submittable): ✅ EVET.
+   - İşlevi: Tedarikçiden alınan fiyat tekliflerini sisteme girer. En uygun fiyatı seçmek (Karşılaştırma) için kullanılır.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "İfade" (Expression) -> `ST-.YYYY.-.#####`
+   - Sonuç: ST-2024-00001.
+
+C) DURUM (STATUS) - HUNİ MANTIĞI:
+   - Seçenekler: Taslak, İnceleniyor, Kabul Edildi, Reddedildi, İptal, Sipariş Verildi.
+   - Mantık: "Kabul Edildi" olan teklif, tek tıkla "Satın Alma Siparişi"ne dönüştürülebilir.
+
+D) ALANLAR (FIELDS) - TABLO AYRIŞTIRILDI:
+  
+
+   1. Tedarikçi ve Geçerlilik:
+      - `Tedarikçi`: Zorunlu.
+      - `Tedarikçi Teklif No` (Veri): Tedarikçinin PDF/Mail referansı.
+      - `Geçerlilik Tarihi`: Zorunlu. Süresi geçen tekliften sipariş açılamaz.
+
+   2. İlişkiler:
+      - `Revize Edilen Teklif` (Link -> Satın Alma Teklifi): Fiyat güncellemelerinde eski teklifle bağ kurar.
+      - `Teslimat Adresi` (Link -> Adres) [EKLENDİ]: Tedarikçinin nakliye maliyetini hesaplaması için.
+
+   3. Detaylar (REVİZE EDİLDİ):
+      - `Kalemler` (Tablo -> Satın Alma TEKLİF Kalemi) [YENİ]:
+        * Değişiklik: "Satın Alma Kalemi" yerine muhasebe/depo zorunluluğu olmayan daha basit bir tablo kullanıldı.
+        * Neden: Teklif aşamasında Gider Hesabı veya Depo belli olmayabilir, kayıt hatasını önlemek için ayrıştırıldı.
+
+SONUÇ:
+Tedarikçi fiyatlarını toplayan, karşılaştırmaya uygun ve muhasebe zorunluluklarından arındırılmış teklif yapısı tamamlanmıştır.
+========================================================================
+
+========================================================================
+1. DOCTYPE: PARA TRANSFERI (MONEY TRANSFER / INTERNAL TRANSFER)
+========================================================================
+*Kaynak: Para Transferi Adlandırma, Ayarlar, Alanlar*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+[Görsel Teyidi: image_80d5e5.png, image_80d5e9.png]
+
+A) TEMEL AYARLAR:
+   - Modül: Finans.
+   - Tip: Standart Form.
+   - Gönderilebilir (Submittable): ✅ EVET [DÜZELTİLDİ].
+   - İşlevi: Kasa-Banka veya Banka-Banka arası virman (transfer) işlemlerini yönetir.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "İfade" -> `PTR-.YYYY.-.#####`
+   - Sonuç: PTR-2024-00001.
+
+C) ALANLAR (FIELDS) - GERÇEK HAYAT SENARYOSU:
+  
+
+   1. Hesaplar:
+      - `Tarih`: Zorunlu.
+      - `Gönderen Hesap`: Para çıkan kaynak (Alacak çalışır).
+      - `Alıcı Hesap`: Para giren hedef (Borç çalışır).
+      * Not: Kod tarafında "Gönderen != Alıcı" kontrolü yapılmalıdır.
+
+   2. Tutar ve Kur:
+      - `Tutar` ve `Para Birimi`: Zorunlu.
+      - `Döviz Kuru` (Ondalık) [EKLENDİ]: Döviz bozdurma veya alma işlemlerinde (USD -> TL) pariteyi belirlemek için.
+
+   3. Masraf Yönetimi (EKLENDİ):
+      - `Masraf Tutarı`: EFT/Havale ücreti.
+      - `Masraf Hesabı`: Kesintinin işleneceği gider hesabı (Örn: 780).
+      * Önemli: Eğer masraf girilirse, gönderen hesaptan (Tutar + Masraf) kadar para çıkar.
+
+   4. Takip:
+      - `Referans No`: Dekont numarası.
+      - `Durum`: Taslak, Tamamlandı, İptal.
+
+SONUÇ:
+Bankalar arası virman, döviz bozdurma ve EFT masraflarını muhasebeleştirebilen güvenli transfer formu tamamlanmıştır.
+========================================================================
+55. DOCTYPE: ODEME REFERANSI (PAYMENT ENTRY REFERENCE) - FİNAL RAPOR
+========================================================================
+*Kaynak: Odeme Referansi Alanlar, Yapılandırma*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+A) TEMEL AYARLAR:
+   - Modül: Finans.
+   - Tip: Alt Tablo (Child Table).
+   - Arayüz: Düzenlenebilir Tablo (Editable Grid) ✅.
+   - İşlevi: Tek bir ödeme içinde birden fazla faturayı listelemek ve "Hangi faturadan ne kadar düşüleceğini" belirlemek.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: Yok (Sistem yönetir).
+
+C) ALANLAR (FIELDS) - DİNAMİK BAĞLANTI YAPISI:
+   1. Belge Seçimi (TEKNİK ÇÖZÜM):
+      - `Referans Tipi` (Link -> DocType):
+        * Zorunlu: ✅
+        * Adı (Name): `referans_tipi`
+        * İşlevi: Sisteme arayacağı belgenin türünü (Satış Faturası vb.) söyler.
+      - `Referans No` (Dynamic Link):
+        * Zorunlu: ✅
+        * Adı (Name): `referans_no`
+        * Seçenekler (Options): `referans_tipi` (Üstteki alanın adı).
+        * İşlevi: Seçilen türe göre ilgili faturaları listeler.
+
+   2. Bilgi Alanları (Otomasyon):
+      - `Toplam Tutar` (Para Birimi): "Salt Okunur". Faturanın orijinal tutarı.
+      - `Kalan Tutar` (Para Birimi): "Salt Okunur". Faturanın ödenmemiş bakiyesi.
+
+   3. İşlem Tutarı:
+      - `Tahsis Edilen Tutar` (Para Birimi):
+        * Zorunlu: ✅
+        * İşlevi: Müşterinin o anki ödemesinden bu faturaya ayrılan pay. (Örn: 10.000 borcun 2.000'i ödeniyor).
+
+🔴 GELİŞTİRİCİ NOTU (FETCH):
+---------------------------------------
+Kullanıcı `Referans No` seçtiğinde; sistemin faturadaki güncel bakiyeyi `Kalan Tutar` alanına otomatik çekmesi (Fetch) sağlanmalıdır.
+
+========================================================================
+56. DOCTYPE: SATIN ALMA TEKLIF KALEMI (PURCHASE QUOTATION ITEM)
+========================================================================
+*Kaynak: Yeni Oluşturuldu (Sipariş Kaleminden Ayrıştırıldı)*
+
+1. DOCTYPE YAPILANDIRMASI
+---------------------------------------
+A) TEMEL AYARLAR:
+   - Modül: Satin Alma.
+   - Tip: Alt Tablo (Child Table).
+   - Arayüz: Düzenlenebilir Tablo (Editable Grid) ✅.
+   - Amaç: Fiyat toplama aşamasında, henüz "Depo" veya "Muhasebe Hesabı" belli değilken hızlı veri girişi sağlamak.
+
+B) ADLANDIRMA (NAMING):
+   - Kural: Yok (Sistem yönetir).
+
+C) ALANLAR (FIELDS) - SADELEŞTİRİLMİŞ YAPI:
+   1. Ürün ve Miktar:
+      - `Urun` (Link -> Item): Zorunlu.
+      - `Miktar` (Ondalık): Zorunlu.
+      - `Stok Birimi` (Link): Zorunlu.
+
+   2. Fiyatlandırma:
+      - `Birim Fiyat` (Para Birimi): Tedarikçinin verdiği fiyat.
+      - `Tutar` (Para Birimi): Miktar * Fiyat.
+      - `İskonto Oranı (%)` ve `İskonto Tutarı`: Pazarlık payı için.
+
+🔴 KRİTİK FARKLILIK (NEDEN AYRI TABLO?):
+---------------------------------------
+Bu tabloda özellikle şu alanlar YOKTUR:
+1. `Depo`: Çünkü mal henüz alınmadı, nereye ineceğinin teklif aşamasında önemi yok.
+2. `Gider Hesabı`: Muhasebe kaydı oluşmadığı için hesap seçmeye gerek yok.
+* Bu sayede kullanıcı teklif girerken "Hata: Depo alanı zorunludur" uyarısı almaz, süreç tıkanmaz.
+
+========================================================================
+57. DOCTYPE: MASRAF MERKEZI (COST CENTER) - [YENİ]
+========================================================================
+A) TEMEL AYARLAR:
+   - Adı: Masraf Merkezi
+   - Modül: Finans
+   - Yapı Tipi: Ağaç Yapısı (Tree Structure) ✅ SEÇİLİ.
+     (Neden? Çünkü "Merkez Ofis"in altına "Pazarlama" ve "İK" diye alt kırılımlar açabilmek için).
+
+B) ADLANDIRMA (NAMING):
+   - Kural: "By fieldname" -> `field:masraf_merkezi_adi`
+   - Sonuç: Kayıt ID'si direkt ismi olur (Örn: "Pazarlama Departmanı").
+
+C) ALANLAR (FIELDS):
+   1. `Masraf Merkezi Adı` (Veri / Data):
+      - Adı: masraf_merkezi_adi
+      - Zorunlu: ✅
+
+   2. `Grup mu?` (Kontrol / Check):
+      - Adı: is_group
+      - Açıklama: İşaretlenirse bu bir ana klasördür (Örn: "İstanbul Şubesi"), altına işlem yapılmaz, sadece alt klasör eklenir.
+
+   3. `Üst Merkez` (Bağlantı / Link):
+      - Adı: parent_masraf_merkezi
+      - Hedef: Masraf Merkezi
+      - Açıklama: Bu merkez kime bağlı?
+
+   4. `Firma` (Bağlantı / Link):
+      - Hedef: Firma
+      - Zorunlu: Hayır (KOBİ tek firma çalışırsa boş kalsın).
+      - Varsayılan: "Arch Yazılım" (Senin firman).

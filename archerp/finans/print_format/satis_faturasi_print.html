@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Satis Faturasi - {{ doc.name }}</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1f2937;
+            font-size: 11pt;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #1e3a8a;
+            /* Dark Blue */
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .logo-container img {
+            max-height: 80px;
+            width: auto;
+        }
+
+        .doc-info {
+            text-align: right;
+        }
+
+        .doc-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin: 0 0 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .doc-meta {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .info-grid {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .info-box {
+            flex: 1;
+            background-color: #f3f4f6;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #1e3a8a;
+        }
+
+        .info-box h3 {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #1e3a8a;
+            font-weight: 700;
+            border-bottom: 1px solid #d1d5db;
+            padding-bottom: 5px;
+        }
+
+        .info-box p {
+            margin: 3px 0;
+            font-size: 13px;
+        }
+
+        table.items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        table.items-table th {
+            background-color: #374151;
+            /* Dark Gray */
+            color: white;
+            text-transform: uppercase;
+            padding: 10px;
+            font-size: 12px;
+            text-align: left;
+        }
+
+        table.items-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 13px;
+            vertical-align: top;
+        }
+
+        table.items-table tr:last-child td {
+            border-bottom: 2px solid #374151;
+        }
+
+        .footer-section {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .footer-left {
+            flex: 1.5;
+            font-size: 12px;
+        }
+
+        .money-text {
+            font-weight: 600;
+            font-style: italic;
+            margin-bottom: 15px;
+            font-size: 13px;
+            background: #eef2ff;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .footer-right {
+            flex: 1;
+        }
+
+        .totals-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .totals-table td {
+            padding: 5px 0;
+            font-size: 13px;
+        }
+
+        .totals-table tr.grand-total td {
+            border-top: 2px solid #1e3a8a;
+            font-weight: 700;
+            font-size: 16px;
+            color: #1e3a8a;
+            padding-top: 10px;
+        }
+
+        .bottom-section {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #d1d5db;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        .bank-info {
+            flex: 2;
+        }
+
+        .signature-box {
+            flex: 1;
+            text-align: center;
+            border: 1px solid #d1d5db;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    {# --- DATA FETCHING --- #}
+    {% set firma = frappe.get_doc("Firma", doc.firma) if doc.firma else None %}
+    {% set customer = frappe.get_doc("Musteri", doc.musteri) if doc.musteri else None %}
+
+    {# Header #}
+    <div class="header">
+        <div class="logo-container">
+            {% if firma and firma.logo %}
+            <img src="{{ firma.logo }}" alt="Logo">
+            {% else %}
+            <h2>{{ firma.firma_adi if firma else "Firma" }}</h2>
+            {% endif %}
+        </div>
+        <div class="doc-info">
+            <h1 class="doc-title">SATIŞ FATURASI</h1>
+            <div class="doc-meta">
+                Belge No: <strong>{{ doc.name }}</strong><br>
+                Tarih: <strong>{{ doc.fatura_tarihi.strftime('%d.%m.%Y') }}</strong>
+            </div>
+        </div>
+    </div>
+
+    {# Info Grids #}
+    <div class="info-grid">
+        <!-- Customer Info -->
+        <div class="info-box">
+            <h3>Sayın (Müşteri)</h3>
+            <p><strong>{{ doc.musteri }}</strong></p> <!-- Link field stores name usually, or fetch title -->
+            {% if customer %}
+            <!-- Displaying Name from doc is sufficient usually, but we check if we have more -->
+            {% if customer.vergi_dairesi and customer.vergi_kimlik_no %}
+            <p>VD: {{ customer.vergi_dairesi }} - VN: {{ customer.vergi_kimlik_no }}</p>
+            {% endif %}
+            {% if customer.adres_bilgileri or customer.il or customer.ilce %}
+            <p>{{ customer.ilce }} / {{ customer.il }}</p>
+            {# Adresler is a child table, simplified here #}
+            {% endif %}
+            {% if customer.telefon %}
+            <p>Tel: {{ customer.telefon }}</p>
+            {% endif %}
+            {% endif %}
+        </div>
+
+        <!-- Sender Info -->
+        <div class="info-box">
+            <h3>Gönderen Firma</h3>
+            {% if firma %}
+            <p><strong>{{ firma.firma_adi }}</strong></p>
+            <p>{{ firma.adres }}</p>
+            <p>VD: {{ firma.vergi_dairesi }} - No: {{ firma.vergi_no }}</p>
+            {% if firma.mersis_no %}
+            <p>Mersis: {{ firma.mersis_no }}</p>
+            {% endif %}
+            <p>{{ firma.telefon }} | {{ firma.eposta }}</p>
+            {% else %}
+            <p>Firma bilgisi mevcut değil.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    {# Items Table #}
+    <table class="items-table">
+        <thead>
+            <tr>
+                <th style="width: 5%;">#</th>
+                <th style="width: 45%;">Ürün / Hizmet</th>
+                <th style="text-align: right; width: 10%;">Miktar</th>
+                <th style="text-align: right; width: 15%;">Birim Fiyat</th>
+                <th style="text-align: right; width: 25%;">Tutar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in doc.kalemler %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ item.urun }}</td>
+                <td style="text-align: right;">{{ "{:,.2f}".format(item.miktar) }} {{ item.uom or '' }}</td>
+                <td style="text-align: right;">{{ "{:,.2f}".format(item.birim_fiyat) }}</td>
+                <td style="text-align: right;">{{ "{:,.2f}".format(item.miktar * item.birim_fiyat) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {# Footer #}
+    <div class="footer-section">
+        <div class="footer-left">
+            <div class="money-text">
+                Yalnız; {{ frappe.utils.money_in_words(doc.genel_toplam, doc.para_birimi) }}
+            </div>
+
+            {% if doc.notlar %}
+            <div style="margin-bottom: 10px;">
+                <strong>Açıklama:</strong><br>
+                {{ doc.notlar }}
+            </div>
+            {% endif %}
+
+            {% if doc.kosullar_metni %}
+            <div style="font-size: 10px; color: #555; border-top: 1px dotted #ccc; padding-top: 5px;">
+                <strong>Şartlar:</strong><br>
+                {{ doc.kosullar_metni }}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="footer-right">
+            <table class="totals-table" align="right">
+                <tr>
+                    <td align="right">Ara Toplam:</td>
+                    <td align="right" style="width: 120px;">{{ "{:,.2f}".format(doc.ara_toplam) }} {{ doc.para_birimi }}
+                    </td>
+                </tr>
+                {% if doc.ek_iskonto_tutari > 0 %}
+                <tr>
+                    <td align="right">İskonto:</td>
+                    <td align="right" style="color: red;">-{{ "{:,.2f}".format(doc.ek_iskonto_tutari) }} {{
+                        doc.para_birimi }}</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td align="right">Vergi Toplamı:</td>
+                    <td align="right">{{ "{:,.2f}".format(doc.vergi_toplami) }} {{ doc.para_birimi }}</td>
+                </tr>
+                <tr class="grand-total">
+                    <td align="right">GENEL TOPLAM:</td>
+                    <td align="right">{{ "{:,.2f}".format(doc.genel_toplam) }} {{ doc.para_birimi }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    {# Bottom Bank & Sign #}
+    <div class="bottom-section">
+        <div class="bank-info">
+            <strong>Banka Bilgileri:</strong><br>
+            {% if firma and firma.banka_bilgileri %}
+            {{ firma.banka_bilgileri }}
+            {% else %}
+            -
+            {% endif %}
+        </div>
+        <div>
+            <div class="signature-box">
+                Kaşe / İmza
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

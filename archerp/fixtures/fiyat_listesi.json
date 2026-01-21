@@ -1,0 +1,22 @@
+[
+ {
+  "aktif": 1,
+  "docstatus": 0,
+  "doctype": "Fiyat Listesi",
+  "liste_adi": "Standart Satış (TRY)",
+  "modified": "2025-12-08 05:11:20.890445",
+  "name": "Standart Satış (TRY)",
+  "para_birimi": "TRY",
+  "tur": "Satış"
+ },
+ {
+  "aktif": 1,
+  "docstatus": 0,
+  "doctype": "Fiyat Listesi",
+  "liste_adi": "Standart Alış (TRY)",
+  "modified": "2025-12-08 05:11:38.893060",
+  "name": "Standart Alış (TRY)",
+  "para_birimi": "TRY",
+  "tur": "Alış"
+ }
+]

@@ -1,0 +1,370 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:urun_kodu",
+ "creation": "2026-01-03 12:20:51.764852",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "genel_bakis_tab",
+  "urun_kimligi_section",
+  "urun_adi",
+  "urun_kodu",
+  "barkod",
+  "marka",
+  "model",
+  "column_break_5cqi",
+  "resim",
+  "aktif_mi",
+  "urun_grubu",
+  "stok_birimi",
+  "tab_break_b3wt",
+  "depo_durumu",
+  "varsayilan_depo",
+  "kritik_stok",
+  "mevcut_stok",
+  "column_break_dixq",
+  "raf_omru_gun",
+  "garanti_ay",
+  "net_agirlik",
+  "column_break_gggu",
+  "seri_numarasi_var_mi",
+  "parti_takibi",
+  "column_break_6fcy",
+  "birim_cevrimleri",
+  "finansal_tab",
+  "fiyatlandirma_section",
+  "varyanti_oldugu_urun",
+  "varyant_aciklamasi",
+  "standart_satis_fiyati",
+  "standart_alis_fiyati",
+  "column_break_rxey",
+  "vergi_sablonu",
+  "tedarikci_bilgileri",
+  "muhasebe_hesaplari_section",
+  "gelir_hesabi",
+  "column_break_pzva",
+  "gider_hesabi",
+  "varyantlar_tab",
+  "varyant_ayarlar\u0131_section",
+  "varyant_mi",
+  "has_variants",
+  "column_break_bn4c",
+  "varyant_ozellikleri",
+  "aciklama_tab",
+  "detayli_aciklama",
+  "k\u0131sa_aciklama"
+ ],
+ "fields": [
+  {
+   "fieldname": "resim",
+   "fieldtype": "Image",
+   "label": "Resim"
+  },
+  {
+   "fieldname": "urun_kodu",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Urun Kodu",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "urun_adi",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Urun Adi",
+   "reqd": 1
+  },
+  {
+   "fieldname": "urun_grubu",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Urun Grubu",
+   "options": "Urun Grubu",
+   "reqd": 1
+  },
+  {
+   "fieldname": "stok_birimi",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Stok Birimi",
+   "options": "Birim",
+   "reqd": 1
+  },
+  {
+   "fieldname": "marka",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Marka",
+   "options": "Marka"
+  },
+  {
+   "fieldname": "model",
+   "fieldtype": "Link",
+   "label": "Model",
+   "link_filters": "[[\"Model\", \"marka\", \"=\", \"eval:doc.marka\"]]",
+   "options": "Model"
+  },
+  {
+   "fieldname": "barkod",
+   "fieldtype": "Data",
+   "label": "Barkod"
+  },
+  {
+   "default": "1",
+   "fieldname": "aktif_mi",
+   "fieldtype": "Check",
+   "in_standard_filter": 1,
+   "label": "Aktif Mi"
+  },
+  {
+   "fieldname": "tab_break_b3wt",
+   "fieldtype": "Tab Break",
+   "label": "Stok & Lojistik"
+  },
+  {
+   "fieldname": "genel_bakis_tab",
+   "fieldtype": "Tab Break",
+   "label": "Genel"
+  },
+  {
+   "fieldname": "raf_omru_gun",
+   "fieldtype": "Int",
+   "label": "Raf Omru (Gun)"
+  },
+  {
+   "fieldname": "garanti_ay",
+   "fieldtype": "Int",
+   "label": "Garanti (Ay)"
+  },
+  {
+   "fieldname": "net_agirlik",
+   "fieldtype": "Float",
+   "label": "Net Agirlik"
+  },
+  {
+   "fieldname": "column_break_gggu",
+   "fieldtype": "Section Break",
+   "label": "Izlenebilirlik"
+  },
+  {
+   "fieldname": "varsayilan_depo",
+   "fieldtype": "Link",
+   "label": "Varsayilan Depo",
+   "link_filters": "{\r\n    \"is_group\": 0,\r\n    \"is_virtual\": 0\r\n}",
+   "options": "Depo"
+  },
+  {
+   "fieldname": "kritik_stok",
+   "fieldtype": "Float",
+   "label": "Kritik Stok"
+  },
+  {
+   "fieldname": "birim_cevrimleri",
+   "fieldtype": "Table",
+   "label": "Birim Cevrimleri",
+   "options": "Urun Birim Cevrimi"
+  },
+  {
+   "default": "0",
+   "fieldname": "varyant_mi",
+   "fieldtype": "Check",
+   "label": "Varyant Mi"
+  },
+  {
+   "fieldname": "varyant_ozellikleri",
+   "fieldtype": "Table",
+   "label": "Varyant Ozellikleri",
+   "options": "Urun Varyant Satiri"
+  },
+  {
+   "description": "(Bilgi ama\u00e7l\u0131 varsay\u0131lan fiyat)",
+   "fieldname": "standart_satis_fiyati",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Standart Satis Fiyati"
+  },
+  {
+   "fieldname": "vergi_sablonu",
+   "fieldtype": "Link",
+   "label": "Vergi Sablonu",
+   "options": "Vergi"
+  },
+  {
+   "default": "HSP-00049",
+   "fieldname": "gelir_hesabi",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Varsayilan Gelir Hesabi",
+   "options": "Hesap",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "default": "HSP-00071",
+   "fieldname": "gider_hesabi",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Varsayilan Gider Hesabi",
+   "options": "Hesap",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "tedarikci_bilgileri",
+   "fieldtype": "Table",
+   "label": "Tedarikci Bilgileri",
+   "options": "Urun Tedarikcisi"
+  },
+  {
+   "fieldname": "k\u0131sa_aciklama",
+   "fieldtype": "Small Text",
+   "label": "K\u0131sa Aciklama"
+  },
+  {
+   "fieldname": "detayli_aciklama",
+   "fieldtype": "Text Editor",
+   "label": "Detayli Aciklama"
+  },
+  {
+   "default": "0",
+   "description": "(\u0130\u015faretlenirse bu \u00fcr\u00fcnden 10 tane varsa, 10 tane ayr\u0131 IMEI girmelisin demektir)",
+   "fieldname": "seri_numarasi_var_mi",
+   "fieldtype": "Check",
+   "label": "Seri Numarasi Var mi"
+  },
+  {
+   "default": "0",
+   "description": "(\u0130\u015faretlenirse Son Kullanma Tarihi / \u00dcretim Partisi sorulur)",
+   "fieldname": "parti_takibi",
+   "fieldtype": "Check",
+   "label": "Parti Takibi"
+  },
+  {
+   "fieldname": "mevcut_stok",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Mevcut Stok",
+   "read_only": 1
+  },
+  {
+   "fieldname": "standart_alis_fiyati",
+   "fieldtype": "Currency",
+   "label": "Standart Alis Fiyati"
+  },
+  {
+   "fieldname": "varyanti_oldugu_urun",
+   "fieldtype": "Link",
+   "label": "Varyanti Oldugu Urun",
+   "link_filters": "{\"has_variants\": 1}",
+   "options": "Urun"
+  },
+  {
+   "fieldname": "varyant_aciklamasi",
+   "fieldtype": "Small Text",
+   "label": "Varyant Aciklamasi",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "has_variants",
+   "fieldtype": "Check",
+   "label": "Varyantlari Var Mi?"
+  },
+  {
+   "fieldname": "urun_kimligi_section",
+   "fieldtype": "Section Break",
+   "label": "Urun Kimligi"
+  },
+  {
+   "fieldname": "column_break_5cqi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "depo_durumu",
+   "fieldtype": "Section Break",
+   "label": "Depo Durumu"
+  },
+  {
+   "fieldname": "column_break_dixq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_6fcy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "finansal_tab",
+   "fieldtype": "Tab Break",
+   "label": "Finansal"
+  },
+  {
+   "fieldname": "fiyatlandirma_section",
+   "fieldtype": "Section Break",
+   "label": "Fiyatlandirma"
+  },
+  {
+   "fieldname": "column_break_rxey",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "muhasebe_hesaplari_section",
+   "fieldtype": "Section Break",
+   "label": "Muhasebe Hesaplar\u0131"
+  },
+  {
+   "fieldname": "column_break_pzva",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "varyantlar_tab",
+   "fieldtype": "Tab Break",
+   "label": "Varyantlar"
+  },
+  {
+   "fieldname": "varyant_ayarlar\u0131_section",
+   "fieldtype": "Section Break",
+   "label": "Varyant Ayarlar\u0131"
+  },
+  {
+   "fieldname": "column_break_bn4c",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "aciklama_tab",
+   "fieldtype": "Tab Break",
+   "label": "A\u00e7\u0131klama"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-01-21 18:26:51.982738",
+ "modified_by": "Administrator",
+ "module": "Stok",
+ "name": "Urun",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "urun_adi"
+}

@@ -1,0 +1,245 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "ODM-.YYYY.-.#####",
+ "creation": "2025-12-15 06:50:51.029499",
+ "description": "Taraf Tipi'ne g\u00f6re ilgili ki\u015fiyi se\u00e7tirir.",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "genel_bak\u0131\u015f_tab",
+  "i\u015flem_t\u00fcr\u00fc_ve_taraf_section",
+  "odeme_turu",
+  "taraf_tipi",
+  "taraf_kisi",
+  "column_break_tzuv",
+  "tarih",
+  "odenen_tutar",
+  "para_birimi",
+  "kasa__banka_hesab\u0131_section",
+  "kasa_banka",
+  "odeme_yontemi",
+  "referanslar_tab",
+  "belge_ba\u011flant\u0131s\u0131_section",
+  "referans_tipi",
+  "referans_no",
+  "amended_from",
+  "column_break_v8ue",
+  "taraf_hesabi",
+  "ilgili_kalem",
+  "detaylar_tab",
+  "banka_ve_kur_bilgisi_section",
+  "islem_referans_no",
+  "islem_tarihi",
+  "column_break_j5bx",
+  "doviz_kuru",
+  "aciklama"
+ ],
+ "fields": [
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Odeme Islemi",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "odeme_turu",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Odeme Turu",
+   "options": "Tahsilat(Al)\nTediye(Ver)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "taraf_tipi",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Taraf Tipi",
+   "options": "DocType",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "description": "Taraf Tipi'ne g\u00f6re ilgili ki\u015fiyi se\u00e7tirir.",
+   "fieldname": "taraf_kisi",
+   "fieldtype": "Dynamic Link",
+   "in_list_view": 1,
+   "label": "Taraf Kisi",
+   "options": "taraf_tipi",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "tarih",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Tarih",
+   "reqd": 1
+  },
+  {
+   "fieldname": "kasa_banka",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Kasa Banka",
+   "options": "Hesap",
+   "reqd": 1
+  },
+  {
+   "fieldname": "odenen_tutar",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Odenen Tutar",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "aciklama",
+   "fieldtype": "Small Text",
+   "label": "Aciklama"
+  },
+  {
+   "fieldname": "para_birimi",
+   "fieldtype": "Link",
+   "label": "Para Birimi",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "doviz_kuru",
+   "fieldtype": "Float",
+   "label": "Doviz Kuru",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "ilgili_kalem",
+   "fieldtype": "Link",
+   "label": "ilgili Kalem",
+   "options": "Gelir Gider Kalemi"
+  },
+  {
+   "fieldname": "odeme_yontemi",
+   "fieldtype": "Select",
+   "label": "Odeme Yontemi",
+   "options": "Nakit\nHavale/EFT\nKredi Kart\u0131\n\u00c7ek/Senet",
+   "reqd": 1
+  },
+  {
+   "description": "(\u00c7ek No veya Dekont No buraya yaz\u0131l\u0131r).",
+   "fieldname": "islem_referans_no",
+   "fieldtype": "Data",
+   "label": "Islem Referans No"
+  },
+  {
+   "description": "\"Se\u00e7ilen M\u00fc\u015fteri veya Tedarik\u00e7inin ba\u011fl\u0131 oldu\u011fu muhasebe hesab\u0131.\"",
+   "fieldname": "taraf_hesabi",
+   "fieldtype": "Link",
+   "label": "Taraf Hesabi",
+   "options": "Hesap",
+   "reqd": 1
+  },
+  {
+   "description": "(\u00c7ek Vadesi veya EFT tarihi).",
+   "fieldname": "islem_tarihi",
+   "fieldtype": "Date",
+   "label": "Islem Tarihi"
+  },
+  {
+   "fieldname": "referans_tipi",
+   "fieldtype": "Link",
+   "label": "Referans Tipi",
+   "options": "DocType",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "referans_no",
+   "fieldtype": "Dynamic Link",
+   "label": "Referans No",
+   "options": "referans_tipi",
+   "reqd": 1
+  },
+  {
+   "fieldname": "genel_bak\u0131\u015f_tab",
+   "fieldtype": "Tab Break",
+   "label": "Genel Bak\u0131\u015f"
+  },
+  {
+   "fieldname": "i\u015flem_t\u00fcr\u00fc_ve_taraf_section",
+   "fieldtype": "Section Break",
+   "label": "I\u015flem T\u00fcr\u00fc ve Taraf"
+  },
+  {
+   "fieldname": "column_break_tzuv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "kasa__banka_hesab\u0131_section",
+   "fieldtype": "Section Break",
+   "label": "Kasa / Banka Hesab\u0131"
+  },
+  {
+   "fieldname": "referanslar_tab",
+   "fieldtype": "Tab Break",
+   "label": "Referanslar"
+  },
+  {
+   "fieldname": "belge_ba\u011flant\u0131s\u0131_section",
+   "fieldtype": "Section Break",
+   "label": "Belge Ba\u011flant\u0131s\u0131"
+  },
+  {
+   "fieldname": "column_break_v8ue",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "detaylar_tab",
+   "fieldtype": "Tab Break",
+   "label": "Detaylar"
+  },
+  {
+   "fieldname": "banka_ve_kur_bilgisi_section",
+   "fieldtype": "Section Break",
+   "label": "Banka ve Kur Bilgisi"
+  },
+  {
+   "fieldname": "column_break_j5bx",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-01-12 19:54:52.820973",
+ "modified_by": "Administrator",
+ "module": "Finans",
+ "name": "Odeme Islemi",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

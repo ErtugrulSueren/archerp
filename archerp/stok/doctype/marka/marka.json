@@ -1,0 +1,85 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:marka_adi",
+ "creation": "2025-12-08 05:01:30.390135",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "genel_tab",
+  "marka_kimli\u011fi_section",
+  "marka_adi",
+  "website",
+  "description",
+  "column_break_8ate",
+  "logo"
+ ],
+ "fields": [
+  {
+   "fieldname": "marka_adi",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Marka adi",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "logo",
+   "fieldtype": "Image",
+   "label": "Logo"
+  },
+  {
+   "fieldname": "website",
+   "fieldtype": "Data",
+   "label": "Web Sitesi"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Aciklama"
+  },
+  {
+   "fieldname": "genel_tab",
+   "fieldtype": "Tab Break",
+   "label": "Genel"
+  },
+  {
+   "fieldname": "marka_kimli\u011fi_section",
+   "fieldtype": "Section Break",
+   "label": "Marka Kimli\u011fi"
+  },
+  {
+   "fieldname": "column_break_8ate",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-01-11 18:43:57.233116",
+ "modified_by": "Administrator",
+ "module": "Stok",
+ "name": "Marka",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "marka_adi"
+}

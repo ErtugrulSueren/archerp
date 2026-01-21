@@ -1,0 +1,308 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "SAF-.YYYY.-.#####",
+ "creation": "2025-12-30 17:03:39.303412",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "genel_bak\u0131\u015f_tab",
+  "tedarik\u00e7i_ve_belge_section",
+  "tedarikci",
+  "fatura_no",
+  "tarih",
+  "vade_tarihi",
+  "column_break_hr3h",
+  "status",
+  "genel_toplam",
+  "para_birimi",
+  "hizmet_ve_\u00fcr\u00fcnler_section",
+  "kalemler",
+  "muhasebe_ve_stok_tab",
+  "muhasebe_kayd\u0131_section",
+  "alacak_hesabi",
+  "firma",
+  "sube",
+  "column_break_qjsp",
+  "stok_guncelle",
+  "iade_mi",
+  "referans_belgeler_section",
+  "ilgili_mal_kabul",
+  "satin_alma_siparisi_referansi",
+  "amended_from",
+  "finansal_detaylar_tab",
+  "\u00f6deme_ve_kur_section",
+  "odeme_kosulu",
+  "doviz_kuru",
+  "vergi_dahil_mi",
+  "column_break_xobl",
+  "ara_toplam",
+  "ek_iskonto_tutari",
+  "vergi_toplami",
+  "base_grand_total",
+  "di\u011fer_section",
+  "sartlar_ve_kosullar",
+  "notlar"
+ ],
+ "fields": [
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Satin Alma Faturasi",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "tedarikci",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Tedarikci",
+   "options": "Tedarikci",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fatura_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Fatura No",
+   "reqd": 1
+  },
+  {
+   "fieldname": "tarih",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Tarih",
+   "reqd": 1
+  },
+  {
+   "fieldname": "ilgili_mal_kabul",
+   "fieldtype": "Link",
+   "label": "ilgili Mal Kabul",
+   "options": "Mal Kabul Fisi"
+  },
+  {
+   "default": "1",
+   "fieldname": "stok_guncelle",
+   "fieldtype": "Check",
+   "label": "Stok Guncelle"
+  },
+  {
+   "fieldname": "column_break_xobl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "kalemler",
+   "fieldtype": "Table",
+   "label": "Kalemler",
+   "options": "Satin Alma Fatura Kalemi",
+   "reqd": 1
+  },
+  {
+   "fieldname": "ara_toplam",
+   "fieldtype": "Currency",
+   "label": "Ara Toplam",
+   "read_only": 1
+  },
+  {
+   "fieldname": "genel_toplam",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Genel Toplam",
+   "read_only": 1
+  },
+  {
+   "fieldname": "vergi_toplami",
+   "fieldtype": "Currency",
+   "label": "Vergi Toplami",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "tedarikci.para_birimi",
+   "fieldname": "para_birimi",
+   "fieldtype": "Link",
+   "label": "Para Birimi",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "doviz_kuru",
+   "fieldtype": "Float",
+   "label": "Doviz Kuru",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "firma",
+   "fieldtype": "Link",
+   "label": "Firma",
+   "options": "Firma",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "iade_mi",
+   "fieldtype": "Check",
+   "label": "iade mi ?"
+  },
+  {
+   "default": "0",
+   "fieldname": "ek_iskonto_tutari",
+   "fieldtype": "Currency",
+   "label": "Ek iskonto Tutari"
+  },
+  {
+   "fieldname": "notlar",
+   "fieldtype": "Small Text",
+   "label": "Notlar"
+  },
+  {
+   "fieldname": "sube",
+   "fieldtype": "Link",
+   "label": "Sube",
+   "options": "Sube",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "satin_alma_siparisi_referansi",
+   "fieldtype": "Link",
+   "label": "Satin Alma Siparisi Referansi",
+   "options": "Satin Alma Siparisi"
+  },
+  {
+   "default": "0",
+   "fieldname": "vergi_dahil_mi",
+   "fieldtype": "Check",
+   "label": "Vergiler Dahil Mi"
+  },
+  {
+   "description": "Bor\u00e7lan\u0131lacak Sat\u0131c\u0131 Hesab\u0131 (\u00d6rn: 320).",
+   "fetch_from": "tedarikci.muhasebe_hesabi",
+   "fieldname": "alacak_hesabi",
+   "fieldtype": "Link",
+   "label": "Alacak Hesabi",
+   "options": "Hesap",
+   "reqd": 1
+  },
+  {
+   "fieldname": "vade_tarihi",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Vade Tarihi",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Durum",
+   "options": "Taslak\n\u00d6denmedi\nK\u0131smi \u00d6dendi\n\u00d6dendi\nVadesi Ge\u00e7mi\u015f\nFaturalanacak\n\u0130ptal\n\u0130ade",
+   "read_only": 1
+  },
+  {
+   "fieldname": "odeme_kosulu",
+   "fieldtype": "Link",
+   "label": "Odeme Kosulu",
+   "options": "Odeme Kosulu",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sartlar_ve_kosullar",
+   "fieldtype": "Link",
+   "label": "Sartlar Ve Kosullar",
+   "options": "Sartlar ve Kosullar"
+  },
+  {
+   "fieldname": "genel_bak\u0131\u015f_tab",
+   "fieldtype": "Tab Break",
+   "label": "Genel Bak\u0131\u015f"
+  },
+  {
+   "fieldname": "tedarik\u00e7i_ve_belge_section",
+   "fieldtype": "Section Break",
+   "label": "Tedarik\u00e7i ve Belge"
+  },
+  {
+   "fieldname": "column_break_hr3h",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hizmet_ve_\u00fcr\u00fcnler_section",
+   "fieldtype": "Section Break",
+   "label": "Hizmet ve \u00dcr\u00fcnler"
+  },
+  {
+   "fieldname": "muhasebe_ve_stok_tab",
+   "fieldtype": "Tab Break",
+   "label": "Muhasebe ve Stok"
+  },
+  {
+   "fieldname": "muhasebe_kayd\u0131_section",
+   "fieldtype": "Section Break",
+   "label": "Muhasebe Kayd\u0131"
+  },
+  {
+   "fieldname": "column_break_qjsp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "referans_belgeler_section",
+   "fieldtype": "Section Break",
+   "label": "Referans Belgeler"
+  },
+  {
+   "fieldname": "finansal_detaylar_tab",
+   "fieldtype": "Tab Break",
+   "label": "Finansal Detaylar"
+  },
+  {
+   "fieldname": "\u00f6deme_ve_kur_section",
+   "fieldtype": "Section Break",
+   "label": "\u00d6deme ve Kur"
+  },
+  {
+   "fieldname": "di\u011fer_section",
+   "fieldtype": "Section Break",
+   "label": "Di\u011fer"
+  },
+  {
+   "fieldname": "base_grand_total",
+   "fieldtype": "Float",
+   "label": "Yerel Para Karsiligi"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-01-17 04:06:03.650224",
+ "modified_by": "Administrator",
+ "module": "Satin Alma",
+ "name": "Satin Alma Faturasi",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,352 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "SIP-.YYYY.-.#####",
+ "creation": "2025-12-15 05:55:44.668481",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "genel_bak\u0131\u015f_tab",
+  "section_break_5ut9",
+  "musteri",
+  "tarih",
+  "teslim_tarihi",
+  "museri_siparis_no",
+  "column_break_xaim",
+  "status",
+  "genel_toplam",
+  "fiyat_listesi",
+  "para_birimi",
+  "sipari\u015f_kalemleri_section",
+  "kalemler",
+  "finansal_detaylar_tab",
+  "\u00f6deme_ve_kur_section",
+  "odeme_kosulu",
+  "doviz_kuru",
+  "vergi_dahil_mi",
+  "column_break_bmd0",
+  "ara_toplam",
+  "ek_iskonto_tutari",
+  "vergi_toplami",
+  "base_grand_total",
+  "teslimat_ve_adresler_tab",
+  "adres_bilgileri_section",
+  "fatura_adresi",
+  "fatura_il",
+  "fatura_ilce",
+  "fatura_acik_adres",
+  "column_break_umac",
+  "sevkiyat_adresi",
+  "sevkiyat_il",
+  "sevkiyat_ilce",
+  "sevkiyat_acik_adres",
+  "ayarlar_ve_referanslar_tab",
+  "sistem_ba\u011flant\u0131lar\u0131_section",
+  "teklif_referansi",
+  "firma",
+  "sube",
+  "amended_from",
+  "column_break_v454",
+  "sartlar_ve_kosullar",
+  "notlar"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_5ut9",
+   "fieldtype": "Section Break",
+   "label": "Sipari\u015f Bilgileri"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Satis Siparisi",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "musteri",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Musteri",
+   "options": "Musteri",
+   "reqd": 1
+  },
+  {
+   "description": "Sipari\u015f tarihi.",
+   "fieldname": "tarih",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Tarih",
+   "reqd": 1
+  },
+  {
+   "description": "Hedeflenen teslimat g\u00fcn\u00fc.",
+   "fieldname": "teslim_tarihi",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Teslim Tarihi",
+   "reqd": 1
+  },
+  {
+   "description": "M\u00fc\u015fterinin kendi sistemindeki sipari\u015f nosu (Referans).",
+   "fieldname": "museri_siparis_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Museri Siparis No"
+  },
+  {
+   "fieldname": "kalemler",
+   "fieldtype": "Table",
+   "label": "Kalemler",
+   "options": "Siparis Kalemi",
+   "reqd": 1
+  },
+  {
+   "fieldname": "ara_toplam",
+   "fieldtype": "Currency",
+   "label": "Ara Toplam",
+   "read_only": 1
+  },
+  {
+   "fieldname": "vergi_toplami",
+   "fieldtype": "Currency",
+   "label": "Vergi Toplami",
+   "read_only": 1
+  },
+  {
+   "fieldname": "genel_toplam",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Genel Toplam",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "musteri.para_birimi",
+   "fieldname": "para_birimi",
+   "fieldtype": "Link",
+   "label": "Para Birimi",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "doviz_kuru",
+   "fieldtype": "Float",
+   "hidden": 1,
+   "label": "Doviz Kuru",
+   "non_negative": 1,
+   "precision": "4",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "ek_iskonto_tutari",
+   "fieldtype": "Currency",
+   "label": "Ek iskonto Tutari"
+  },
+  {
+   "fieldname": "notlar",
+   "fieldtype": "Small Text",
+   "label": "Notlar"
+  },
+  {
+   "fieldname": "firma",
+   "fieldtype": "Link",
+   "label": "Firma",
+   "options": "Firma",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sube",
+   "fieldtype": "Link",
+   "label": "Sube",
+   "options": "Sube",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "teklif_referansi",
+   "fieldtype": "Link",
+   "label": "Teklif Referansi",
+   "options": "Satis Teklifi",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "fiyat_listesi",
+   "fieldtype": "Link",
+   "label": "Fiyat Listesi",
+   "options": "Fiyat Listesi"
+  },
+  {
+   "default": "0",
+   "fieldname": "vergi_dahil_mi",
+   "fieldtype": "Check",
+   "label": "Vergi Dahil mi?"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Durum",
+   "no_copy": 1,
+   "options": "Taslak\nOnay Bekliyor\nTeslim Edilecek\nFaturalanacak\nTamamland\u0131\n\u0130ptal\nK\u0131smi Teslimat\nK\u0131smi Faturaland\u0131\nGecikmi\u015f\nKapand\u0131",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fatura_adresi",
+   "fieldtype": "Link",
+   "label": "Fatura Adresi",
+   "options": "Adres Detayi"
+  },
+  {
+   "fieldname": "odeme_kosulu",
+   "fieldtype": "Link",
+   "label": "Odeme Kosulu",
+   "options": "Odeme Kosulu",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sartlar_ve_kosullar",
+   "fieldtype": "Link",
+   "label": "Sartlar Ve Kosullar",
+   "options": "Sartlar ve Kosullar"
+  },
+  {
+   "fieldname": "fatura_il",
+   "fieldtype": "Data",
+   "label": "Fatura Il",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fatura_ilce",
+   "fieldtype": "Data",
+   "label": "Fatura Ilce",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fatura_acik_adres",
+   "fieldtype": "Small Text",
+   "label": "Fatura Acik Adres",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sevkiyat_adresi",
+   "fieldtype": "Link",
+   "label": "Sevkiyat Adresi",
+   "options": "Adres Detayi"
+  },
+  {
+   "fieldname": "sevkiyat_il",
+   "fieldtype": "Data",
+   "label": "Sevkiyat Il",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sevkiyat_ilce",
+   "fieldtype": "Data",
+   "label": "Sevkiyat Ilce",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sevkiyat_acik_adres",
+   "fieldtype": "Small Text",
+   "label": "Sevkiyat Acik Adres",
+   "reqd": 1
+  },
+  {
+   "fieldname": "genel_bak\u0131\u015f_tab",
+   "fieldtype": "Tab Break",
+   "label": "Genel Bak\u0131\u015f"
+  },
+  {
+   "fieldname": "column_break_xaim",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sipari\u015f_kalemleri_section",
+   "fieldtype": "Section Break",
+   "label": "Sipari\u015f Kalemleri"
+  },
+  {
+   "fieldname": "finansal_detaylar_tab",
+   "fieldtype": "Tab Break",
+   "label": "Finansal Detaylar"
+  },
+  {
+   "fieldname": "\u00f6deme_ve_kur_section",
+   "fieldtype": "Section Break",
+   "label": "\u00d6deme ve Kur"
+  },
+  {
+   "fieldname": "column_break_bmd0",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "teslimat_ve_adresler_tab",
+   "fieldtype": "Tab Break",
+   "label": "Teslimat ve Adresler"
+  },
+  {
+   "fieldname": "adres_bilgileri_section",
+   "fieldtype": "Section Break",
+   "label": "Adres Bilgileri"
+  },
+  {
+   "fieldname": "column_break_umac",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ayarlar_ve_referanslar_tab",
+   "fieldtype": "Tab Break",
+   "label": "Ayarlar ve Referanslar"
+  },
+  {
+   "fieldname": "sistem_ba\u011flant\u0131lar\u0131_section",
+   "fieldtype": "Section Break",
+   "label": "Sistem Ba\u011flant\u0131lar\u0131"
+  },
+  {
+   "fieldname": "column_break_v454",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "base_grand_total",
+   "fieldtype": "Float",
+   "label": "Yerel Para Karsiligi"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-01-17 04:10:47.484249",
+ "modified_by": "Administrator",
+ "module": "Satis",
+ "name": "Satis Siparisi",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

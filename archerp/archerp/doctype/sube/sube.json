@@ -1,0 +1,151 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:sube_adi",
+ "creation": "2025-12-07 05:45:23.329859",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "genel_bak\u0131\u015f_tab",
+  "\u015fube_bilgileri_section",
+  "sube_adi",
+  "bagli_firma",
+  "\u015fube_y\u00f6neticisi",
+  "column_break_vk61",
+  "varsayilan_depo",
+  "aktif",
+  "adres_ve_ileti\u015fim_tab",
+  "ileti\u015fim_kanallar\u0131_section",
+  "telefon",
+  "e_posta",
+  "lokasyon_detay\u0131_section",
+  "il",
+  "il\u00e7e",
+  "column_break_imes",
+  "adres"
+ ],
+ "fields": [
+  {
+   "fieldname": "sube_adi",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Sube adi",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "adres",
+   "fieldtype": "Small Text",
+   "label": "Adres"
+  },
+  {
+   "fieldname": "telefon",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Telefon"
+  },
+  {
+   "fieldname": "bagli_firma",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Bagli firma",
+   "options": "Firma",
+   "reqd": 1
+  },
+  {
+   "fieldname": "genel_bak\u0131\u015f_tab",
+   "fieldtype": "Tab Break",
+   "label": "Genel Bak\u0131\u015f"
+  },
+  {
+   "fieldname": "\u015fube_bilgileri_section",
+   "fieldtype": "Section Break",
+   "label": "\u015eube Bilgileri"
+  },
+  {
+   "fieldname": "\u015fube_y\u00f6neticisi",
+   "fieldtype": "Link",
+   "label": "\u015eube Y\u00f6neticisi",
+   "options": "Personel"
+  },
+  {
+   "fieldname": "column_break_vk61",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "aktif",
+   "fieldtype": "Check",
+   "label": "Aktif"
+  },
+  {
+   "fieldname": "adres_ve_ileti\u015fim_tab",
+   "fieldtype": "Tab Break",
+   "label": "Adres ve Ileti\u015fim"
+  },
+  {
+   "fieldname": "ileti\u015fim_kanallar\u0131_section",
+   "fieldtype": "Section Break",
+   "label": "Ileti\u015fim Kanallar\u0131"
+  },
+  {
+   "fieldname": "e_posta",
+   "fieldtype": "Data",
+   "label": "E Posta"
+  },
+  {
+   "fieldname": "lokasyon_detay\u0131_section",
+   "fieldtype": "Section Break",
+   "label": "Lokasyon Detay\u0131"
+  },
+  {
+   "fieldname": "il",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Il"
+  },
+  {
+   "fieldname": "il\u00e7e",
+   "fieldtype": "Data",
+   "label": "Il\u00e7e"
+  },
+  {
+   "fieldname": "column_break_imes",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "varsayilan_depo",
+   "fieldtype": "Link",
+   "label": "Varsay\u0131lan Depo",
+   "options": "Depo"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-01-13 17:10:40.261020",
+ "modified_by": "Administrator",
+ "module": "archerp",
+ "name": "Sube",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

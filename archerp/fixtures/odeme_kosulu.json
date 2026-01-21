@@ -1,0 +1,52 @@
+[
+ {
+  "acıklama": "Fatura kesim tarihinden itibaren 30 gün.",
+  "docstatus": 0,
+  "doctype": "Odeme Kosulu",
+  "is_default": 0,
+  "kosul_adi": "30 Gün vade",
+  "modified": "2025-12-09 05:43:49.748993",
+  "name": "30 Gün vade",
+  "vade_gun_sayisi": 30
+ },
+ {
+  "acıklama": "Fatura kesim tarihinden itibaren 7 gün.",
+  "docstatus": 0,
+  "doctype": "Odeme Kosulu",
+  "is_default": 0,
+  "kosul_adi": "7 Gün Vade",
+  "modified": "2025-12-25 06:53:35.412859",
+  "name": "7 Gün Vade",
+  "vade_gun_sayisi": 7
+ },
+ {
+  "acıklama": null,
+  "docstatus": 0,
+  "doctype": "Odeme Kosulu",
+  "is_default": 1,
+  "kosul_adi": "Peşin / Nakit",
+  "modified": "2025-12-25 06:53:49.579654",
+  "name": "Peşin / Nakit",
+  "vade_gun_sayisi": 0
+ },
+ {
+  "acıklama": "Fatura kesim tarihinden itibaren 15 gün.",
+  "docstatus": 0,
+  "doctype": "Odeme Kosulu",
+  "is_default": 0,
+  "kosul_adi": "15 Gün Vade",
+  "modified": "2025-12-25 06:54:21.430702",
+  "name": "15 Gün Vade",
+  "vade_gun_sayisi": 15
+ },
+ {
+  "acıklama": "Fatura kesim tarihinden itibaren 60 gün.",
+  "docstatus": 0,
+  "doctype": "Odeme Kosulu",
+  "is_default": 0,
+  "kosul_adi": "60 Gün Vade",
+  "modified": "2025-12-25 06:54:39.716251",
+  "name": "60 Gün Vade",
+  "vade_gun_sayisi": 60
+ }
+]

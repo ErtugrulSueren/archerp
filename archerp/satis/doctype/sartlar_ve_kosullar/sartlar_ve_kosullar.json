@@ -1,0 +1,67 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:baslik",
+ "creation": "2025-12-08 05:54:05.608721",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "baslik",
+  "icerik",
+  "is_default"
+ ],
+ "fields": [
+  {
+   "description": "\u00d6rn: Standart Sat\u0131\u015f S\u00f6zle\u015fmesi",
+   "fieldname": "baslik",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Baslik",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "description": "S\u00f6zle\u015fme maddeleri buraya.",
+   "fieldname": "icerik",
+   "fieldtype": "Text Editor",
+   "in_list_view": 1,
+   "label": "Sartlar ve Maddeler",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_default",
+   "fieldtype": "Check",
+   "label": "Varsayilan Mi?"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-12-27 02:41:45.648921",
+ "modified_by": "Administrator",
+ "module": "Satis",
+ "name": "Sartlar ve Kosullar",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "baslik"
+}

@@ -1,0 +1,112 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Vergi",
+  "is_default": 1,
+  "modified": "2025-12-25 05:07:41.953779",
+  "muhasebe_hesabi": "HSP-00004",
+  "name": "KDV %20 (Satış)",
+  "oran": 20.0,
+  "vergi_adi": "KDV %20 (Satış)",
+  "vergi_turu": "Satış"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Vergi",
+  "is_default": 1,
+  "modified": "2025-12-25 05:31:14.342143",
+  "muhasebe_hesabi": "HSP-00005",
+  "name": "KDV %20 (Alış)",
+  "oran": 20.0,
+  "vergi_adi": "KDV %20 (Alış)",
+  "vergi_turu": "Alış"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Vergi",
+  "is_default": 0,
+  "modified": "2025-12-25 05:29:20.417557",
+  "muhasebe_hesabi": "HSP-00008",
+  "name": "KDV %10 (Satış)",
+  "oran": 10.0,
+  "vergi_adi": "KDV %10 (Satış)",
+  "vergi_turu": "Satış"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Vergi",
+  "is_default": 0,
+  "modified": "2025-12-25 05:29:54.808896",
+  "muhasebe_hesabi": "HSP-00006",
+  "name": "KDV %1 (Satış)",
+  "oran": 1.0,
+  "vergi_adi": "KDV %1 (Satış)",
+  "vergi_turu": "Satış"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Vergi",
+  "is_default": 0,
+  "modified": "2025-12-25 05:31:04.531203",
+  "muhasebe_hesabi": "HSP-00009",
+  "name": "KDV %10 (Alış)",
+  "oran": 10.0,
+  "vergi_adi": "KDV %10 (Alış)",
+  "vergi_turu": "Alış"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Vergi",
+  "is_default": 0,
+  "modified": "2025-12-25 05:32:02.576062",
+  "muhasebe_hesabi": "HSP-00007",
+  "name": "KDV %1 (Alış)",
+  "oran": 1.0,
+  "vergi_adi": "KDV %1 (Alış)",
+  "vergi_turu": "Alış"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Vergi",
+  "is_default": 0,
+  "modified": "2025-12-25 05:37:51.081103",
+  "muhasebe_hesabi": "HSP-00012",
+  "name": "Tevkifat 5/10 (%20)",
+  "oran": 10.0,
+  "vergi_adi": "Tevkifat 5/10 (%20)",
+  "vergi_turu": "Satış"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Vergi",
+  "is_default": 0,
+  "modified": "2025-12-25 05:38:57.921701",
+  "muhasebe_hesabi": "HSP-00012",
+  "name": "Tevkifat 7/10 (%20)",
+  "oran": 6.0,
+  "vergi_adi": "Tevkifat 7/10 (%20)",
+  "vergi_turu": "Satış"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Vergi",
+  "is_default": 0,
+  "modified": "2025-12-25 05:43:34.736698",
+  "muhasebe_hesabi": "HSP-00011",
+  "name": "KDV Muaf (Satış)",
+  "oran": 0.0,
+  "vergi_adi": "KDV Muaf (Satış)",
+  "vergi_turu": "Satış"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Vergi",
+  "is_default": 0,
+  "modified": "2025-12-25 05:43:49.915489",
+  "muhasebe_hesabi": "HSP-00013",
+  "name": "KDV Muaf (Alış)",
+  "oran": 0.0,
+  "vergi_adi": "KDV Muaf (Alış)",
+  "vergi_turu": "Alış"
+ }
+]

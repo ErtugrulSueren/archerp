@@ -1,0 +1,89 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:kalem_adi",
+ "creation": "2025-12-16 02:55:53.226398",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "kalem_adi",
+  "tur",
+  "varsayilan_hesap",
+  "standart_fiyat",
+  "varsayilan_vergi_sablonu",
+  "aciklama"
+ ],
+ "fields": [
+  {
+   "description": "(\u00d6rn: Sat\u0131\u015f Geliri, Kira Gideri, Personel Maa\u015f, Elektrik).",
+   "fieldname": "kalem_adi",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Kalem Adi",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "tur",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Tur",
+   "options": "Gelir\nGider",
+   "reqd": 1
+  },
+  {
+   "fieldname": "aciklama",
+   "fieldtype": "Small Text",
+   "label": "Aciklama"
+  },
+  {
+   "fieldname": "varsayilan_hesap",
+   "fieldtype": "Link",
+   "label": "Varsayilan Hesap",
+   "options": "Hesap",
+   "reqd": 1
+  },
+  {
+   "fieldname": "varsayilan_vergi_sablonu",
+   "fieldtype": "Link",
+   "label": "Varsayilan Vergi Sablonu",
+   "options": "Vergi"
+  },
+  {
+   "default": "0",
+   "fieldname": "standart_fiyat",
+   "fieldtype": "Currency",
+   "label": "Standart Fiyat",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-01-02 12:43:06.436507",
+ "modified_by": "Administrator",
+ "module": "Finans",
+ "name": "Gelir Gider Kalemi",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

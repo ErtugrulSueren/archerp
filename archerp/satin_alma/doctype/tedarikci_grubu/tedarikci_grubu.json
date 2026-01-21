@@ -1,0 +1,111 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:grup_adi",
+ "creation": "2025-12-08 05:34:56.370665",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "genel_tab",
+  "section_break_92pb",
+  "grup_adi",
+  "parent_tedarikci_grubu",
+  "column_break_fqhv",
+  "is_group",
+  "lft",
+  "rgt",
+  "old_parent"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_92pb",
+   "fieldtype": "Section Break",
+   "label": "Grup Bilgileri"
+  },
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Left",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Right",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Grup mu?"
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Old Parent",
+   "options": "Tedarikci Grubu"
+  },
+  {
+   "fieldname": "parent_tedarikci_grubu",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "in_list_view": 1,
+   "label": "Ust Grup",
+   "options": "Tedarikci Grubu"
+  },
+  {
+   "fieldname": "grup_adi",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Grup adi",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "genel_tab",
+   "fieldtype": "Tab Break",
+   "label": "Genel"
+  },
+  {
+   "fieldname": "column_break_fqhv",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_tree": 1,
+ "links": [],
+ "modified": "2026-01-11 18:29:40.077145",
+ "modified_by": "Administrator",
+ "module": "Satin Alma",
+ "name": "Tedarikci Grubu",
+ "naming_rule": "By fieldname",
+ "nsm_parent_field": "parent_tedarikci_grubu",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,109 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "MHS-.YYYY.-.#####",
+ "creation": "2025-12-28 16:29:55.141908",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "tarih",
+  "hesap",
+  "borc",
+  "alacak",
+  "belge_tipi",
+  "belge_no",
+  "muhatap_tipi",
+  "carimuhatap",
+  "aciklama"
+ ],
+ "fields": [
+  {
+   "fieldname": "tarih",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Tarih",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "hesap",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Hesap",
+   "options": "Hesap",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "borc",
+   "fieldtype": "Currency",
+   "label": "Borc",
+   "read_only": 1
+  },
+  {
+   "fieldname": "alacak",
+   "fieldtype": "Currency",
+   "label": "Alacak",
+   "read_only": 1
+  },
+  {
+   "fieldname": "belge_tipi",
+   "fieldtype": "Link",
+   "label": "Belge Tipi",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "belge_no",
+   "fieldtype": "Dynamic Link",
+   "label": "Belge No",
+   "options": "belge_tipi"
+  },
+  {
+   "fieldname": "muhatap_tipi",
+   "fieldtype": "Link",
+   "label": "Muhatap Tipi",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "carimuhatap",
+   "fieldtype": "Dynamic Link",
+   "label": "Cari/Muhatap",
+   "options": "muhatap_tipi"
+  },
+  {
+   "fieldname": "aciklama",
+   "fieldtype": "Small Text",
+   "label": "Aciklama"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-12-28 16:37:30.237964",
+ "modified_by": "Administrator",
+ "module": "Finans",
+ "name": "Muhasebe Defteri",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "search_fields": "hesap, carimuhatap, belge_no, aciklama",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "hesap"
+}

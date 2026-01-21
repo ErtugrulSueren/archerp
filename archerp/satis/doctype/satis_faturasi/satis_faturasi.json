@@ -1,0 +1,424 @@
+{
+    "actions": [],
+    "allow_rename": 1,
+    "autoname": "SF-.YYYY.-.#####",
+    "creation": "2025-12-15 06:11:28.682033",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "genel_bak\u0131\u015f_tab",
+        "m\u00fc\u015fteri_ve_belge_section",
+        "musteri",
+        "musteri_adi",
+        "fatura_tarihi",
+        "vade_tarihi",
+        "column_break_mush",
+        "status",
+        "genel_toplam",
+        "odenen_tutar",
+        "para_birimi",
+        "hizmet_ve_\u00fcr\u00fcnler_section",
+        "kalemler",
+        "muhasebe_ve_stok_tab",
+        "muhasebe_kayd\u0131_section",
+        "borc_hesabi",
+        "firma",
+        "sube",
+        "column_break_stok",
+        "stok_guncelle",
+        "iade_mi",
+        "referans_belgeler_section",
+        "irsaliye_referansi",
+        "siparis_referansi",
+        "amended_from",
+        "e_fatura_ayarlar\u0131_section",
+        "e_fatura_senaryosu",
+        "e_fatura_tipi",
+        "finansal_detaylar_tab",
+        "\u00f6deme_ve_kur_section",
+        "odeme_kosulu",
+        "doviz_kuru",
+        "vergi_dahil_mi",
+        "column_break_fin",
+        "ara_toplam",
+        "ek_iskonto_tutari",
+        "vergi_toplami",
+        "base_grand_total",
+        "adresler_tab",
+        "adres_bilgileri_section",
+        "fatura_adresi",
+        "fatura_il",
+        "fatura_ilce",
+        "fatura_acik_adres",
+        "column_break_adr",
+        "sevkiyat_adresi",
+        "sevkiyat_il",
+        "sevkiyat_ilce",
+        "sevkiyat_acik_adres",
+        "ayarlar_ve_referanslar_tab",
+        "di\u011fer_section",
+        "sartlar_ve_kosullar",
+        "notlar"
+    ],
+    "fields": [
+        {
+            "fieldname": "amended_from",
+            "fieldtype": "Link",
+            "label": "Amended From",
+            "no_copy": 1,
+            "options": "Satis Faturasi",
+            "print_hide": 1,
+            "read_only": 1,
+            "search_index": 1
+        },
+        {
+            "fieldname": "musteri",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "label": "Musteri",
+            "options": "Musteri",
+            "reqd": 1
+        },
+        {
+            "fetch_from": "musteri.musteri_adi",
+            "fieldname": "musteri_adi",
+            "fieldtype": "Data",
+            "label": "Musteri Adi",
+            "read_only": 1
+        },
+        {
+            "fieldname": "fatura_tarihi",
+            "fieldtype": "Date",
+            "in_list_view": 1,
+            "label": "Fatura Tarihi",
+            "reqd": 1
+        },
+        {
+            "fetch_from": "musteri.para_birimi",
+            "fieldname": "para_birimi",
+            "fieldtype": "Link",
+            "label": "Para Birimi",
+            "options": "Currency",
+            "reqd": 1
+        },
+        {
+            "default": "1",
+            "fieldname": "doviz_kuru",
+            "fieldtype": "Float",
+            "label": "Doviz Kuru",
+            "non_negative": 1,
+            "precision": "4",
+            "reqd": 1
+        },
+        {
+            "fieldname": "firma",
+            "fieldtype": "Link",
+            "label": "Firma",
+            "options": "Firma",
+            "reqd": 1
+        },
+        {
+            "fieldname": "sube",
+            "fieldtype": "Link",
+            "label": "Sube",
+            "options": "Sube",
+            "read_only": 1,
+            "reqd": 1
+        },
+        {
+            "fieldname": "borc_hesabi",
+            "fieldtype": "Link",
+            "label": "Borc Hesabi",
+            "options": "Hesap",
+            "read_only": 1,
+            "reqd": 1
+        },
+        {
+            "fieldname": "odeme_kosulu",
+            "fieldtype": "Link",
+            "label": "Odeme Kosulu",
+            "options": "Odeme Kosulu",
+            "reqd": 1
+        },
+        {
+            "description": "\u00d6deme ne zaman al\u0131nacak?",
+            "fieldname": "vade_tarihi",
+            "fieldtype": "Date",
+            "in_list_view": 1,
+            "label": "Vade Tarihi",
+            "reqd": 1
+        },
+        {
+            "fieldname": "sartlar_ve_kosullar",
+            "fieldtype": "Link",
+            "label": "Sartlar Ve Kosullar",
+            "options": "Sartlar ve Kosullar"
+        },
+        {
+            "fieldname": "e_fatura_senaryosu",
+            "fieldtype": "Select",
+            "label": "E Fatura Senaryosu",
+            "options": "Temel Fatura\nTicari Fatura\nKamu\n\u0130hracat\nYolcu Beraber"
+        },
+        {
+            "fieldname": "e_fatura_tipi",
+            "fieldtype": "Select",
+            "label": "E Fatura Tipi",
+            "options": "SATIS\nIADE\nTEVKIFAT\nISTISNA\nOZEL MATRAH\nIHRA\u00c7 KAYITLI"
+        },
+        {
+            "fieldname": "irsaliye_referansi",
+            "fieldtype": "Link",
+            "label": "Irsaliye Referansi",
+            "options": "Sevk Irsaliyesi",
+            "set_only_once": 1
+        },
+        {
+            "fieldname": "siparis_referansi",
+            "fieldtype": "Link",
+            "label": "Siparis Referansi",
+            "options": "Satis Siparisi",
+            "set_only_once": 1
+        },
+        {
+            "default": "0",
+            "description": "\u00d6nemli: E\u011fer irsaliye kullanmadan, direkt faturadan stok d\u00fc\u015fmek isterseniz bu kutucuk kullan\u0131l\u0131r.",
+            "fieldname": "stok_guncelle",
+            "fieldtype": "Check",
+            "label": "Stok Guncelle"
+        },
+        {
+            "default": "0",
+            "fieldname": "iade_mi",
+            "fieldtype": "Check",
+            "label": "iade Mi"
+        },
+        {
+            "fieldname": "kalemler",
+            "fieldtype": "Table",
+            "label": "Kalemler",
+            "options": "Fatura Kalemi"
+        },
+        {
+            "fieldname": "notlar",
+            "fieldtype": "Small Text",
+            "label": "Notlar"
+        },
+        {
+            "default": "0",
+            "fieldname": "vergi_dahil_mi",
+            "fieldtype": "Check",
+            "label": "Vergi Dahil mi?"
+        },
+        {
+            "fieldname": "ara_toplam",
+            "fieldtype": "Currency",
+            "label": "Ara Toplam",
+            "read_only": 1
+        },
+        {
+            "fieldname": "vergi_toplami",
+            "fieldtype": "Currency",
+            "label": "Vergi Toplami",
+            "read_only": 1
+        },
+        {
+            "fieldname": "genel_toplam",
+            "fieldtype": "Currency",
+            "in_list_view": 1,
+            "label": "Genel Toplam",
+            "read_only": 1
+        },
+        {
+            "default": "0",
+            "fieldname": "ek_iskonto_tutari",
+            "fieldtype": "Currency",
+            "label": "Ek iskonto Tutari"
+        },
+        {
+            "allow_on_submit": 1,
+            "default": "0",
+            "fieldname": "odenen_tutar",
+            "fieldtype": "Currency",
+            "label": "Odenen Tutar",
+            "read_only": 1
+        },
+        {
+            "allow_on_submit": 1,
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "label": "Durum",
+            "no_copy": 1,
+            "options": "Taslak\n\u00d6denmedi\n\u00d6dendi\nK\u0131smi \u00d6dendi\nVadesi Ge\u00e7mi\u015f\n\u0130ptal\n\u0130ade",
+            "read_only": 1
+        },
+        {
+            "fieldname": "fatura_adresi",
+            "fieldtype": "Link",
+            "label": "Fatura Adresi",
+            "options": "Adres Detayi"
+        },
+        {
+            "fieldname": "fatura_il",
+            "fieldtype": "Data",
+            "label": "Fatura Il",
+            "reqd": 1
+        },
+        {
+            "fieldname": "fatura_ilce",
+            "fieldtype": "Data",
+            "label": "Fatura Ilce",
+            "reqd": 1
+        },
+        {
+            "fieldname": "fatura_acik_adres",
+            "fieldtype": "Small Text",
+            "label": "Fatura Acik Adres",
+            "reqd": 1
+        },
+        {
+            "fieldname": "sevkiyat_il",
+            "fieldtype": "Data",
+            "label": "Sevkiyat Il"
+        },
+        {
+            "fieldname": "sevkiyat_adresi",
+            "fieldtype": "Link",
+            "label": "Sevkiyat Adresi",
+            "options": "Adres Detayi"
+        },
+        {
+            "fieldname": "sevkiyat_ilce",
+            "fieldtype": "Data",
+            "label": "Sevkiyat Ilce"
+        },
+        {
+            "fieldname": "sevkiyat_acik_adres",
+            "fieldtype": "Small Text",
+            "label": "Sevkiyat Acik Adres"
+        },
+        {
+            "fieldname": "genel_bak\u0131\u015f_tab",
+            "fieldtype": "Tab Break",
+            "label": "Genel Bak\u0131\u015f"
+        },
+        {
+            "fieldname": "m\u00fc\u015fteri_ve_belge_section",
+            "fieldtype": "Section Break",
+            "label": "M\u00fc\u015fteri ve Belge"
+        },
+        {
+            "fieldname": "column_break_mush",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "hizmet_ve_\u00fcr\u00fcnler_section",
+            "fieldtype": "Section Break",
+            "label": "Hizmet ve \u00dcr\u00fcnler"
+        },
+        {
+            "fieldname": "muhasebe_ve_stok_tab",
+            "fieldtype": "Tab Break",
+            "label": "Muhasebe ve Stok"
+        },
+        {
+            "fieldname": "e_fatura_ayarlar\u0131_section",
+            "fieldtype": "Section Break",
+            "label": "E Fatura Ayarlar\u0131"
+        },
+        {
+            "fieldname": "column_break_stok",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "muhasebe_kayd\u0131_section",
+            "fieldtype": "Section Break",
+            "label": "Muhasebe Kayd\u0131"
+        },
+        {
+            "fieldname": "adresler_tab",
+            "fieldtype": "Tab Break",
+            "label": "Adresler"
+        },
+        {
+            "fieldname": "adres_bilgileri_section",
+            "fieldtype": "Section Break",
+            "label": "Adres Bilgileri"
+        },
+        {
+            "fieldname": "column_break_adr",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "ayarlar_ve_referanslar_tab",
+            "fieldtype": "Tab Break",
+            "label": "Di\u011fer"
+        },
+        {
+            "fieldname": "referans_belgeler_section",
+            "fieldtype": "Section Break",
+            "label": "Referans Belgeler"
+        },
+        {
+            "fieldname": "column_break_ysul",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "base_grand_total",
+            "fieldtype": "Currency",
+            "label": "Yerel Para Karsiligi",
+            "read_only": 1
+        },
+        {
+            "fieldname": "finansal_detaylar_tab",
+            "fieldtype": "Tab Break",
+            "label": "Finansal Detaylar"
+        },
+        {
+            "fieldname": "\u00f6deme_ve_kur_section",
+            "fieldtype": "Section Break",
+            "label": "\u00d6deme ve Kur"
+        },
+        {
+            "fieldname": "column_break_fin",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "di\u011fer_section",
+            "fieldtype": "Section Break",
+            "label": "Notlar ve \u015eartlar"
+        }
+    ],
+    "grid_page_length": 50,
+    "index_web_pages_for_search": 1,
+    "is_submittable": 1,
+    "links": [],
+    "modified": "2026-01-21 06:26:00.000000",
+    "modified_by": "Administrator",
+    "module": "Satis",
+    "name": "Satis Faturasi",
+    "naming_rule": "Expression",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "submit": 1,
+            "write": 1
+        }
+    ],
+    "row_format": "Dynamic",
+    "rows_threshold_for_grid_search": 20,
+    "sort_field": "creation",
+    "sort_order": "DESC",
+    "track_changes": 1,
+    "states": []
+}

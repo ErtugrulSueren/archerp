@@ -1,0 +1,87 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-12-15 05:34:16.660335",
+ "description": "Amac\u0131: Say\u0131m farklar\u0131n\u0131 e\u015fitlemek veya a\u00e7\u0131l\u0131\u015f bakiyelerini (Devir) girmek.",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "urun",
+  "sistemdeki_stok",
+  "sayim_sonucu",
+  "fark_miktari",
+  "degerleme_fiyati",
+  "seri_no",
+  "parti_no",
+  "stok_birimi"
+ ],
+ "fields": [
+  {
+   "fieldname": "urun",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Urun",
+   "options": "Urun",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sistemdeki_stok",
+   "fieldtype": "Float",
+   "label": "Sistemdeki Stok",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sayim_sonucu",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Sayim Sonucu",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "fark_miktari",
+   "fieldtype": "Float",
+   "label": "Fark Miktari",
+   "read_only": 1
+  },
+  {
+   "description": "E\u011fer stok art\u0131yorsa, ka\u00e7a mal oldu?",
+   "fieldname": "degerleme_fiyati",
+   "fieldtype": "Currency",
+   "label": "Degerleme Fiyati",
+   "read_only": 1
+  },
+  {
+   "fieldname": "seri_no",
+   "fieldtype": "Text",
+   "label": "Seri No"
+  },
+  {
+   "fieldname": "parti_no",
+   "fieldtype": "Data",
+   "label": "Parti No"
+  },
+  {
+   "fetch_from": "urun.stok_birimi",
+   "fieldname": "stok_birimi",
+   "fieldtype": "Data",
+   "label": "Stok Birimi"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-12-27 19:30:40.755278",
+ "modified_by": "Administrator",
+ "module": "Stok",
+ "name": "Stok Duzenleme Kalemi",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,174 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:depo_adi",
+ "creation": "2025-12-30 18:26:05.433877",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "genel_tab",
+  "depo_bilgileri_section",
+  "depo_adi",
+  "bagli_sube",
+  "konum_tipi",
+  "column_break_8v0u",
+  "parent_depo",
+  "is_group",
+  "is_virtual",
+  "konum_barkodu",
+  "ayarlar_ve_muhasebe_tab",
+  "depo_kapasitesi_section",
+  "raf_kapasitesi",
+  "finansal_ayarlar_section",
+  "stok_hesabi",
+  "lft",
+  "rgt",
+  "old_parent"
+ ],
+ "fields": [
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Left",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Right",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "label": "Grup Mu?"
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Old Parent",
+   "options": "Depo"
+  },
+  {
+   "fieldname": "parent_depo",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "in_list_view": 1,
+   "label": "Ust Depo",
+   "link_filters": "{\"is_group\": 1}",
+   "options": "Depo"
+  },
+  {
+   "fieldname": "depo_adi",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Depo adi",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "bagli_sube",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Bagli Sube",
+   "options": "Sube",
+   "reqd": 1
+  },
+  {
+   "fieldname": "konum_tipi",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Konum Tipi",
+   "options": "Bina\nTransit (Yol)\nOda\nKoridor\nRaf\nKutu/\u00c7ekmece",
+   "reqd": 1
+  },
+  {
+   "fieldname": "raf_kapasitesi",
+   "fieldtype": "Float",
+   "label": "Raf Kapasitesi"
+  },
+  {
+   "fieldname": "konum_barkodu",
+   "fieldtype": "Data",
+   "label": "Konum Barkodu"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_virtual",
+   "fieldtype": "Check",
+   "label": "Sanal Depo Mu"
+  },
+  {
+   "description": "Bu depo i\u00e7in \u00f6zel Stok De\u011fer Hesab\u0131 (Bo\u015fsa Firmadan al\u0131r)",
+   "fieldname": "stok_hesabi",
+   "fieldtype": "Link",
+   "label": "Stok Hesabi",
+   "options": "Hesap"
+  },
+  {
+   "fieldname": "genel_tab",
+   "fieldtype": "Tab Break",
+   "label": "Genel"
+  },
+  {
+   "fieldname": "depo_bilgileri_section",
+   "fieldtype": "Section Break",
+   "label": "Temel Bilgiler"
+  },
+  {
+   "fieldname": "column_break_8v0u",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ayarlar_ve_muhasebe_tab",
+   "fieldtype": "Tab Break",
+   "label": "Ayarlar ve Muhasebe"
+  },
+  {
+   "fieldname": "depo_kapasitesi_section",
+   "fieldtype": "Section Break",
+   "label": "Depo Kapasitesi"
+  },
+  {
+   "fieldname": "finansal_ayarlar_section",
+   "fieldtype": "Section Break",
+   "label": "Finansal Ayarlar"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_tree": 1,
+ "links": [],
+ "modified": "2026-01-13 17:19:18.260252",
+ "modified_by": "Administrator",
+ "module": "Stok",
+ "name": "Depo",
+ "naming_rule": "By fieldname",
+ "nsm_parent_field": "parent_depo",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,173 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "SCF-.YYYY.-.#####",
+ "creation": "2025-12-15 05:15:26.514199",
+ "description": "3. Backend Mant\u0131\u011f\u0131 (Logic - Stok Defteri)\nBu fi\u015f \"Onayla\" (Submit) dendi\u011finde Python taraf\u0131nda \u015fu i\u015flem yap\u0131lacak (Bunu not alal\u0131m):\nStok Defteri tablosuna kay\u0131t at\u0131l\u0131r.\nMiktar De\u011fi\u015fimi: Eksi (-) de\u011fer olarak yaz\u0131l\u0131r (-10 gibi).\nDepo: kaynak_depo se\u00e7ilir.\n\nEklenecek kolon\nProje / Gider Yeri\tproje\tLink\tHay\u0131r\t(\u0130leride Muhasebe entegrasyonu i\u00e7in - \u015eimdilik Opsiyonel).",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "genel_bak\u0131\u015f_tab",
+  "\u00e7\u0131k\u0131\u015f_bilgileri_section",
+  "cikis_tipi",
+  "kaynak_depo",
+  "column_break_weoi",
+  "tarih",
+  "\u00e7\u0131kan_\u00fcr\u00fcnler_section",
+  "kalemler",
+  "aciklama",
+  "muhasebe_ve_maliyet_tab",
+  "gider_hesab\u0131_section",
+  "gider_hesabi",
+  "ayarlar_tab",
+  "sistem_bilgileri_section",
+  "firma",
+  "sube",
+  "column_break_b7vl",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Stok Cikis Fisi",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "cikis_tipi",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Cikis Tipi",
+   "options": "Fire / Hasar\nNumune\nH\u0131rs\u0131zl\u0131k / Kay\u0131p\nSay\u0131m Eksi\u011fi\nPromosyon\nT\u00fcketim (\u0130\u00e7 Kullan\u0131m)\n\u00dcretime \u00c7\u0131k\u0131\u015f (Hammadde Sarfiyat\u0131)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "tarih",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Tarih",
+   "options": "Today",
+   "reqd": 1
+  },
+  {
+   "fieldname": "kaynak_depo",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Kaynak Depo",
+   "options": "Depo",
+   "reqd": 1
+  },
+  {
+   "default": "s",
+   "fieldname": "kalemler",
+   "fieldtype": "Table",
+   "label": "Kalemler",
+   "options": "Stok Cikis Kalemi",
+   "reqd": 1
+  },
+  {
+   "fieldname": "aciklama",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Aciklama"
+  },
+  {
+   "fieldname": "gider_hesabi",
+   "fieldtype": "Link",
+   "label": "Gider Hesabi",
+   "options": "Hesap",
+   "reqd": 1
+  },
+  {
+   "fieldname": "firma",
+   "fieldtype": "Link",
+   "label": "Firma",
+   "options": "Firma",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sube",
+   "fieldtype": "Link",
+   "label": "Sube",
+   "options": "Sube",
+   "reqd": 1
+  },
+  {
+   "fieldname": "genel_bak\u0131\u015f_tab",
+   "fieldtype": "Tab Break",
+   "label": "Genel Bak\u0131\u015f"
+  },
+  {
+   "fieldname": "\u00e7\u0131k\u0131\u015f_bilgileri_section",
+   "fieldtype": "Section Break",
+   "label": "\u00c7\u0131k\u0131\u015f Bilgileri"
+  },
+  {
+   "fieldname": "column_break_weoi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "\u00e7\u0131kan_\u00fcr\u00fcnler_section",
+   "fieldtype": "Section Break",
+   "label": "\u00c7\u0131kan \u00dcr\u00fcnler"
+  },
+  {
+   "fieldname": "muhasebe_ve_maliyet_tab",
+   "fieldtype": "Tab Break",
+   "label": "Muhasebe ve Maliyet"
+  },
+  {
+   "fieldname": "gider_hesab\u0131_section",
+   "fieldtype": "Section Break",
+   "label": "Gider Hesab\u0131"
+  },
+  {
+   "fieldname": "ayarlar_tab",
+   "fieldtype": "Tab Break",
+   "label": "Ayarlar"
+  },
+  {
+   "fieldname": "sistem_bilgileri_section",
+   "fieldtype": "Section Break",
+   "label": "Sistem Bilgileri"
+  },
+  {
+   "fieldname": "column_break_b7vl",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-01-12 01:24:14.229809",
+ "modified_by": "Administrator",
+ "module": "Stok",
+ "name": "Stok Cikis Fisi",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

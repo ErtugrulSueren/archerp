@@ -1,0 +1,117 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:temsilci_adi",
+ "creation": "2025-12-08 06:21:50.308938",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_7t4v",
+  "lft",
+  "rgt",
+  "is_group",
+  "old_parent",
+  "parent_satis_temsilcisi",
+  "column_break_nrvv",
+  "temsilci_adi",
+  "komisyon_orani",
+  "ilgili_kullanici"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_7t4v",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Left",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Right",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "label": "Grup mu?"
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "label": "Old Parent",
+   "options": "Satis Temsilcisi"
+  },
+  {
+   "fieldname": "parent_satis_temsilcisi",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Ust Temsilci",
+   "options": "Satis Temsilcisi"
+  },
+  {
+   "fieldname": "column_break_nrvv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "\u00d6rn: Ahmet Y\u0131lmaz",
+   "fieldname": "temsilci_adi",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Temsilci Adi",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "description": "\u00d6rn: %3",
+   "fieldname": "komisyon_orani",
+   "fieldtype": "Percent",
+   "label": "Komisyon Orani"
+  },
+  {
+   "fieldname": "ilgili_kullanici",
+   "fieldtype": "Link",
+   "label": "ilgili Kullanici",
+   "options": "User"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_tree": 1,
+ "links": [],
+ "modified": "2025-12-27 03:43:22.870521",
+ "modified_by": "Administrator",
+ "module": "Satis",
+ "name": "Satis Temsilcisi",
+ "naming_rule": "By fieldname",
+ "nsm_parent_field": "parent_satis_temsilcisi",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "temsilci_adi"
+}

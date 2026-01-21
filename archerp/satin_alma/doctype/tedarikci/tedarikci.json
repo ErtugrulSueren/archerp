@@ -1,0 +1,139 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:tedarikci_adi",
+ "creation": "2025-12-08 05:36:52.031083",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "genel_bak\u0131\u015f_tab",
+  "temel_bilgiler",
+  "tedarikci_adi",
+  "tedarikci_grubu",
+  "vergi_no",
+  "column_break_a3s6",
+  "eposta",
+  "telefon",
+  "adres_defteri_section",
+  "adresler",
+  "finansal_ve_muhasebe_tab",
+  "ayarlar_section",
+  "para_birimi",
+  "muhasebe_hesabi"
+ ],
+ "fields": [
+  {
+   "fieldname": "temel_bilgiler",
+   "fieldtype": "Section Break",
+   "label": "Firma Kimli\u011fi"
+  },
+  {
+   "fieldname": "tedarikci_grubu",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Tedarikci grubu",
+   "options": "Tedarikci Grubu",
+   "reqd": 1
+  },
+  {
+   "fieldname": "vergi_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Vergi Kimlik No"
+  },
+  {
+   "fieldname": "eposta",
+   "fieldtype": "Data",
+   "label": "Eposta",
+   "options": "Email"
+  },
+  {
+   "fieldname": "telefon",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Telefon",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "para_birimi",
+   "fieldtype": "Link",
+   "label": "Para birimi",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "adresler",
+   "fieldtype": "Table",
+   "label": "Adresler",
+   "options": "Adres Detayi"
+  },
+  {
+   "fieldname": "tedarikci_adi",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "label": "Tedarikci Adi",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "muhasebe_hesabi",
+   "fieldtype": "Link",
+   "label": "Muhasebe Hesabi",
+   "options": "Hesap",
+   "read_only": 1
+  },
+  {
+   "fieldname": "genel_bak\u0131\u015f_tab",
+   "fieldtype": "Tab Break",
+   "label": "Genel Bak\u0131\u015f"
+  },
+  {
+   "fieldname": "column_break_a3s6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "adres_defteri_section",
+   "fieldtype": "Section Break",
+   "label": "Adres Defteri"
+  },
+  {
+   "fieldname": "finansal_ve_muhasebe_tab",
+   "fieldtype": "Tab Break",
+   "label": "Finansal ve Muhasebe"
+  },
+  {
+   "fieldname": "ayarlar_section",
+   "fieldtype": "Section Break",
+   "label": "Ayarlar"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-01-11 18:25:00.847299",
+ "modified_by": "Administrator",
+ "module": "Satin Alma",
+ "name": "Tedarikci",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "tedarikci_adi"
+}

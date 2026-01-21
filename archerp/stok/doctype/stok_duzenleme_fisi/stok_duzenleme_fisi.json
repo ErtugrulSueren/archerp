@@ -1,0 +1,137 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "SDF-.YYYY.-.#####",
+ "creation": "2025-12-15 05:37:48.980385",
+ "description": "Amac\u0131: Say\u0131m farklar\u0131n\u0131 e\u015fitlemek veya a\u00e7\u0131l\u0131\u015f bakiyelerini (Devir) girmek.\n\n4\tFark Miktar\u0131\tfark_miktari\tFloat\tHay\u0131r\t(Read Only) Form\u00fcl: Say\u0131m - Sistem\nForm\u00fcl yap\u0131lacak",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "genel_bak\u0131\u015f_tab",
+  "islem_bilgileri_section",
+  "islem_tipi",
+  "depo",
+  "column_break_wctq",
+  "tarih",
+  "fark_hesabi",
+  "say\u0131m_sonu\u00e7lar\u0131_\u00fcr\u00fcnler_section",
+  "kalemler",
+  "ayarlar_tab",
+  "sistem_kay\u0131tlar\u0131_section",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Stok Duzenleme Fisi",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "islem_tipi",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "islem Tipi",
+   "options": "Stok Sayimi\nAcilis Bakiyesi",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "tarih",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Tarih",
+   "reqd": 1
+  },
+  {
+   "fieldname": "depo",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Depo",
+   "link_filters": "{\r\n    \"is_group\": 0,\r\n    \"is_virtual\": 0\r\n}",
+   "options": "Depo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "kalemler",
+   "fieldtype": "Table",
+   "label": "Kalemler",
+   "options": "Stok Duzenleme Kalemi",
+   "reqd": 1
+  },
+  {
+   "default": "HSP-00024",
+   "fieldname": "fark_hesabi",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Fark Hesabi",
+   "link_filters": "{\r\n    \"is_group\": 0\r\n}",
+   "options": "Hesap",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "genel_bak\u0131\u015f_tab",
+   "fieldtype": "Tab Break",
+   "label": "Genel Bak\u0131\u015f"
+  },
+  {
+   "fieldname": "islem_bilgileri_section",
+   "fieldtype": "Section Break",
+   "label": "Islem Bilgileri"
+  },
+  {
+   "fieldname": "column_break_wctq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "say\u0131m_sonu\u00e7lar\u0131_\u00fcr\u00fcnler_section",
+   "fieldtype": "Section Break",
+   "label": "Say\u0131m Sonu\u00e7lar\u0131 (\u00dcr\u00fcnler)"
+  },
+  {
+   "fieldname": "ayarlar_tab",
+   "fieldtype": "Tab Break",
+   "label": "Ayarlar"
+  },
+  {
+   "fieldname": "sistem_kay\u0131tlar\u0131_section",
+   "fieldtype": "Section Break",
+   "label": "Sistem Kay\u0131tlar\u0131"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-01-13 18:15:43.272561",
+ "modified_by": "Administrator",
+ "module": "Stok",
+ "name": "Stok Duzenleme Fisi",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

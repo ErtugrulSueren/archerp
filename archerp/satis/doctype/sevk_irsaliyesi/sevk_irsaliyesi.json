@@ -1,0 +1,374 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "IRS-.YYYY.-.#####",
+ "creation": "2025-12-15 06:05:15.856840",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "sevkiyat_bilgileri_tab",
+  "al\u0131c\u0131_ve_tarih_section",
+  "musteri",
+  "musteri_adi",
+  "tarih",
+  "column_break_64wh",
+  "status",
+  "firma",
+  "sube",
+  "section_break_hcau",
+  "tasiyici_firma",
+  "sofor_adi",
+  "column_break_gmsi",
+  "arac_plaka_no",
+  "sevk_edilen_\u00fcr\u00fcnler_section",
+  "kalemler",
+  "\u00f6zet_section",
+  "genel_toplam",
+  "finansal_detaylar_tab",
+  "kur_ve_\u00f6deme_section",
+  "para_birimi",
+  "doviz_kuru",
+  "odeme_kosulu",
+  "vergi_dahil_mi",
+  "column_break_liyn",
+  "ara_toplam",
+  "ek_iskonto_tutari",
+  "vergi_toplami",
+  "base_grand_total",
+  "adresler_tab",
+  "adres_detaylar\u0131_section",
+  "fatura_adresi",
+  "fatura_il",
+  "fatura_ilce",
+  "fatura_acik_adres",
+  "column_break_oqj7",
+  "sevk_adresi",
+  "sevkiyat_il",
+  "sevkiyat_ilce",
+  "sevkiyat_acik_adres",
+  "ayarlar_ve_referanslar_tab",
+  "sistem_ba\u011flant\u0131lar\u0131_section",
+  "siparis_referansi",
+  "amended_from",
+  "iade_mi",
+  "column_break_l2mm",
+  "sartlar_ve_kosullar",
+  "notlar"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_hcau",
+   "fieldtype": "Section Break",
+   "label": "Ta\u015f\u0131y\u0131c\u0131 ve Ara\u00e7 Bilgileri"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Sevk Irsaliyesi",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "musteri",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Musteri",
+   "options": "Musteri",
+   "reqd": 1
+  },
+  {
+   "fieldname": "tarih",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Tarih",
+   "reqd": 1
+  },
+  {
+   "fieldname": "kalemler",
+   "fieldtype": "Table",
+   "label": "Kalemler",
+   "options": "Teslimat Kalemi",
+   "reqd": 1
+  },
+  {
+   "fieldname": "ara_toplam",
+   "fieldtype": "Currency",
+   "label": "Ara Toplam",
+   "read_only": 1
+  },
+  {
+   "fieldname": "vergi_toplami",
+   "fieldtype": "Currency",
+   "label": "Vergi Toplami",
+   "read_only": 1
+  },
+  {
+   "fieldname": "genel_toplam",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Genel Toplam",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "iade_mi",
+   "fieldtype": "Check",
+   "label": "iade Mi"
+  },
+  {
+   "fieldname": "notlar",
+   "fieldtype": "Small Text",
+   "label": "Notlar"
+  },
+  {
+   "fieldname": "firma",
+   "fieldtype": "Link",
+   "label": "Firma",
+   "options": "Firma",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sube",
+   "fieldtype": "Link",
+   "label": "Sube",
+   "options": "Sube",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "siparis_referansi",
+   "fieldtype": "Link",
+   "label": "Siparis Referansi",
+   "options": "Satis Siparisi",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "para_birimi",
+   "fieldtype": "Link",
+   "label": "Para Birimi",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "doviz_kuru",
+   "fieldtype": "Float",
+   "hidden": 1,
+   "label": "Doviz Kuru",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "vergi_dahil_mi",
+   "fieldtype": "Check",
+   "label": "Vergi Dahil mi?"
+  },
+  {
+   "default": "0",
+   "fieldname": "ek_iskonto_tutari",
+   "fieldtype": "Currency",
+   "label": "iskonto Tutari"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "irsaliye Durum",
+   "no_copy": 1,
+   "options": "Taslak\nTeslim Edilmedi\nFaturalanacak\nK\u0131smi Faturaland\u0131\nTamamland\u0131\n\u0130ptal\n\u0130ade",
+   "read_only": 1
+  },
+  {
+   "description": "X Kargo, Kendi Arac\u0131m\u0131z, X Lojistik vb.",
+   "fieldname": "tasiyici_firma",
+   "fieldtype": "Data",
+   "label": "Tasiyici Firma"
+  },
+  {
+   "description": "Yasal zorunluluk (TCKN de gerekebilir ama Ad Soyad \u015fart).",
+   "fieldname": "sofor_adi",
+   "fieldtype": "Data",
+   "label": "Sofor Adi"
+  },
+  {
+   "description": "34 ABC 123. (Polis kontrol\u00fc i\u00e7in \u015fart).",
+   "fieldname": "arac_plaka_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Arac Plaka No"
+  },
+  {
+   "fieldname": "sevk_adresi",
+   "fieldtype": "Link",
+   "label": "Sevk Adresi",
+   "options": "Adres Detayi"
+  },
+  {
+   "fetch_from": "musteri.musteri_adi",
+   "fieldname": "musteri_adi",
+   "fieldtype": "Data",
+   "label": "Musteri Adi",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fatura_il",
+   "fieldtype": "Data",
+   "label": "Fatura Il"
+  },
+  {
+   "fieldname": "fatura_ilce",
+   "fieldtype": "Data",
+   "label": "Fatura Ilce"
+  },
+  {
+   "fieldname": "fatura_acik_adres",
+   "fieldtype": "Small Text",
+   "label": "Fatura Acik Adres"
+  },
+  {
+   "fieldname": "sevkiyat_il",
+   "fieldtype": "Data",
+   "label": "Sevkiyat Il",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sevkiyat_ilce",
+   "fieldtype": "Data",
+   "label": "Sevkiyat Ilce",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sevkiyat_acik_adres",
+   "fieldtype": "Small Text",
+   "label": "Sevkiyat Acik Adres",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fatura_adresi",
+   "fieldtype": "Link",
+   "label": "Fatura Adresi",
+   "options": "Adres Detayi"
+  },
+  {
+   "fieldname": "odeme_kosulu",
+   "fieldtype": "Link",
+   "label": "Odeme Kosulu",
+   "options": "Odeme Kosulu"
+  },
+  {
+   "fieldname": "sartlar_ve_kosullar",
+   "fieldtype": "Link",
+   "label": "Sartlar Ve Kosullar",
+   "options": "Sartlar ve Kosullar"
+  },
+  {
+   "fieldname": "sevkiyat_bilgileri_tab",
+   "fieldtype": "Tab Break",
+   "label": "Sevkiyat Bilgileri"
+  },
+  {
+   "fieldname": "al\u0131c\u0131_ve_tarih_section",
+   "fieldtype": "Section Break",
+   "label": "Al\u0131c\u0131 ve Tarih"
+  },
+  {
+   "fieldname": "column_break_64wh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_gmsi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sevk_edilen_\u00fcr\u00fcnler_section",
+   "fieldtype": "Section Break",
+   "label": "Sevk Edilen \u00dcr\u00fcnler"
+  },
+  {
+   "fieldname": "\u00f6zet_section",
+   "fieldtype": "Section Break",
+   "label": "\u00d6zet"
+  },
+  {
+   "fieldname": "finansal_detaylar_tab",
+   "fieldtype": "Tab Break",
+   "label": "Finansal Detaylar"
+  },
+  {
+   "fieldname": "kur_ve_\u00f6deme_section",
+   "fieldtype": "Section Break",
+   "label": "Kur ve \u00d6deme"
+  },
+  {
+   "fieldname": "column_break_liyn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "adresler_tab",
+   "fieldtype": "Tab Break",
+   "label": "Adresler"
+  },
+  {
+   "fieldname": "adres_detaylar\u0131_section",
+   "fieldtype": "Section Break",
+   "label": "Adres Detaylar\u0131"
+  },
+  {
+   "fieldname": "column_break_oqj7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ayarlar_ve_referanslar_tab",
+   "fieldtype": "Tab Break",
+   "label": "Ayarlar ve Referanslar"
+  },
+  {
+   "fieldname": "sistem_ba\u011flant\u0131lar\u0131_section",
+   "fieldtype": "Section Break",
+   "label": "Sistem Ba\u011flant\u0131lar\u0131"
+  },
+  {
+   "fieldname": "column_break_l2mm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "base_grand_total",
+   "fieldtype": "Float",
+   "label": "Yere Para Karsiligi"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-01-20 19:48:38.904688",
+ "modified_by": "Administrator",
+ "module": "Satis",
+ "name": "Sevk Irsaliyesi",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

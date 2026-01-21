@@ -1,0 +1,87 @@
+{
+    "actions": [],
+    "creation": "2026-01-16 17:59:13.738248",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "dashboard_name",
+        "roles",
+        "section_break_0esn",
+        "shortcuts",
+        "cards",
+        "charts",
+        "priority"
+    ],
+    "fields": [
+        {
+            "fieldname": "dashboard_name",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Dashboard Name",
+            "reqd": 1,
+            "unique": 1
+        },
+        {
+            "fieldname": "roles",
+            "fieldtype": "Table",
+            "label": "Allowed Roles",
+            "options": "Portal Dashboard Role"
+        },
+        {
+            "fieldname": "section_break_0esn",
+            "fieldtype": "Section Break",
+            "label": "\u0130\u00e7erik"
+        },
+        {
+            "fieldname": "shortcuts",
+            "fieldtype": "Table",
+            "label": "Shortcuts",
+            "options": "Portal Dashboard Shortcut"
+        },
+        {
+            "fieldname": "cards",
+            "fieldtype": "Table",
+            "label": "Cards",
+            "options": "Portal Dashboard Card"
+        },
+        {
+            "fieldname": "charts",
+            "fieldtype": "Table",
+            "label": "Charts",
+            "options": "Portal Dashboard Chart"
+        },
+        {
+            "default": "0",
+            "description": "Higher value takes precedence",
+            "fieldname": "priority",
+            "fieldtype": "Int",
+            "label": "Priority"
+        }
+    ],
+    "index_web_pages_for_search": 1,
+    "links": [],
+    "modified": "2026-01-21 05:46:27.586809",
+    "modified_by": "Administrator",
+    "module": "ArchERP",
+    "name": "Portal Dashboard",
+    "naming_rule": "By fieldname",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "row_format": "Dynamic",
+    "sort_field": "creation",
+    "sort_order": "DESC",
+    "track_changes": 1
+}
