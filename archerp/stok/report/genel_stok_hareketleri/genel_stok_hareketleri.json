@@ -1,0 +1,66 @@
+{
+ "add_total_row": 0,
+ "add_translate_data": 0,
+ "columns": [],
+ "creation": "2026-02-11 04:42:26.572083",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "label": "Ba\u015flang\u0131\u00e7 Tarihi",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "label": "Biti\u015f Tarihi",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Firma",
+   "mandatory": 1,
+   "options": "Firma",
+   "wildcard_filter": 0
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "label": "Urun",
+   "mandatory": 1,
+   "options": "Urun",
+   "wildcard_filter": 0
+  }
+ ],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": null,
+ "modified": "2026-02-11 04:43:57.781856",
+ "modified_by": "Administrator",
+ "module": "Stok",
+ "name": "Genel Stok Hareketleri",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "SELECT\r\n    sd.tarih as \"Tarih:Date:100\",\r\n    sd.depo as \"Depo:Link/Depo:120\",\r\n    sd.belge_tipi as \"\u0130\u015flem T\u00fcr\u00fc::150\",\r\n    sd.belge_no as \"Belge No:Dynamic Link/belge_tipi:150\",\r\n    \r\n    /* Giren ve \u00c7\u0131kan Miktarlar\u0131 G\u00f6steriyoruz */\r\n    sd.giren_miktar as \"Giren:Float:100\",\r\n    sd.cikan_miktar as \"\u00c7\u0131kan:Float:100\",\r\n    \r\n    /* O i\u015flemdeki net de\u011fi\u015fim (+ veya -) */\r\n    sd.degisim_miktari as \"De\u011fi\u015fim:Float:100\",\r\n    \r\n    /* Maliyet Bilgisi (\u0130stersen kald\u0131rabilirsin) */\r\n    sd.birim_maliyet as \"Birim Maliyet:Currency:120\",\r\n    sd.toplam_tutar as \"Toplam De\u011fer:Currency:120\"\r\n\r\nFROM\r\n    `tabStok Defteri` sd\r\n\r\nWHERE\r\n    /* F\u0130RMA F\u0130LTRES\u0130 (E\u011fer tabloda firma varsa) */\r\n    /* sd.firma = %(company)s */\r\n    \r\n    /* \u00dcR\u00dcN F\u0130LTRES\u0130 (Zorunlu olmal\u0131) */\r\n    sd.urun = %(item_code)s\r\n    \r\n    AND sd.tarih >= %(from_date)s\r\n    AND sd.tarih <= %(to_date)s\r\n\r\nORDER BY\r\n    sd.tarih ASC, sd.creation ASC",
+ "ref_doctype": "Stok Defteri",
+ "report_name": "Genel Stok Hareketleri",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "All"
+  },
+  {
+   "role": "Stok Y\u00f6neticisi"
+  }
+ ],
+ "timeout": 0
+}

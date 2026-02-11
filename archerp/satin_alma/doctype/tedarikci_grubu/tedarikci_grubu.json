@@ -58,6 +58,7 @@
    "ignore_user_permissions": 1,
    "in_list_view": 1,
    "label": "Ust Grup",
+   "link_filters": "[\r\n   [\"Tedarikci Grubu\", \"is_group\", \"=\", 1]\r\n]",
    "options": "Tedarikci Grubu"
   },
   {
@@ -82,7 +83,7 @@
  "index_web_pages_for_search": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2026-01-11 18:29:40.077145",
+ "modified": "2026-02-04 04:09:19.136715",
  "modified_by": "Administrator",
  "module": "Satin Alma",
  "name": "Tedarikci Grubu",

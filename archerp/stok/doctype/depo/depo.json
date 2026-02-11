@@ -105,11 +105,13 @@
    "label": "Sanal Depo Mu"
   },
   {
+   "default": "HSP-00071",
    "description": "Bu depo i\u00e7in \u00f6zel Stok De\u011fer Hesab\u0131 (Bo\u015fsa Firmadan al\u0131r)",
    "fieldname": "stok_hesabi",
    "fieldtype": "Link",
    "label": "Stok Hesabi",
-   "options": "Hesap"
+   "options": "Hesap",
+   "read_only": 1
   },
   {
    "fieldname": "genel_tab",
@@ -145,7 +147,7 @@
  "index_web_pages_for_search": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2026-01-13 17:19:18.260252",
+ "modified": "2026-01-21 20:05:16.152068",
  "modified_by": "Administrator",
  "module": "Stok",
  "name": "Depo",

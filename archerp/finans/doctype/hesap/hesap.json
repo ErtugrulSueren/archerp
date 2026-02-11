@@ -23,7 +23,11 @@
   "guncel_bakiye",
   "lft",
   "rgt",
-  "old_parent"
+  "old_parent",
+  "ayarlar_tab",
+  "section_break_qxjp",
+  "firma",
+  "sube"
  ],
  "fields": [
   {
@@ -142,13 +146,39 @@
    "fieldname": "bakiye_durumu_section",
    "fieldtype": "Section Break",
    "label": "Bakiye Durumu"
+  },
+  {
+   "fieldname": "ayarlar_tab",
+   "fieldtype": "Tab Break",
+   "label": "Ayarlar"
+  },
+  {
+   "fieldname": "firma",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Firma",
+   "options": "Firma",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_qxjp",
+   "fieldtype": "Section Break",
+   "hidden": 1
+  },
+  {
+   "fieldname": "sube",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "\u015eube",
+   "options": "Sube",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2026-01-12 19:42:29.020667",
+ "modified": "2026-02-11 02:19:02.018103",
  "modified_by": "Administrator",
  "module": "Finans",
  "name": "Hesap",

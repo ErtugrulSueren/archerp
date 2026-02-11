@@ -66,7 +66,7 @@
    "fieldname": "\u015fube_y\u00f6neticisi",
    "fieldtype": "Link",
    "label": "\u015eube Y\u00f6neticisi",
-   "options": "Personel"
+   "options": "Kullanicilar"
   },
   {
    "fieldname": "column_break_vk61",
@@ -123,7 +123,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-01-13 17:10:40.261020",
+ "modified": "2026-02-05 19:47:09.665617",
  "modified_by": "Administrator",
  "module": "archerp",
  "name": "Sube",

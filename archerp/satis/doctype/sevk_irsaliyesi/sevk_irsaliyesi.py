@@ -151,6 +151,10 @@ class SevkIrsaliyesi(Document):
         gl.aciklama = f"Sevkiyat Maliyeti: {self.name} - {self.musteri}"
         gl.muhatap_tipi = party_type
         gl.carimuhatap = party
+        if self.firma:
+            gl.firma = self.firma
+        if self.sube:
+            gl.sube = self.sube
         
         if cancel:
              gl.borc = credit

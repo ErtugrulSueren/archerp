@@ -2,48 +2,12 @@ import frappe
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 from frappe.utils import flt, today
+from archerp.controllers.transaction_controller import TransactionController
 
-class SatinAlmaSiparisi(Document):
+class SatinAlmaSiparisi(TransactionController):
     def validate(self):
         if self.docstatus == 0:
             self.calculate_totals()
-
-    def calculate_totals(self):
-        total_net = 0.0
-        total_tax = 0.0
-        tax_inclusive = self.vergi_dahil_mi == 1
-        
-        for item in self.kalemler:
-            qty = flt(item.miktar)
-            price = flt(item.birim_fiyat)
-            tax_rate = flt(item.vergi_orani)
-            
-            if tax_inclusive:
-                net_unit_price = price / (1 + (tax_rate / 100.0))
-                unit_tax = price - net_unit_price
-            else:
-                net_unit_price = price
-                unit_tax = net_unit_price * (tax_rate / 100.0)
-            
-            line_net = qty * net_unit_price
-            line_tax = qty * unit_tax
-            
-            item.tutar = line_net
-            # Sipariş için birim maliyet saklamak isteyebiliriz ama fiyatta tutarlıysa gerek yok
-            
-            total_net += line_net
-            total_tax += line_tax
-            
-        self.ara_toplam = total_net
-        self.vergi_toplami = total_tax
-        
-        discount = flt(self.ek_iskonto_tutari)
-        grand_total = total_net + total_tax - discount
-        
-        if grand_total < 0:
-            grand_total = 0.0
-            
-        self.genel_toplam = grand_total
 
     def on_submit(self):
         self.guncelle_durum()

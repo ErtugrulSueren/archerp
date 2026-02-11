@@ -69,4 +69,10 @@ def create_stock_entry(doc, item, qty, reverse=False, warehouse_field="depo"):
     stock_entry.birim_maliyet = unit_cost
     stock_entry.toplam_tutar = unit_cost * abs(change)
     
+    # Firma ve Sube bilgilerini kaynak belgeden aktar
+    if hasattr(doc, "firma") and doc.firma:
+        stock_entry.firma = doc.firma
+    if hasattr(doc, "sube") and doc.sube:
+        stock_entry.sube = doc.sube
+    
     stock_entry.insert(ignore_permissions=True)

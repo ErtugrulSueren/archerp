@@ -31,8 +31,10 @@ def get_sidebar_menu():
                 menu_item = {
                     "etiket": item.etiket,
                     "ikon": item.ikon,
+                    "turu": item.turu,
                     "hedef_rota": item.hedef_rota,
                     "ilgili_doctype": item.ilgili_doctype,
+                    "ilgili_rapor": item.ilgili_rapor,
                     "ust_baslik": item.ust_baslik
                 }
                 module_data["items"].append(menu_item)

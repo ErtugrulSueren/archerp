@@ -2,9 +2,13 @@
 import frappe
 from frappe.model.document import Document
 from frappe.utils import flt
+from archerp.controllers.transaction_controller import TransactionController
 
-class SatisFaturasi(Document):
+class SatisFaturasi(TransactionController):
     def validate(self):
+        # 0. Hesaplamaları Çalıştır
+        self.calculate_totals()
+        
         if flt(self.genel_toplam) < 0:
             frappe.throw("Genel toplam negatif olamaz.")
         if not self.vade_tarihi:
@@ -185,6 +189,10 @@ class SatisFaturasi(Document):
         gl.aciklama = aciklama
         gl.muhatap_tipi = muhatap_tipi
         gl.carimuhatap = muhatap
+        if self.firma:
+            gl.firma = self.firma
+        if self.sube:
+            gl.sube = self.sube
         gl.insert(ignore_permissions=True)
 
 @frappe.whitelist()

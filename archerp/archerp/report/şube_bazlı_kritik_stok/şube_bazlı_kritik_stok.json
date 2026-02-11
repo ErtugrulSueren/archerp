@@ -1,0 +1,59 @@
+{
+ "add_total_row": 0,
+ "add_translate_data": 0,
+ "columns": [],
+ "creation": "2026-02-11 05:04:37.286790",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "label": "Biti\u015f Tarihi",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Firma",
+   "mandatory": 1,
+   "options": "Firma",
+   "wildcard_filter": 0
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "\u015eube",
+   "mandatory": 1,
+   "options": "Sube",
+   "wildcard_filter": 0
+  }
+ ],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": null,
+ "modified": "2026-02-11 05:04:37.286790",
+ "modified_by": "Administrator",
+ "module": "archerp",
+ "name": "\u015eube Bazl\u0131 Kritik Stok",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "SELECT\r\n    u.name as \"\u00dcr\u00fcn Kodu:Link/Urun:150\",\r\n    \r\n    /* \u015eubedeki Mevcut Stok */\r\n    SUM(sd.degisim_miktari) as \"\u015eube Sto\u011fu:Float:120\",\r\n    \r\n    /* Kritik Seviye */\r\n    u.kritik_stok as \"Kritik Seviye:Float:120\",\r\n    \r\n    /* Eksik Miktar */\r\n    (u.kritik_stok - SUM(sd.degisim_miktari)) as \"Acil \u0130htiya\u00e7:Float:150\",\r\n    \r\n    sd.birim as \"Birim::80\"\r\n\r\nFROM\r\n    `tabStok Defteri` sd\r\nLEFT JOIN\r\n    `tabUrun` u ON u.name = sd.urun\r\n\r\nWHERE\r\n    sd.firma = %(company)s\r\n    \r\n    /* \u015eUBE F\u0130LTRES\u0130 DO\u011eRUDAN STOK DEFTER\u0130NDEN */\r\n    AND sd.sube = %(branch)s\r\n    \r\n    AND sd.tarih <= %(to_date)s\r\n    AND u.kritik_stok > 0\r\n\r\nGROUP BY\r\n    u.name\r\n\r\nHAVING\r\n    SUM(sd.degisim_miktari) < u.kritik_stok\r\n\r\nORDER BY\r\n    4 DESC",
+ "ref_doctype": "Stok Defteri",
+ "report_name": "\u015eube Bazl\u0131 Kritik Stok",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "All"
+  },
+  {
+   "role": "Stok Y\u00f6neticisi"
+  }
+ ],
+ "timeout": 0
+}

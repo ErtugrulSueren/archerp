@@ -1,0 +1,68 @@
+{
+ "add_total_row": 0,
+ "add_translate_data": 0,
+ "columns": [],
+ "creation": "2026-02-11 03:55:13.283775",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "label": "Ba\u015flang\u0131\u00e7 Tarihi",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "label": "Biti\u015f Tarihi",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Firma",
+   "mandatory": 1,
+   "options": "Firma",
+   "wildcard_filter": 0
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "\u015eube",
+   "mandatory": 1,
+   "options": "Sube",
+   "wildcard_filter": 0
+  },
+  {
+   "fieldname": "account",
+   "fieldtype": "Link",
+   "label": "Hesap",
+   "mandatory": 1,
+   "options": "Hesap",
+   "wildcard_filter": 0
+  }
+ ],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": null,
+ "modified": "2026-02-11 03:55:13.283775",
+ "modified_by": "Administrator",
+ "module": "archerp",
+ "name": "\u015eube Muavin defteri",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "SELECT\r\n    gl.tarih as \"Tarih:Date:100\",\r\n    gl.hesap as \"Hesap Kodu:Link/Hesap:150\",\r\n    h.hesap_adi as \"Hesap Ad\u0131::200\",\r\n    gl.aciklama as \"A\u00e7\u0131klama::250\",\r\n    gl.name as \"Fi\u015f No:Link/Muhasebe Defteri:120\",\r\n    \r\n    gl.borc as \"Bor\u00e7:Currency:120\",\r\n    gl.alacak as \"Alacak:Currency:120\"\r\n\r\nFROM\r\n    `tabMuhasebe Defteri` gl\r\n\r\nLEFT JOIN\r\n    `tabHesap` h ON h.name = gl.hesap\r\n\r\nWHERE\r\n    gl.firma = %(company)s\r\n    \r\n    /* \u015eUBE VE HESAP F\u0130LTRES\u0130 ZORUNLU */\r\n    AND gl.sube = %(branch)s\r\n    AND gl.hesap = %(account)s\r\n    \r\n    AND gl.tarih >= %(from_date)s\r\n    AND gl.tarih <= %(to_date)s\r\n\r\nORDER BY\r\n    gl.tarih ASC, gl.creation ASC",
+ "ref_doctype": "Muhasebe Defteri",
+ "report_name": "\u015eube Muavin defteri",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ],
+ "timeout": 0
+}

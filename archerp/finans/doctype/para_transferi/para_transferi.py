@@ -82,9 +82,11 @@ class ParaTransferi(Document):
         gl.hesap = account
         gl.aciklama = description or self.aciklama
         
-        # Firma (Varsa)
+        # Firma ve Şube (Varsa)
         if self.firma:
             gl.firma = self.firma
+        if hasattr(self, "sube") and self.sube:
+            gl.sube = self.sube
         
         if cancel:
             gl.borc = credit

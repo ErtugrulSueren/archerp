@@ -30,7 +30,6 @@
   "vergi_toplami",
   "base_grand_total",
   "adresler_tab",
-  "adres_bilgileri",
   "fatura_adresi",
   "il",
   "ilce",
@@ -44,6 +43,7 @@
   "\u015firket_bilgileri_section",
   "firma",
   "sube",
+  "personel",
   "amended_from",
   "column_break_djbz",
   "sartlar_ve_kosullar",
@@ -151,6 +151,7 @@
    "label": "Notlar"
   },
   {
+   "fetch_from": "personel.firma",
    "fieldname": "firma",
    "fieldtype": "Link",
    "label": "Firma",
@@ -158,6 +159,7 @@
    "reqd": 1
   },
   {
+   "fetch_from": "personel.sube",
    "fieldname": "sube",
    "fieldtype": "Link",
    "label": "Sube",
@@ -184,6 +186,7 @@
    "fieldname": "fatura_adresi",
    "fieldtype": "Link",
    "label": "Fatura Adresi",
+   "link_filters": "[\r\n    [\"Adres\", \"parent\", \"=\", \"eval:doc.musteri\"],\r\n    [\"Adres\", \"parenttype\", \"=\", \"Musteri\"]\r\n]",
    "options": "Adres Detayi"
   },
   {
@@ -203,34 +206,41 @@
    "fieldname": "sevkiyat_adresi",
    "fieldtype": "Link",
    "label": "Sevkiyat Adresi",
+   "link_filters": "[\r\n    [\"Adres\", \"parent\", \"=\", \"eval:doc.musteri\"],\r\n    [\"Adres\", \"parenttype\", \"=\", \"Musteri\"]\r\n]",
    "options": "Adres Detayi"
   },
   {
+   "fetch_from": "fatura_adresi.sehir",
    "fieldname": "il",
    "fieldtype": "Data",
    "label": "Fatura Il"
   },
   {
+   "fetch_from": "fatura_adresi.ilce",
    "fieldname": "ilce",
    "fieldtype": "Data",
    "label": "Fatura Ilce"
   },
   {
+   "fetch_from": "fatura_adresi.acik_adres",
    "fieldname": "acik_adres",
    "fieldtype": "Small Text",
    "label": "Fatura Acik Adres"
   },
   {
+   "fetch_from": "sevkiyat_adresi.sehir",
    "fieldname": "sevkiyat_il",
    "fieldtype": "Data",
    "label": "Sevkiyat Il"
   },
   {
+   "fetch_from": "sevkiyat_adresi.ilce",
    "fieldname": "sevkiyat_ilce",
    "fieldtype": "Data",
    "label": "Sevkiyat Ilce"
   },
   {
+   "fetch_from": "sevkiyat_adresi.acik_adres",
    "fieldname": "sevkiyat_acik_adres",
    "fieldtype": "Small Text",
    "label": "Sevkiyat Acik Adres"
@@ -274,11 +284,6 @@
    "label": "Adresler"
   },
   {
-   "fieldname": "adres_bilgileri",
-   "fieldtype": "Data",
-   "label": "Adres Bilgileri"
-  },
-  {
    "fieldname": "column_break_qdrm",
    "fieldtype": "Column Break"
   },
@@ -300,13 +305,20 @@
    "fieldname": "base_grand_total",
    "fieldtype": "Float",
    "label": "Yerel Para Karsiligi"
+  },
+  {
+   "fieldname": "personel",
+   "fieldtype": "Link",
+   "label": "Personel",
+   "options": "Kullanicilar",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-01-17 04:12:25.688727",
+ "modified": "2026-02-05 19:47:09.495919",
  "modified_by": "Administrator",
  "module": "Satis",
  "name": "Satis Teklifi",

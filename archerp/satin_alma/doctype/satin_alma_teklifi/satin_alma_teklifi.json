@@ -45,6 +45,7 @@
   "sistem_ba\u011flant\u0131lar\u0131_section",
   "firma",
   "sube",
+  "personel",
   "amended_from",
   "revize_edilen_teklif",
   "column_break_n1ge",
@@ -102,6 +103,7 @@
    "reqd": 1
   },
   {
+   "fetch_from": "personel.sube",
    "fieldname": "sube",
    "fieldtype": "Link",
    "label": "Sube",
@@ -147,6 +149,7 @@
    "fieldname": "hedef_depo",
    "fieldtype": "Link",
    "label": "Hedef Depo",
+   "link_filters": "{\r\n    \"is_group\": 0,\r\n    \"is_virtual\": 0\r\n}",
    "options": "Depo"
   },
   {
@@ -177,40 +180,48 @@
    "fieldname": "teslimat_adresi",
    "fieldtype": "Link",
    "label": "Teslimat Adresi",
+   "link_filters": "[\r\n    [\"Adres\", \"parent\", \"=\", \"eval:doc.tedarikci\"],\r\n    [\"Adres\", \"parenttype\", \"=\", \"Tedarikci\"]\r\n]",
    "options": "Adres Detayi"
   },
   {
    "fieldname": "fatura_adresi",
    "fieldtype": "Link",
    "label": "Fatura Adresi",
+   "link_filters": "[\r\n    [\"Adres\", \"parent\", \"=\", \"eval:doc.tedarikci\"],\r\n    [\"Adres\", \"parenttype\", \"=\", \"Tedarikci\"]\r\n]",
    "options": "Adres Detayi"
   },
   {
+   "fetch_from": "fatura_adresi.sehir",
    "fieldname": "fatura_il",
    "fieldtype": "Data",
    "label": "Fatura Il"
   },
   {
+   "fetch_from": "fatura_adresi.ilce",
    "fieldname": "fatura_ilce",
    "fieldtype": "Data",
    "label": "Fatura Ilce"
   },
   {
+   "fetch_from": "fatura_adresi.acik_adres",
    "fieldname": "fatura_acik_adres",
    "fieldtype": "Small Text",
    "label": "Fatura Acik Adres"
   },
   {
+   "fetch_from": "teslimat_adresi.sehir",
    "fieldname": "teslimat_il",
    "fieldtype": "Data",
    "label": "Teslimat Il"
   },
   {
+   "fetch_from": "teslimat_adresi.ilce",
    "fieldname": "teslimat_ilce",
    "fieldtype": "Data",
    "label": "Teslimat Ilce"
   },
   {
+   "fetch_from": "teslimat_adresi.acik_adres",
    "fieldname": "teslimat_acik_adres",
    "fieldtype": "Small Text",
    "label": "Teslimat Acik Adres"
@@ -239,10 +250,12 @@
    "label": "Notlar"
   },
   {
+   "fetch_from": "personel.firma",
    "fieldname": "firma",
    "fieldtype": "Link",
    "label": "Firma",
-   "options": "Firma"
+   "options": "Firma",
+   "reqd": 1
   },
   {
    "fieldname": "genel_bak\u0131\u015f_tab",
@@ -309,13 +322,20 @@
    "fieldname": "base_grand_total",
    "fieldtype": "Float",
    "label": "Yerel Para Karsiligi"
+  },
+  {
+   "fieldname": "personel",
+   "fieldtype": "Link",
+   "label": "Personel",
+   "options": "Kullanicilar",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-01-17 04:12:11.650681",
+ "modified": "2026-02-05 19:47:09.187581",
  "modified_by": "Administrator",
  "module": "Satin Alma",
  "name": "Satin Alma Teklifi",

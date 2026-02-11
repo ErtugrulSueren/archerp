@@ -1,0 +1,57 @@
+{
+ "add_total_row": 0,
+ "add_translate_data": 0,
+ "columns": [],
+ "creation": "2026-02-11 03:24:38.333695",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "label": "Ba\u015flang\u0131\u00e7 Tarihi",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Check",
+   "label": "Biti\u015f Tarihi",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Check",
+   "label": "Firma",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  }
+ ],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": null,
+ "modified": "2026-02-11 03:24:38.333695",
+ "modified_by": "Administrator",
+ "module": "Finans",
+ "name": "Genel Mizan",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "SELECT\r\n    h.name as \"Hesap Kodu:Link/Hesap:120\",\r\n    h.hesap_adi as \"Hesap Ad\u0131::200\",\r\n    \r\n    /* 1. A\u00c7ILI\u015e BAK\u0130YES\u0130 (Ba\u015flang\u0131\u00e7 tarihinden \u00f6ncekiler) */\r\n    SUM(CASE \r\n        WHEN defter.tarih < %(from_date)s \r\n        THEN IFNULL(defter.borc, 0) - IFNULL(defter.alacak, 0) \r\n        ELSE 0 \r\n    END) as \"A\u00e7\u0131l\u0131\u015f:Currency:120\",\r\n\r\n    /* 2. D\u00d6NEM BOR\u00c7 (Tarih aral\u0131\u011f\u0131ndakiler) */\r\n    SUM(CASE \r\n        WHEN defter.tarih >= %(from_date)s AND defter.tarih <= %(to_date)s \r\n        THEN IFNULL(defter.borc, 0) \r\n        ELSE 0 \r\n    END) as \"Bor\u00e7:Currency:120\",\r\n\r\n    /* 3. D\u00d6NEM ALACAK (Tarih aral\u0131\u011f\u0131ndakiler) */\r\n    SUM(CASE \r\n        WHEN defter.tarih >= %(from_date)s AND defter.tarih <= %(to_date)s \r\n        THEN IFNULL(defter.alacak, 0) \r\n        ELSE 0 \r\n    END) as \"Alacak:Currency:120\",\r\n\r\n    /* 4. BAK\u0130YE (Toplam Durum) */\r\n    /* Not: Bakiye, se\u00e7ilen biti\u015f tarihine kadar olan her \u015feyi kapsamal\u0131d\u0131r */\r\n    SUM(CASE \r\n        WHEN defter.tarih <= %(to_date)s\r\n        THEN IFNULL(defter.borc, 0) - IFNULL(defter.alacak, 0)\r\n        ELSE 0\r\n    END) as \"Bakiye:Currency:120\"\r\n\r\nFROM\r\n    `tabHesap` h\r\n\r\nLEFT JOIN\r\n    `tabMuhasebe Defteri` defter \r\n    ON defter.hesap = h.name \r\n    AND defter.company = h.company\r\n\r\nWHERE\r\n    h.company = %(company)s\r\n\r\nGROUP BY\r\n    h.name\r\n\r\nORDER BY\r\n    h.name ASC",
+ "ref_doctype": "Hesap",
+ "report_name": "Genel Mizan",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Satis Yoneticisi"
+  },
+  {
+   "role": "Satin Alma Yoneticisi"
+  }
+ ],
+ "timeout": 0
+}

@@ -23,6 +23,7 @@
   "sistem_bilgileri_section",
   "firma",
   "sube",
+  "personel",
   "column_break_b7vl",
   "amended_from"
  ],
@@ -39,10 +40,10 @@
   },
   {
    "fieldname": "cikis_tipi",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Cikis Tipi",
-   "options": "Fire / Hasar\nNumune\nH\u0131rs\u0131zl\u0131k / Kay\u0131p\nSay\u0131m Eksi\u011fi\nPromosyon\nT\u00fcketim (\u0130\u00e7 Kullan\u0131m)\n\u00dcretime \u00c7\u0131k\u0131\u015f (Hammadde Sarfiyat\u0131)",
+   "options": "Stok Cikis Nedeni",
    "reqd": 1
   },
   {
@@ -58,11 +59,11 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Kaynak Depo",
+   "link_filters": "{\r\n    \"is_group\": 0,\r\n    \"is_virtual\": 0\r\n}",
    "options": "Depo",
    "reqd": 1
   },
   {
-   "default": "s",
    "fieldname": "kalemler",
    "fieldtype": "Table",
    "label": "Kalemler",
@@ -76,25 +77,28 @@
    "label": "Aciklama"
   },
   {
+   "fetch_from": "cikis_tipi.hesap",
    "fieldname": "gider_hesabi",
    "fieldtype": "Link",
    "label": "Gider Hesabi",
    "options": "Hesap",
-   "reqd": 1
+   "read_only": 1
   },
   {
+   "fetch_from": "personel.firma",
    "fieldname": "firma",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Firma",
-   "options": "Firma",
-   "reqd": 1
+   "options": "Firma"
   },
   {
+   "fetch_from": "personel.sube",
    "fieldname": "sube",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Sube",
-   "options": "Sube",
-   "reqd": 1
+   "options": "Sube"
   },
   {
    "fieldname": "genel_bak\u0131\u015f_tab",
@@ -138,13 +142,20 @@
   {
    "fieldname": "column_break_b7vl",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "personel",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Personel",
+   "options": "Kullanicilar"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-01-12 01:24:14.229809",
+ "modified": "2026-02-05 19:47:09.591262",
  "modified_by": "Administrator",
  "module": "Stok",
  "name": "Stok Cikis Fisi",

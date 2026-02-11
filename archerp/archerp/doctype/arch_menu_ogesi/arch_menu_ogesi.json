@@ -1,73 +1,90 @@
 {
- "actions": [],
- "allow_rename": 1,
- "creation": "2025-12-06 19:43:06.255121",
- "doctype": "DocType",
- "editable_grid": 1,
- "engine": "InnoDB",
- "field_order": [
-  "etiket",
-  "ikon",
-  "hedef_rota",
-  "ilgili_doctype",
-  "ust_baslik",
-  "aktif"
- ],
- "fields": [
-  {
-   "fieldname": "etiket",
-   "fieldtype": "Data",
-   "in_filter": 1,
-   "in_list_view": 1,
-   "label": "Etiket",
-   "reqd": 1
-  },
-  {
-   "fieldname": "ikon",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "ikon",
-   "reqd": 1
-  },
-  {
-   "fieldname": "hedef_rota",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Hedef Rota"
-  },
-  {
-   "fieldname": "ilgili_doctype",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Ilgili DocType",
-   "options": "DocType"
-  },
-  {
-   "default": "1",
-   "fieldname": "aktif",
-   "fieldtype": "Check",
-   "in_list_view": 1,
-   "label": "Aktif"
-  },
-  {
-   "fieldname": "ust_baslik",
-   "fieldtype": "Data",
-   "label": "Ust Baslik"
-  }
- ],
- "grid_page_length": 50,
- "index_web_pages_for_search": 1,
- "istable": 1,
- "links": [],
- "modified": "2025-12-14 06:05:35.056394",
- "modified_by": "Administrator",
- "module": "archerp",
- "name": "Arch Menu Ogesi",
- "owner": "Administrator",
- "permissions": [],
- "row_format": "Dynamic",
- "rows_threshold_for_grid_search": 20,
- "sort_field": "creation",
- "sort_order": "DESC",
- "states": []
+    "actions": [],
+    "allow_rename": 1,
+    "creation": "2025-12-06 19:43:06.255121",
+    "doctype": "DocType",
+    "editable_grid": 1,
+    "engine": "InnoDB",
+    "field_order": [
+        "etiket",
+        "ikon",
+        "turu",
+        "hedef_rota",
+        "ilgili_doctype",
+        "ilgili_rapor",
+        "ust_baslik",
+        "aktif"
+    ],
+    "fields": [
+        {
+            "fieldname": "etiket",
+            "fieldtype": "Data",
+            "in_filter": 1,
+            "in_list_view": 1,
+            "label": "Etiket",
+            "reqd": 1
+        },
+        {
+            "fieldname": "ikon",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "ikon"
+        },
+        {
+            "fieldname": "hedef_rota",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Hedef Rota"
+        },
+        {
+            "depends_on": "eval:doc.turu == 'DocType'",
+            "fieldname": "ilgili_doctype",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "label": "Ilgili DocType",
+            "options": "DocType"
+        },
+        {
+            "default": "1",
+            "fieldname": "aktif",
+            "fieldtype": "Check",
+            "in_list_view": 1,
+            "label": "Aktif"
+        },
+        {
+            "fieldname": "ust_baslik",
+            "fieldtype": "Data",
+            "label": "Ust Baslik"
+        },
+        {
+            "fieldname": "turu",
+            "fieldtype": "Select",
+            "label": "Turu",
+            "options": "DocType\nRapor\nSayfa\n\u00d6zel Rota",
+            "reqd": 1
+        },
+        {
+            "depends_on": "eval:doc.turu == 'Rapor'",
+            "fieldname": "ilgili_rapor",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "label": "Ilgili Rapor",
+            "options": "Report"
+        }
+    ],
+    "grid_page_length": 50,
+    "index_web_pages_for_search": 1,
+    "istable": 1,
+    "links": [],
+    "modified": "2026-02-09 06:45:42.544927",
+    "modified_by": "Administrator",
+    "module": "archerp",
+    "name": "Arch Menu Ogesi",
+    "owner": "Administrator",
+    "permissions": [],
+    "row_format": "Dynamic",
+    "rows_threshold_for_grid_search": 20,
+    "sort_field": "creation",
+    "sort_order": "DESC",
+    "states": []
 }

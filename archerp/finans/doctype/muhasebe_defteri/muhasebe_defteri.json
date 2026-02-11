@@ -14,7 +14,9 @@
   "belge_no",
   "muhatap_tipi",
   "carimuhatap",
-  "aciklama"
+  "aciklama",
+  "firma",
+  "sube"
  ],
  "fields": [
   {
@@ -74,12 +76,28 @@
    "fieldname": "aciklama",
    "fieldtype": "Small Text",
    "label": "Aciklama"
+  },
+  {
+   "fieldname": "firma",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Firma",
+   "options": "Firma",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sube",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "\u015eube",
+   "options": "Sube",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-12-28 16:37:30.237964",
+ "modified": "2026-02-11 02:31:07.778531",
  "modified_by": "Administrator",
  "module": "Finans",
  "name": "Muhasebe Defteri",

@@ -18,7 +18,10 @@
   "kalemler",
   "ayarlar_tab",
   "sistem_kay\u0131tlar\u0131_section",
-  "amended_from"
+  "amended_from",
+  "firma",
+  "sube",
+  "personel"
  ],
  "fields": [
   {
@@ -102,13 +105,36 @@
    "fieldname": "sistem_kay\u0131tlar\u0131_section",
    "fieldtype": "Section Break",
    "label": "Sistem Kay\u0131tlar\u0131"
+  },
+  {
+   "fetch_from": "personel.firma",
+   "fieldname": "firma",
+   "fieldtype": "Link",
+   "label": "Firma",
+   "options": "Firma",
+   "read_only": 1
+  },
+  {
+   "fieldname": "personel",
+   "fieldtype": "Link",
+   "label": "Personel",
+   "options": "Kullanicilar",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "personel.sube",
+   "fieldname": "sube",
+   "fieldtype": "Link",
+   "label": "\u015eube",
+   "options": "Sube",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-01-13 18:15:43.272561",
+ "modified": "2026-02-11 04:36:30.693198",
  "modified_by": "Administrator",
  "module": "Stok",
  "name": "Stok Duzenleme Fisi",
@@ -133,5 +159,6 @@
  "rows_threshold_for_grid_search": 20,
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1
 }

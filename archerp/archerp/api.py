@@ -45,8 +45,10 @@ def get_sidebar_menu():
             SELECT 
                 mo.etiket,
                 mo.ikon,
+                mo.turu,
                 mo.hedef_rota,
                 mo.ilgili_doctype,
+                mo.ilgili_rapor,
                 mo.ust_baslik,
                 mo.idx
             FROM `tabArch Menu Ogesi` mo

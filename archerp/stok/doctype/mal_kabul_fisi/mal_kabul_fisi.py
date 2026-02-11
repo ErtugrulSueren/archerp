@@ -193,6 +193,10 @@ class MalKabulFisi(Document):
         gl.aciklama = f"Mal Kabul: {self.name} - {self.tedarikci}"
         gl.muhatap_tipi = party_type
         gl.carimuhatap = party
+        if self.firma:
+            gl.firma = self.firma
+        if self.sube:
+            gl.sube = self.sube
         
         if cancel:
              gl.borc = credit

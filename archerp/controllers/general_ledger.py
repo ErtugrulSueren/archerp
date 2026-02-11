@@ -37,6 +37,12 @@ def create_gl_entry(doc, account, debit, credit, cancel, party_type=None, party=
     gl.muhatap_tipi = party_type
     gl.carimuhatap = party
     
+    # Firma ve Şube bilgilerini kaynak belgeden aktar
+    if hasattr(doc, "firma") and doc.firma:
+        gl.firma = doc.firma
+    if hasattr(doc, "sube") and doc.sube:
+        gl.sube = doc.sube
+    
     if cancel:
             # Reverse for cancellation
             gl.borc = credit

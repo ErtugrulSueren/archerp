@@ -3,108 +3,9 @@
 
 frappe.ui.form.on('Satis Teklifi', {
     onload: function (frm) {
-        // Otomatik Firma Seçimi
-        if (frm.is_new()) {
-            frappe.db.get_list('Firma', { fields: ['name'] }).then(records => {
-                if (records.length === 1) {
-                    frm.set_value('firma', records[0].name);
-                }
-            });
-        }
-
-        // Varsayılan Geçerlilik Tarihi (Bugün + 30 Gün)
-        if (frm.is_new() && !frm.doc.gercerlilik_tarihi) {
-            let today = frappe.datetime.get_today();
-            let valid_until = frappe.datetime.add_days(today, 30);
-            frm.set_value('gercerlilik_tarihi', valid_until);
-        }
-
-        // Vergi Şablonu Filtreleme (Sadece Satış)
-        frm.set_query("vergi_sablonu", "kalemler", function () {
-            return {
-                filters: {
-                    "vergi_turu": "Satış"
-                }
-            };
-        });
-
-        // Ürün Filtreleme (Sadece Stok Hareketine Uygun Olanlar / Varyantlar)
-        frm.set_query("urun", "kalemler", function () {
-            return {
-                filters: {
-                    "has_variants": 0
-                }
-            };
-        });
-
-        // Adres Filtreleme (Müşteriye göre)
-        // Adres Detayi, Musteri'nin child table'ı (adresler). Parent = Musteri Name.
-        frm.set_query("fatura_adresi", function () {
-            return {
-                filters: {
-                    "parent": frm.doc.musteri,
-                    "parenttype": "Musteri"
-                }
-            };
-        });
-
-        frm.set_query("sevkiyat_adresi", function () {
-            return {
-                filters: {
-                    "parent": frm.doc.musteri,
-                    "parenttype": "Musteri"
-                }
-            };
-        });
     },
 
-    // Fatura Adresi değişince detayları çek
-    fatura_adresi: function (frm) {
-        if (frm.doc.fatura_adresi) {
-            frappe.call({
-                method: 'frappe.client.get',
-                args: {
-                    doctype: 'Adres Detayi',
-                    name: frm.doc.fatura_adresi
-                },
-                callback: function (r) {
-                    if (r && r.message) {
-                        frm.set_value('il', r.message.sehir);
-                        frm.set_value('ilce', r.message.ilce);
-                        frm.set_value('acik_adres', r.message.acik_adres);
-                    }
-                }
-            });
-        } else {
-            frm.set_value('il', '');
-            frm.set_value('ilce', '');
-            frm.set_value('acik_adres', '');
-        }
-    },
 
-    // Sevkiyat Adresi değişince detayları çek
-    sevkiyat_adresi: function (frm) {
-        if (frm.doc.sevkiyat_adresi) {
-            frappe.call({
-                method: 'frappe.client.get',
-                args: {
-                    doctype: 'Adres Detayi',
-                    name: frm.doc.sevkiyat_adresi
-                },
-                callback: function (r) {
-                    if (r && r.message) {
-                        frm.set_value('sevkiyat_il', r.message.sehir);
-                        frm.set_value('sevkiyat_ilce', r.message.ilce);
-                        frm.set_value('sevkiyat_acik_adres', r.message.acik_adres);
-                    }
-                }
-            });
-        } else {
-            frm.set_value('sevkiyat_il', '');
-            frm.set_value('sevkiyat_ilce', '');
-            frm.set_value('sevkiyat_acik_adres', '');
-        }
-    },
 
     refresh: function (frm) {
         if (frm.doc.docstatus === 1) {
@@ -132,86 +33,45 @@ frappe.ui.form.on('Satis Teklifi', {
 // ---------------------------------------------------------
 // Hesaplamalar (Gelişmiş Vergi Motoru)
 // ---------------------------------------------------------
+// ---------------------------------------------------------
+// Hesaplamalar (API / Controller Üzerinden)
+// ---------------------------------------------------------
 function calculate_totals(frm) {
-    let ara_toplam = 0;
-    let vergi_toplami = 0;
-    let is_tax_included = frm.doc.vergi_dahil_mi;
+    if (!frm.doc.kalemler || frm.doc.kalemler.length === 0) return;
 
-    (frm.doc.kalemler || []).forEach(row => {
-        let miktar = row.miktar || 0;
-        let fiyat = row.birim_fiyat || 0; // Eğer vergi dahilse bu brüt, hariçse net fiyattır.
-        let vergi_orani = row.vergi_orani || 0;
+    frappe.call({
+        method: "archerp.controllers.transaction_controller.calculate_doc",
+        args: {
+            doc: frm.doc
+        },
+        callback: function (r) {
+            if (r.message) {
+                let d = r.message;
 
-        let ham_tutar = miktar * fiyat;
+                // 1. Ana Toplamlar
+                frm.set_value('ara_toplam', d.ara_toplam);
+                frm.set_value('vergi_toplami', d.vergi_toplami);
+                frm.set_value('genel_toplam', d.genel_toplam);
+                if (d.base_genel_toplam) frm.set_value('base_genel_toplam', d.base_genel_toplam);
 
-        let net_tutar = 0;
-        let satir_vergi = 0;
-        let satir_toplami = 0;
+                // 2. Satır Tutarlarını Güncelle
+                if (d.kalemler && d.kalemler.length > 0) {
+                    d.kalemler.forEach(function (row) {
+                        let form_row = (frm.doc.kalemler || []).find(fr => fr.name === row.name);
+                        if (form_row) {
+                            frappe.model.set_value(form_row.doctype, form_row.name, 'tutar', row.tutar);
+                            if (row.muhasebe_hesabi) frappe.model.set_value(form_row.doctype, form_row.name, 'muhasebe_hesabi', row.muhasebe_hesabi);
+                        }
+                    });
+                }
 
-        if (is_tax_included) {
-            // Fiyatın içinde vergi var.
-            // Net = Ham / (1 + rate/100)
-            net_tutar = ham_tutar / (1 + (vergi_orani / 100));
-            satir_vergi = ham_tutar - net_tutar;
-        } else {
-            // Fiyat net. Vergi üstüne eklenir.
-            net_tutar = ham_tutar;
-            satir_vergi = net_tutar * (vergi_orani / 100);
+                frm.refresh_fields();
+            }
         }
-
-        // Bu sistemde Tutar her zaman Net Tutar olarak kabul ediliyor (İrsaliye ile uyumlu)
-        satir_toplami = net_tutar;
-
-        // Satır Tutarını Güncelle
-        frappe.model.set_value(row.doctype, row.name, 'tutar', satir_toplami);
-
-        ara_toplam += satir_toplami;
-        vergi_toplami += satir_vergi;
     });
-
-    let ek_iskonto = frm.doc.ek_iskonto_tutari || 0;
-
-    // Genel Toplam = (Net Toplam + Vergi Toplamı) - İskonto
-    let genel_toplam = (ara_toplam + vergi_toplami) - ek_iskonto;
-
-    frm.set_value('ara_toplam', ara_toplam);
-    frm.set_value('vergi_toplami', vergi_toplami);
-    frm.set_value('genel_toplam', genel_toplam);
-
-    frm.refresh_field('kalemler');
 }
 
 frappe.ui.form.on('Satis Kalemi', {
-    urun: function (frm, cdt, cdn) {
-        var row = locals[cdt][cdn];
-        if (row.urun) {
-            frappe.db.get_value('Urun', row.urun, ['standart_satis_fiyati', 'urun_adi'])
-                .then(r => {
-                    if (r && r.message) {
-                        frappe.model.set_value(cdt, cdn, 'birim_fiyat', r.message.standart_satis_fiyati || 0);
-                        // İsteğe bağlı: Ürün adını açıklama alanına da basabiliriz ama şimdilik gerek yok.
-                        calculate_totals(frm);
-                    }
-                });
-        }
-    },
-
-    // Vergi Şablonu seçilince Oranı getir
-    vergi_sablonu: function (frm, cdt, cdn) {
-        var row = locals[cdt][cdn];
-        if (row.vergi_sablonu) {
-            frappe.db.get_value("Vergi", row.vergi_sablonu, "oran")
-                .then(r => {
-                    let rate = (r && r.message) ? r.message.oran : 0;
-                    frappe.model.set_value(cdt, cdn, "vergi_orani", rate);
-                    calculate_totals(frm);
-                });
-        } else {
-            frappe.model.set_value(cdt, cdn, "vergi_orani", 0);
-            calculate_totals(frm);
-        }
-    },
-
     miktar: function (frm, cdt, cdn) { calculate_totals(frm); },
     birim_fiyat: function (frm, cdt, cdn) { calculate_totals(frm); },
     vergi_orani: function (frm, cdt, cdn) { calculate_totals(frm); },

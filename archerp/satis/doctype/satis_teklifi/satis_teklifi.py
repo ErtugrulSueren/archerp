@@ -3,9 +3,13 @@ import frappe
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 from frappe.utils import flt, today, add_days, getdate
+from archerp.controllers.transaction_controller import TransactionController
 
-class SatisTeklifi(Document):
+class SatisTeklifi(TransactionController):
     def validate(self):
+        # 0. Hesaplamaları Çalıştır
+        self.calculate_totals()
+
         # Toplam kontrolü
         if flt(self.genel_toplam) < 0:
              frappe.throw("Genel toplam negatif olamaz!")

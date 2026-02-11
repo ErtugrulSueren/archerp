@@ -1,0 +1,66 @@
+{
+ "add_total_row": 0,
+ "add_translate_data": 0,
+ "columns": [],
+ "creation": "2026-02-11 03:35:59.240481",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "label": "Ba\u015flang\u0131\u00e7 Tarihi",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "label": "Biti\u015f Tarihi",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Firma",
+   "mandatory": 1,
+   "options": "Firma",
+   "wildcard_filter": 0
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "\u015eube",
+   "mandatory": 1,
+   "options": "Sube",
+   "wildcard_filter": 0
+  }
+ ],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": null,
+ "modified": "2026-02-11 03:35:59.240481",
+ "modified_by": "Administrator",
+ "module": "archerp",
+ "name": "\u015eube Gelir Tablosu",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "SELECT\r\n    h.account_type as \"Hesap Grubu::150\",\r\n    h.hesap_adi as \"Hesap Ad\u0131::250\",\r\n    \r\n    /* BAK\u0130YE HESAPLAMA */\r\n    SUM(\r\n        CASE \r\n            /* Gelirler (Alacak - Bor\u00e7) */\r\n            WHEN h.account_type LIKE 'Gelir%%' OR h.account_type LIKE 'Income%%' \r\n            THEN (IFNULL(gl.alacak, 0) - IFNULL(gl.borc, 0))\r\n            \r\n            /* Giderler (Bor\u00e7 - Alacak) */\r\n            ELSE (IFNULL(gl.borc, 0) - IFNULL(gl.alacak, 0))\r\n        END\r\n    ) as \"Tutar:Currency:150\"\r\n\r\nFROM\r\n    `tabHesap` h\r\n\r\nLEFT JOIN\r\n    `tabMuhasebe Defteri` gl \r\n    ON gl.hesap = h.name \r\n    AND gl.firma = h.firma\r\n    \r\n    /* KR\u0130T\u0130K NOKTA: \u015eUBE F\u0130LTRES\u0130 JOIN \u0130\u00c7\u0130NDE */\r\n    AND gl.sube = %(branch)s\r\n\r\nWHERE\r\n    (h.account_type LIKE 'Gelir%%' OR h.account_type LIKE 'Income%%' \r\n     OR h.account_type LIKE 'Gider%%' OR h.account_type LIKE 'Expense%%')\r\n    \r\n    AND h.firma = %(company)s\r\n    \r\n    AND gl.tarih >= %(from_date)s\r\n    AND gl.tarih <= %(to_date)s\r\n\r\nGROUP BY\r\n    h.name\r\n\r\nORDER BY\r\n    h.account_type DESC, \r\n    3 DESC",
+ "ref_doctype": "Hesap",
+ "report_name": "\u015eube Gelir Tablosu",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Satis Yoneticisi"
+  },
+  {
+   "role": "Satin Alma Yoneticisi"
+  }
+ ],
+ "timeout": 0
+}

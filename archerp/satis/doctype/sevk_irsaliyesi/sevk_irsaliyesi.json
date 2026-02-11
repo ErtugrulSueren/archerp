@@ -15,6 +15,7 @@
   "status",
   "firma",
   "sube",
+  "personel",
   "section_break_hcau",
   "tasiyici_firma",
   "sofor_adi",
@@ -124,6 +125,7 @@
    "label": "Notlar"
   },
   {
+   "fetch_from": "personel.firma",
    "fieldname": "firma",
    "fieldtype": "Link",
    "label": "Firma",
@@ -131,6 +133,7 @@
    "reqd": 1
   },
   {
+   "fetch_from": "personel.sube",
    "fieldname": "sube",
    "fieldtype": "Link",
    "label": "Sube",
@@ -205,6 +208,7 @@
    "fieldname": "sevk_adresi",
    "fieldtype": "Link",
    "label": "Sevk Adresi",
+   "link_filters": "[\r\n    [\"Adres\", \"parent\", \"=\", \"eval:doc.musteri\"],\r\n    [\"Adres\", \"parenttype\", \"=\", \"Musteri\"]\r\n]",
    "options": "Adres Detayi"
   },
   {
@@ -215,33 +219,39 @@
    "read_only": 1
   },
   {
+   "fetch_from": "fatura_adresi.sehir",
    "fieldname": "fatura_il",
    "fieldtype": "Data",
    "label": "Fatura Il"
   },
   {
+   "fetch_from": "fatura_adresi.ilce",
    "fieldname": "fatura_ilce",
    "fieldtype": "Data",
    "label": "Fatura Ilce"
   },
   {
+   "fetch_from": "fatura_adresi.acik_adres",
    "fieldname": "fatura_acik_adres",
    "fieldtype": "Small Text",
    "label": "Fatura Acik Adres"
   },
   {
+   "fetch_from": "sevk_adresi.sehir",
    "fieldname": "sevkiyat_il",
    "fieldtype": "Data",
    "label": "Sevkiyat Il",
    "reqd": 1
   },
   {
+   "fetch_from": "sevk_adresi.ilce",
    "fieldname": "sevkiyat_ilce",
    "fieldtype": "Data",
    "label": "Sevkiyat Ilce",
    "reqd": 1
   },
   {
+   "fetch_from": "sevk_adresi.acik_adres",
    "fieldname": "sevkiyat_acik_adres",
    "fieldtype": "Small Text",
    "label": "Sevkiyat Acik Adres",
@@ -251,6 +261,7 @@
    "fieldname": "fatura_adresi",
    "fieldtype": "Link",
    "label": "Fatura Adresi",
+   "link_filters": "[\r\n    [\"Adres\", \"parent\", \"=\", \"eval:doc.musteri\"],\r\n    [\"Adres\", \"parenttype\", \"=\", \"Musteri\"]\r\n]",
    "options": "Adres Detayi"
   },
   {
@@ -339,13 +350,20 @@
    "fieldname": "base_grand_total",
    "fieldtype": "Float",
    "label": "Yere Para Karsiligi"
+  },
+  {
+   "fieldname": "personel",
+   "fieldtype": "Link",
+   "label": "Personel",
+   "options": "Kullanicilar",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-01-20 19:48:38.904688",
+ "modified": "2026-02-05 19:47:09.292028",
  "modified_by": "Administrator",
  "module": "Satis",
  "name": "Sevk Irsaliyesi",

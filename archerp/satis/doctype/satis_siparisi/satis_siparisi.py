@@ -3,9 +3,13 @@ import frappe
 from frappe.model.document import Document
 from frappe.utils import flt, getdate, today
 from frappe.model.mapper import get_mapped_doc
+from archerp.controllers.transaction_controller import TransactionController
 
-class SatisSiparisi(Document):
+class SatisSiparisi(TransactionController):
     def validate(self):
+        # 0. Hesaplamaları Çalıştır (Controller'dan)
+        self.calculate_totals()
+        
         # 1. Zorunlu Alan Kontrolü (Fatura Açık Adres)
         if not self.fatura_acik_adres:
              frappe.throw("Fatura kesebilmek için 'Fatura Açık Adres' bilgisi zorunludur.")

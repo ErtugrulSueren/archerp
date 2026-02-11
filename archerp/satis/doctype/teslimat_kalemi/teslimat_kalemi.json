@@ -1,180 +1,185 @@
 {
-    "actions": [],
-    "allow_rename": 1,
-    "creation": "2025-12-15 06:00:51.705175",
-    "doctype": "DocType",
-    "editable_grid": 1,
-    "engine": "InnoDB",
-    "field_order": [
-        "tur",
-        "gelir_gider_kalemi",
-        "hizmet_adi",
-        "urun",
-        "urun_adi",
-        "miktar",
-        "depo",
-        "faturalanan_miktar",
-        "stok_birimi",
-        "birim_maliyet",
-        "birim_fiyat",
-        "cevrim_katsayisi",
-        "parti_no",
-        "vergi_sablonu",
-        "vergi_orani",
-        "tutar",
-        "satis_kalemi_id",
-        "seri_no"
-    ],
-    "fields": [
-        {
-            "default": "Stok",
-            "fieldname": "tur",
-            "fieldtype": "Select",
-            "in_list_view": 1,
-            "label": "Tur",
-            "options": "Stok\nHizmet"
-        },
-        {
-            "depends_on": "eval:doc.tur == 'Hizmet'",
-            "fieldname": "gelir_gider_kalemi",
-            "fieldtype": "Link",
-            "label": "Hizmet / Gider",
-            "mandatory_depends_on": "eval:doc.tur == 'Hizmet'",
-            "options": "Gelir Gider Kalemi"
-        },
-        {
-            "depends_on": "eval:doc.tur == 'Hizmet'",
-            "fetch_from": "gelir_gider_kalemi.kalem_adi",
-            "fieldname": "hizmet_adi",
-            "fieldtype": "Data",
-            "label": "Hizmet Adi",
-            "read_only": 1
-        },
-        {
-            "depends_on": "eval:doc.tur == 'Stok'",
-            "fieldname": "urun",
-            "fieldtype": "Link",
-            "in_list_view": 1,
-            "label": "Urun",
-            "mandatory_depends_on": "eval:doc.tur == 'Stok'",
-            "options": "Urun"
-        },
-        {
-            "depends_on": "eval:doc.tur == 'Stok'",
-            "fetch_from": "urun.urun_adi",
-            "fieldname": "urun_adi",
-            "fieldtype": "Data",
-            "label": "Urun Adi"
-        },
-        {
-            "fieldname": "miktar",
-            "fieldtype": "Float",
-            "label": "Miktar",
-            "non_negative": 1,
-            "reqd": 1
-        },
-        {
-            "description": "(Bilgi ama\u00e7l\u0131, stok de\u011ferlemesi i\u00e7in).",
-            "fieldname": "birim_fiyat",
-            "fieldtype": "Currency",
-            "label": "Birim fiyat"
-        },
-        {
-            "fetch_from": "vergi_sablonu.oran",
-            "fieldname": "vergi_orani",
-            "fieldtype": "Percent",
-            "label": "Vergi Orani",
-            "reqd": 1
-        },
-        {
-            "fieldname": "tutar",
-            "fieldtype": "Currency",
-            "label": "Tutar",
-            "read_only": 1
-        },
-        {
-            "fieldname": "seri_no",
-            "fieldtype": "Text",
-            "label": "Seri No"
-        },
-        {
-            "fieldname": "satis_kalemi_id",
-            "fieldtype": "Data",
-            "hidden": 1,
-            "label": "Satis Kalemi ID",
-            "read_only": 1
-        },
-        {
-            "default": "0",
-            "fieldname": "faturalanan_miktar",
-            "fieldtype": "Float",
-            "label": "Faturalanan Miktar",
-            "read_only": 1
-        },
-        {
-            "depends_on": "eval:doc.tur == 'Stok'",
-            "fieldname": "depo",
-            "fieldtype": "Link",
-            "label": "Depo",
-            "mandatory_depends_on": "eval:doc.tur == 'Stok'",
-            "options": "Depo"
-        },
-        {
-            "depends_on": "eval:doc.tur == 'Stok'",
-            "fieldname": "stok_birimi",
-            "fieldtype": "Link",
-            "label": "Stok Birimi",
-            "mandatory_depends_on": "eval:doc.tur == 'Stok'",
-            "options": "Birim"
-        },
-        {
-            "fieldname": "vergi_sablonu",
-            "fieldtype": "Link",
-            "label": "Vergi Sablonu",
-            "options": "Vergi",
-            "reqd": 1
-        },
-        {
-            "fieldname": "birim_maliyet",
-            "fieldtype": "Currency",
-            "label": "Birim Maliyet",
-            "read_only": 1
-        },
-        {
-            "default": "1",
-            "depends_on": "eval:doc.tur == 'Stok'",
-            "fieldname": "cevrim_katsayisi",
-            "fieldtype": "Float",
-            "label": "Cevrim Katsayisi",
-            "read_only": 1
-        },
-        {
-            "fieldname": "parti_no",
-            "fieldtype": "Data",
-            "label": "Parti No"
-        },
-        {
-            "fieldname": "muhasebe_hesabi",
-            "fieldtype": "Link",
-            "hidden": 1,
-            "label": "Muhasebe Hesabi",
-            "options": "Hesap",
-            "read_only": 1
-        }
-    ],
-    "grid_page_length": 50,
-    "index_web_pages_for_search": 1,
-    "istable": 1,
-    "links": [],
-    "modified": "2025-12-28 10:23:35.908516",
-    "modified_by": "Administrator",
-    "module": "Satis",
-    "name": "Teslimat Kalemi",
-    "owner": "Administrator",
-    "permissions": [],
-    "row_format": "Dynamic",
-    "rows_threshold_for_grid_search": 20,
-    "sort_field": "creation",
-    "sort_order": "DESC",
-    "states": []
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-01-03 12:20:51.957959",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "tur",
+  "gelir_gider_kalemi",
+  "hizmet_adi",
+  "urun",
+  "urun_adi",
+  "miktar",
+  "depo",
+  "faturalanan_miktar",
+  "stok_birimi",
+  "birim_maliyet",
+  "birim_fiyat",
+  "cevrim_katsayisi",
+  "parti_no",
+  "vergi_sablonu",
+  "vergi_orani",
+  "tutar",
+  "satis_kalemi_id",
+  "seri_no",
+  "muhasebe_hesabi"
+ ],
+ "fields": [
+  {
+   "default": "Stok",
+   "fieldname": "tur",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Tur",
+   "options": "Stok\nHizmet"
+  },
+  {
+   "depends_on": "eval:doc.tur == 'Hizmet'",
+   "fieldname": "gelir_gider_kalemi",
+   "fieldtype": "Link",
+   "label": "Hizmet / Gider",
+   "mandatory_depends_on": "eval:doc.tur == 'Hizmet'",
+   "options": "Gelir Gider Kalemi"
+  },
+  {
+   "depends_on": "eval:doc.tur == 'Hizmet'",
+   "fetch_from": "gelir_gider_kalemi.kalem_adi",
+   "fieldname": "hizmet_adi",
+   "fieldtype": "Data",
+   "label": "Hizmet Adi",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.tur == 'Stok'",
+   "fieldname": "urun",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Urun",
+   "link_filters": "[\r\n    [\"Urun\", \"has_variants\", \"=\", 0]\r\n]",
+   "mandatory_depends_on": "eval:doc.tur == 'Stok'",
+   "options": "Urun"
+  },
+  {
+   "depends_on": "eval:doc.tur == 'Stok'",
+   "fetch_from": "urun.urun_adi",
+   "fieldname": "urun_adi",
+   "fieldtype": "Data",
+   "label": "Urun Adi"
+  },
+  {
+   "fieldname": "miktar",
+   "fieldtype": "Float",
+   "label": "Miktar",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "description": "(Bilgi ama\u00e7l\u0131, stok de\u011ferlemesi i\u00e7in).",
+   "fetch_from": "urun.standart_satis_fiyati",
+   "fieldname": "birim_fiyat",
+   "fieldtype": "Currency",
+   "label": "Birim fiyat"
+  },
+  {
+   "fetch_from": "vergi_sablonu.oran",
+   "fieldname": "vergi_orani",
+   "fieldtype": "Percent",
+   "label": "Vergi Orani",
+   "reqd": 1
+  },
+  {
+   "fieldname": "tutar",
+   "fieldtype": "Currency",
+   "label": "Tutar",
+   "read_only": 1
+  },
+  {
+   "fieldname": "seri_no",
+   "fieldtype": "Text",
+   "label": "Seri No"
+  },
+  {
+   "fieldname": "satis_kalemi_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Satis Kalemi ID",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "faturalanan_miktar",
+   "fieldtype": "Float",
+   "label": "Faturalanan Miktar",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.tur == 'Stok'",
+   "fieldname": "depo",
+   "fieldtype": "Link",
+   "label": "Depo",
+   "mandatory_depends_on": "eval:doc.tur == 'Stok'",
+   "options": "Depo"
+  },
+  {
+   "depends_on": "eval:doc.tur == 'Stok'",
+   "fetch_from": "urun.stok_birimi",
+   "fieldname": "stok_birimi",
+   "fieldtype": "Link",
+   "label": "Stok Birimi",
+   "mandatory_depends_on": "eval:doc.tur == 'Stok'",
+   "options": "Birim"
+  },
+  {
+   "fetch_from": "urun.satis_vergi_sablonu",
+   "fieldname": "vergi_sablonu",
+   "fieldtype": "Link",
+   "label": "Vergi Sablonu",
+   "options": "Vergi",
+   "reqd": 1
+  },
+  {
+   "fieldname": "birim_maliyet",
+   "fieldtype": "Currency",
+   "label": "Birim Maliyet",
+   "read_only": 1
+  },
+  {
+   "default": "1",
+   "depends_on": "eval:doc.tur == 'Stok'",
+   "fieldname": "cevrim_katsayisi",
+   "fieldtype": "Float",
+   "label": "Cevrim Katsayisi",
+   "read_only": 1
+  },
+  {
+   "fieldname": "parti_no",
+   "fieldtype": "Data",
+   "label": "Parti No"
+  },
+  {
+   "fieldname": "muhasebe_hesabi",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Muhasebe Hesabi",
+   "options": "Hesap",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-02-04 05:06:52.446467",
+ "modified_by": "Administrator",
+ "module": "Satis",
+ "name": "Teslimat Kalemi",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
 }

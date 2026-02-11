@@ -44,6 +44,7 @@
   "teklif_referansi",
   "firma",
   "sube",
+  "personel",
   "amended_from",
   "column_break_qysm",
   "sartlar_ve_kosullar",
@@ -132,6 +133,7 @@
    "reqd": 1
   },
   {
+   "fetch_from": "personel.firma",
    "fieldname": "firma",
    "fieldtype": "Link",
    "label": "Firma",
@@ -153,9 +155,11 @@
    "fieldname": "hedef_depo",
    "fieldtype": "Link",
    "label": "Hedef Depo",
+   "link_filters": "{\r\n    \"is_group\": 0,\r\n    \"is_virtual\": 0\r\n}",
    "options": "Depo"
   },
   {
+   "fetch_from": "personel.sube",
    "fieldname": "sube",
    "fieldtype": "Link",
    "label": "Sube",
@@ -181,55 +185,51 @@
    "fieldname": "fatura_adresi",
    "fieldtype": "Link",
    "label": "Fatura Adresi",
+   "link_filters": "[\r\n    [\"Adres\", \"parent\", \"=\", \"eval:doc.tedarikci\"],\r\n    [\"Adres\", \"parenttype\", \"=\", \"Tedarikci\"]\r\n]",
    "options": "Adres Detayi"
   },
   {
    "fetch_from": "fatura_adresi.sehir",
    "fieldname": "fatura_il",
    "fieldtype": "Data",
-   "label": "Fatura il",
-   "read_only": 1
+   "label": "Fatura il"
   },
   {
    "fetch_from": "fatura_adresi.ilce",
    "fieldname": "fatura_ilce",
    "fieldtype": "Data",
-   "label": "Fatura ilce",
-   "read_only": 1
+   "label": "Fatura ilce"
   },
   {
    "fetch_from": "fatura_adresi.acik_adres",
    "fieldname": "fatura_acik_adres",
    "fieldtype": "Small Text",
-   "label": "Fatura Acik Adres",
-   "read_only": 1
+   "label": "Fatura Acik Adres"
   },
   {
    "fieldname": "teslimat_adresi",
    "fieldtype": "Link",
    "label": "Teslimat Adresi",
+   "link_filters": "[\r\n    [\"Adres\", \"parent\", \"=\", \"eval:doc.tedarikci\"],\r\n    [\"Adres\", \"parenttype\", \"=\", \"Tedarikci\"]\r\n]",
    "options": "Adres Detayi"
   },
   {
    "fetch_from": "teslimat_adresi.sehir",
    "fieldname": "teslimat_il",
    "fieldtype": "Data",
-   "label": "Teslimat il",
-   "read_only": 1
+   "label": "Teslimat il"
   },
   {
    "fetch_from": "teslimat_adresi.ilce",
    "fieldname": "teslimat_ilce",
    "fieldtype": "Data",
-   "label": "Teslimat ilce",
-   "read_only": 1
+   "label": "Teslimat ilce"
   },
   {
    "fetch_from": "teslimat_adresi.acik_adres",
    "fieldname": "teslimat_acik_adres",
    "fieldtype": "Small Text",
-   "label": "Teslimat Acik Adres",
-   "read_only": 1
+   "label": "Teslimat Acik Adres"
   },
   {
    "fieldname": "odeme_kosulu",
@@ -312,13 +312,20 @@
    "fieldname": "base_grand_total",
    "fieldtype": "Float",
    "label": "Yerel Para Karsiligi"
+  },
+  {
+   "fieldname": "personel",
+   "fieldtype": "Link",
+   "label": "Personel",
+   "options": "Kullanicilar",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-01-17 04:11:43.252824",
+ "modified": "2026-02-05 19:47:08.894078",
  "modified_by": "Administrator",
  "module": "Satin Alma",
  "name": "Satin Alma Siparisi",

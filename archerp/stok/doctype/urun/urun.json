@@ -39,7 +39,8 @@
   "standart_satis_fiyati",
   "standart_alis_fiyati",
   "column_break_rxey",
-  "vergi_sablonu",
+  "satis_vergi_sablonu",
+  "satin_alma_vergisi_sablonu",
   "tedarikci_bilgileri",
   "muhasebe_hesaplari_section",
   "gelir_hesabi",
@@ -153,7 +154,7 @@
    "fieldname": "varsayilan_depo",
    "fieldtype": "Link",
    "label": "Varsayilan Depo",
-   "link_filters": "{\r\n    \"is_group\": 0,\r\n    \"is_virtual\": 0\r\n}",
+   "link_filters": "[\r\n    [\"Depo\", \"is_group\", \"=\", 0],\r\n    [\"Depo\", \"is_virtual\", \"=\", 0]\r\n]",
    "options": "Depo"
   },
   {
@@ -185,12 +186,6 @@
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Standart Satis Fiyati"
-  },
-  {
-   "fieldname": "vergi_sablonu",
-   "fieldtype": "Link",
-   "label": "Vergi Sablonu",
-   "options": "Vergi"
   },
   {
    "default": "HSP-00049",
@@ -258,7 +253,7 @@
    "fieldname": "varyanti_oldugu_urun",
    "fieldtype": "Link",
    "label": "Varyanti Oldugu Urun",
-   "link_filters": "{\"has_variants\": 1}",
+   "link_filters": "[\r\n    [\"Urun\", \"has_variants\", \"=\", 1]\r\n]",
    "options": "Urun"
   },
   {
@@ -336,12 +331,26 @@
    "fieldname": "aciklama_tab",
    "fieldtype": "Tab Break",
    "label": "A\u00e7\u0131klama"
+  },
+  {
+   "fieldname": "satis_vergi_sablonu",
+   "fieldtype": "Link",
+   "label": "Sat\u0131\u015f Vergisi \u015eablonu",
+   "link_filters": "[\r\n    [\"Vergi\", \"vergi_turu\", \"=\", \"Sat\u0131\u015f\"]\r\n]",
+   "options": "Vergi"
+  },
+  {
+   "fieldname": "satin_alma_vergisi_sablonu",
+   "fieldtype": "Link",
+   "label": "Sat\u0131n Alma Vergisi \u015eablonu",
+   "link_filters": "[\r\n    [\"Vergi\", \"vergi_turu\", \"=\", \"Al\u0131\u015f\"]\r\n]",
+   "options": "Vergi"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-01-21 18:26:51.982738",
+ "modified": "2026-02-03 15:16:23.842136",
  "modified_by": "Administrator",
  "module": "Stok",
  "name": "Urun",
@@ -366,5 +375,6 @@
  "sort_field": "creation",
  "sort_order": "DESC",
  "states": [],
- "title_field": "urun_adi"
+ "title_field": "urun_adi",
+ "track_changes": 1
 }

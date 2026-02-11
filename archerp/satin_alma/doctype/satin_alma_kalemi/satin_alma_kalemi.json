@@ -57,6 +57,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Urun",
+   "link_filters": "[\r\n    [\"Urun\", \"has_variants\", \"=\", 0]\r\n]",
    "mandatory_depends_on": "eval:doc.tur == 'Stok'",
    "options": "Urun"
   },
@@ -119,7 +120,7 @@
    "options": "Depo"
   },
   {
-   "fetch_from": "urun.vergi_sablonu",
+   "fetch_from": "urun.satin_alma_vergisi_sablonu",
    "fieldname": "vergi_sablonu",
    "fieldtype": "Link",
    "label": "Vergi Sablonu",
@@ -129,6 +130,7 @@
   },
   {
    "depends_on": "eval:doc.tur == 'Stok'",
+   "fetch_from": "urun.stok_birimi",
    "fieldname": "stok_birimi",
    "fieldtype": "Link",
    "label": "Stok Birimi",
@@ -176,7 +178,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-01-14 05:31:24.270430",
+ "modified": "2026-02-04 05:15:09.832637",
  "modified_by": "Administrator",
  "module": "Satin Alma",
  "name": "Satin Alma Kalemi",

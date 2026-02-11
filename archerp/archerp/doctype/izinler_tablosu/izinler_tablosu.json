@@ -1,0 +1,115 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-02-09 04:48:08.093464",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "dokuman",
+  "ilgili_doctype",
+  "secim",
+  "okuma",
+  "yazma",
+  "olustur",
+  "sil",
+  "gonder",
+  "iptal",
+  "degistirme",
+  "rapor",
+  "disa_aktar"
+ ],
+ "fields": [
+  {
+   "fieldname": "dokuman",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Dokuman",
+   "options": "Izin Verilebilir Belge",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "okuma",
+   "fieldtype": "Check",
+   "label": "Okuma"
+  },
+  {
+   "default": "0",
+   "fieldname": "yazma",
+   "fieldtype": "Check",
+   "label": "Yazma"
+  },
+  {
+   "default": "0",
+   "fieldname": "sil",
+   "fieldtype": "Check",
+   "label": "Sil"
+  },
+  {
+   "default": "0",
+   "fieldname": "iptal",
+   "fieldtype": "Check",
+   "label": "\u0130ptal"
+  },
+  {
+   "default": "1",
+   "fieldname": "secim",
+   "fieldtype": "Check",
+   "label": "Se\u00e7im"
+  },
+  {
+   "default": "0",
+   "fieldname": "olustur",
+   "fieldtype": "Check",
+   "label": "Olu\u015ftur"
+  },
+  {
+   "default": "0",
+   "fieldname": "gonder",
+   "fieldtype": "Check",
+   "label": "G\u00f6nder"
+  },
+  {
+   "default": "0",
+   "fieldname": "degistirme",
+   "fieldtype": "Check",
+   "label": "De\u011fi\u015ftirme"
+  },
+  {
+   "default": "0",
+   "fieldname": "rapor",
+   "fieldtype": "Check",
+   "label": "Rapor"
+  },
+  {
+   "default": "0",
+   "fieldname": "disa_aktar",
+   "fieldtype": "Check",
+   "label": "D\u0131\u015fa Aktar"
+  },
+  {
+   "fetch_from": "dokuman.ekran",
+   "fieldname": "ilgili_doctype",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Ilgili Doctype",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-02-09 05:47:07.043963",
+ "modified_by": "Administrator",
+ "module": "archerp",
+ "name": "Izinler Tablosu",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
